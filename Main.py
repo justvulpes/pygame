@@ -1,10 +1,11 @@
 import pygame
-from pygame.locals import *
-import KeyListener
 import random
+
+import KeyListener
 import game_graphics.Display
-from array import array
+
 import World
+import objects.mobs.Player
 
 window_title = "title_"  # Title on top of the frame.
 window_width = 1200  # Width of the canvas.
@@ -13,55 +14,35 @@ window_height = 700  # Height of the canvas.
 running = True
 
 world = World.World()
+player = objects.mobs.Player.Player(10,10)
 
 def update():
     KeyListener.update()
-    if KeyListener.button_is_pressed(ord("d")):
-        World.World.camera_x += 4
-    if KeyListener.button_is_pressed(ord("a")):
-        World.World.camera_x -= 4
-    if KeyListener.button_is_pressed(ord("w")):
-        World.World.camera_y -= 4
-    if KeyListener.button_is_pressed(ord("s")):
-        World.World.camera_y += 4
+
+    player.update()
     world.update()
+
 
 
 def render(display_obj):
     display_obj.canvas.fill(int(0x000000))
     world.render(display_obj)
 
-class Bong:
-    def __init__(self):
-        self.x = random.randint(0, World.World.map_width << 5)
-        self.y = random.randint(0, World.World.map_height << 5)
-        self.speedx = 1
-        self.speedy = 1
 
-    def move(self):
-        if self.x >> 5 >= World.World.map_width - 1:
-            self.speedx = -1
-        elif self.x < 0:
-            self.speedx = 1
+cameraPosIntX = 0
+cameraPosIntY = 0
 
-        if self.y >> 5 >= World.World.map_height - 1:
-            self.speedy = -1
-        elif self.y < 0:
-            self.speedy = 1
+cameraPosDoubleX = 0
+cameraPosDoubleY = 0
 
-        self.x += self.speedx
-        self.y += self.speedy
+
+def cameraPos():
+    pass
 
 
 def run():
     game_window = game_graphics.Display.Display(window_width, window_height)
-
-    man_pic = pygame.image.load('man.png')
-
-    objects = []
-
-    for i in range(60):
-        objects.append(Bong())
+    world.objects.append(player)
 
     while running:
         game_window.clock.tick(game_window.fps)
@@ -71,9 +52,7 @@ def run():
         render(game_window)
 
 
-        for obj in objects:
-            obj.move()
-            game_window.canvas.blit(man_pic, (obj.x - World.World.camera_x, obj.y - World.World.camera_y))
+
 
         pygame.display.flip()
 
