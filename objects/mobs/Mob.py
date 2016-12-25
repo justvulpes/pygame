@@ -2,7 +2,7 @@ import objects.Object
 import World
 
 class Mob(objects.Object.Object):
-    def __init__(self, x, y, speed=1, size=20):
+    def __init__(self, x, y, speed=2, size=20):
         super().__init__(x, y)
         self.x = x
         self.y = y
