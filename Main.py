@@ -5,21 +5,21 @@ import random
 from array import array
 
 window_title = "title_"  # Title on top of the frame.
-window_width = 800  # Width of the canvas.
-window_height = 800  # Height of the canvas.
+window_width = 900  # Width of the canvas.
+window_height = 700  # Height of the canvas.
 
 
 class Display():
     """Make a new window with canvas."""
     def __init__(self):
         pygame.init()
-        self.screen = pygame.display.set_mode((window_width, window_height), HWSURFACE | DOUBLEBUF | RESIZABLE)
+        self.screen = pygame.display.set_mode((window_width, window_height), DOUBLEBUF | RESIZABLE)
         self.clock = pygame.time.Clock()  # To set a limit for fps / time
         self.fps = 10000
 
 
 def update():
-    pass
+    KeyListener.update()
 
 
 def render():
@@ -46,6 +46,8 @@ class Bong:
         self.x += self.speedx
         self.y += self.speedy
 
+
+
 if __name__ == "__main__":
     a = Display()
 
@@ -58,7 +60,7 @@ if __name__ == "__main__":
 
     objects = []
 
-    for i in range(800):
+    for i in range(10):
         objects.append(Bong())
 
 
@@ -76,7 +78,7 @@ if __name__ == "__main__":
         for obj in objects:
             obj.move()
             a.screen.blit(man_pic, (obj.x,obj.y))
-        KeyListener.update()
+
 
 
         pygame.display.flip()
