@@ -3,31 +3,100 @@ import game_graphics.Sprite
 import KeyListener
 import World
 
-sprite_down = game_graphics.Sprite.player_down
+
 sprite_up = game_graphics.Sprite.player_up
-sprite_left = game_graphics.Sprite.player_left
 sprite_right = game_graphics.Sprite.player_right
+sprite_down = game_graphics.Sprite.player_down
+sprite_left = game_graphics.Sprite.player_left
 
+sprite_up_step1 = game_graphics.Sprite.player_up_step1
+sprite_right_step1 = game_graphics.Sprite.player_right_step1
+sprite_down_step1 = game_graphics.Sprite.player_down_step1
+sprite_left_step1 = game_graphics.Sprite.player_left_step1
 
+sprite_up_step2 = game_graphics.Sprite.player_up_step2
+sprite_right_step2 = game_graphics.Sprite.player_right_step2
+sprite_down_step2 = game_graphics.Sprite.player_down_step2
+sprite_left_step2 = game_graphics.Sprite.player_left_step2
 
 class Player(objects.mobs.Mob.Mob):
     def __init__(self, x, y, speed=1, size=18):
         super().__init__(x, y, speed, size)
         self.current_sprite = sprite_left
-    def update(self):
+        self.direction = 3
+        self.animCount = 0
+        self.moving = False
 
-        if KeyListener.button_is_pressed(ord("d")):
-            self.move(self.speed,0)
-            self.current_sprite = sprite_right
+    def update(self):
+        self.moving = False
+
         if KeyListener.button_is_pressed(ord("a")):
             self.move(-self.speed, 0)
-            self.current_sprite = sprite_left
+            self.moving = True
+            self.direction = 3
+
+        elif KeyListener.button_is_pressed(ord("d")):
+            self.move(self.speed,0)
+            self.moving = True
+            self.direction = 1
+
         if KeyListener.button_is_pressed(ord("w")):
             self.move(0, -self.speed)
-            self.current_sprite = sprite_up
-        if KeyListener.button_is_pressed(ord("s")):
+            self.moving = True
+            self.direction = 0
+
+        elif KeyListener.button_is_pressed(ord("s")):
             self.move(0, self.speed)
-            self.current_sprite = sprite_down
+            self.moving = True
+            self.direction = 2
+
+        if not self.moving:
+            self.animCount = 0
+
+        else:
+            self.animCount += 1
+            if self.animCount >= 30:
+                self.animCount = 0
 
     def render(self, display):
+        self.set_sprite()
         display.canvas.blit(self.current_sprite.pic, (self.x - World.World.camera_x - self.current_sprite.width/2, self.y - World.World.camera_y - self.current_sprite.height/2 - 4))
+
+    def set_sprite(self):
+        if self.moving:
+            if self.direction == 0:
+                if self.animCount >= 15:
+                    self.current_sprite = sprite_up_step1
+                else:
+                    self.current_sprite = sprite_up_step2
+
+            elif self.direction == 1:
+                if self.animCount >= 15:
+                    self.current_sprite = sprite_right_step1
+                else:
+                    self.current_sprite = sprite_right_step2
+
+            elif self.direction == 2:
+                if self.animCount >= 15:
+                    self.current_sprite = sprite_down_step1
+                else:
+                    self.current_sprite = sprite_down_step2
+
+            elif self.direction == 3:
+                if self.animCount >= 15:
+                    self.current_sprite = sprite_left_step1
+                else:
+                    self.current_sprite = sprite_left_step2
+
+        else:
+            if self.direction == 0:
+                self.current_sprite = sprite_up
+
+            elif self.direction == 1:
+                self.current_sprite = sprite_right
+
+            elif self.direction == 2:
+                self.current_sprite = sprite_down
+
+            elif self.direction == 3:
+                self.current_sprite = sprite_left
