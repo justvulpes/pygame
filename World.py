@@ -24,5 +24,6 @@ class World:
 
     def render(self, display):
         for y in range(display.height>> 5):
+            print(World.camera_x)
             for x in range(display.width >> 5):
-                pass
+                display.canvas.blit(World.tiles_hash[y + (World.camera_y >> 5)][x + (World.camera_x >> 5)].sprite.pic, ((x << 5) + World.camera_x, (y << 5) + World.camera_y))

@@ -7,7 +7,7 @@ from array import array
 import World
 
 window_title = "title_"  # Title on top of the frame.
-window_width = 900  # Width of the canvas.
+window_width = 1200  # Width of the canvas.
 window_height = 700  # Height of the canvas.
 
 running = True
@@ -16,11 +16,20 @@ world = World.World()
 
 def update():
     KeyListener.update()
+    if KeyListener.button_is_pressed(ord("d")):
+        print("@")
+        World.World.camera_x -= 1
+    if KeyListener.button_is_pressed(ord("a")):
+        World.World.camera_x += 1
+    if KeyListener.button_is_pressed(ord("w")):
+        World.World.camera_y += 1
+    if KeyListener.button_is_pressed(ord("s")):
+        World.World.camera_y -= 1
     world.update()
 
 
 def render(display_obj):
-    display_obj.canvas.fill(int(0x006600))
+    display_obj.canvas.fill(int(0x000000))
     world.render(display_obj)
 
 class Bong:
@@ -31,12 +40,12 @@ class Bong:
         self.speedy = 1
 
     def move(self):
-        if self.x > window_width:
+        if self.x >> 5 >= (window_width >> 5) - 1:
             self.speedx = -1
         elif self.x < 0:
             self.speedx = 1
 
-        if self.y > window_height:
+        if self.y >> 5 >= (window_height >> 5) - 1:
             self.speedy = -1
         elif self.y < 0:
             self.speedy = 1
@@ -65,7 +74,7 @@ def run():
 
         for obj in objects:
             obj.move()
-            game_window.canvas.blit(man_pic, (obj.x,obj.y))
+            game_window.canvas.blit(man_pic, (obj.x + World.World.camera_x, obj.y + World.World.camera_y))
 
         pygame.display.flip()
 
