@@ -33,7 +33,7 @@ def render(display_obj):
 
 class Bong:
     def __init__(self):
-        self.x = random.randint(0, 99 << 5)
+        self.x = random.randint(0, World.World.map_width << 5)
         self.y = random.randint(0, 99 << 5)
         self.speedx = 1
         self.speedy = 1
