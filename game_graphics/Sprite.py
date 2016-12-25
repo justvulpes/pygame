@@ -11,6 +11,6 @@ class Sprite:
 grass_sprite = Sprite(32, 32, "game_graphics\\res\\tiles\\grass.png")
 stone_sprite = Sprite(32, 32, "game_graphics\\res\\tiles\\stone.png")
 
-player_down = Sprite(32, 32, "game_graphics\\res\\mobs\\player\\man.png")
+player_down = Sprite(16, 27, "game_graphics\\res\\mobs\\player\\man.png")
 
 print(grass_sprite)

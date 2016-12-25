@@ -8,3 +8,6 @@ class Object:
 
     def render(self, display):
         pass
+
+    def move(self, x, y):
+        pass
