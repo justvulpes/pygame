@@ -20,9 +20,11 @@ class Mob(objects.Object.Object):
             self.move(0, y)
 
         if x != 0:
-            if not World.World.tiles_hash[self.y >> 5][(self.x + x) >> 5].solid:
-                self.x += x
+            if (self.x + x) >> 5 >= 0 and (self.x + x) >> 5 < World.World.map_width:
+                if not World.World.tiles_hash[self.y >> 5][(self.x + x) >> 5].solid:
+                    self.x += x
 
         if y != 0:
-            if not World.World.tiles_hash[(self.y + y) >> 5][self.x >> 5].solid:
-                self.y += y
+            if (self.y + y) >> 5 >= 0 and (self.y + y) >> 5 < World.World.map_width:
+                if not World.World.tiles_hash[(self.y + y) >> 5][self.x >> 5].solid:
+                    self.y += y
