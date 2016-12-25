@@ -21,7 +21,7 @@ def update():
     """Update all."""
     KeyListener.update()
 
-    cameraPos()
+    cameraPos()  # update camera position.
     player.update()
     world.update()
 
@@ -37,6 +37,7 @@ cameraPosDoubleY = 0
 
 
 def cameraPos():
+    """Update camera position."""
     global cameraPosDoubleX
     global cameraPosDoubleY
     global cameraPosIntX
