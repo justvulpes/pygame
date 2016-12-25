@@ -7,8 +7,8 @@ sprite_down = game_graphics.Sprite.player_down
 
 
 class Player(objects.mobs.Mob.Mob):
-    def __init__(self, x, y, speed=1):
-        super().__init__(x, y, speed)
+    def __init__(self, x, y, speed=1,size=20):
+        super().__init__(x, y, speed, size)
 
     def update(self):
 

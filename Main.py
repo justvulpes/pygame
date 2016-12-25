@@ -15,7 +15,7 @@ fps_fix = 60
 running = True  # while True game will run.
 
 world = World.World()
-player = objects.mobs.Player.Player(0,0)
+player = objects.mobs.Player.Player(10,10)
 
 
 def update():
