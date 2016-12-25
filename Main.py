@@ -17,14 +17,13 @@ world = World.World()
 def update():
     KeyListener.update()
     if KeyListener.button_is_pressed(ord("d")):
-        print("@")
-        World.World.camera_x -= 1
-    if KeyListener.button_is_pressed(ord("a")):
         World.World.camera_x += 1
+    if KeyListener.button_is_pressed(ord("a")):
+        World.World.camera_x -= 1
     if KeyListener.button_is_pressed(ord("w")):
-        World.World.camera_y += 1
-    if KeyListener.button_is_pressed(ord("s")):
         World.World.camera_y -= 1
+    if KeyListener.button_is_pressed(ord("s")):
+        World.World.camera_y += 1
     world.update()
 
 
@@ -34,8 +33,8 @@ def render(display_obj):
 
 class Bong:
     def __init__(self):
-        self.x = random.randint(0, window_width)
-        self.y = random.randint(0, window_height)
+        self.x = random.randint(0, 99 << 5)
+        self.y = random.randint(0, 99 << 5)
         self.speedx = 1
         self.speedy = 1
 
@@ -61,7 +60,7 @@ def run():
 
     objects = []
 
-    for i in range(10):
+    for i in range(60):
         objects.append(Bong())
 
     while running:
@@ -74,7 +73,7 @@ def run():
 
         for obj in objects:
             obj.move()
-            game_window.canvas.blit(man_pic, (obj.x + World.World.camera_x, obj.y + World.World.camera_y))
+            game_window.canvas.blit(man_pic, (obj.x - World.World.camera_x, obj.y - World.World.camera_y))
 
         pygame.display.flip()
 
