@@ -2,7 +2,6 @@
 
 import pygame
 import random
-import KeyListener
 import Main
 
 print(pygame.font.get_fonts())  # prints a string of all the available fonts
@@ -60,19 +59,17 @@ class Menu:
 
     def running(self):
         while True:
-            KeyListener.update()
             self.scrn.fill(self.bg_color)
             for event in pygame.event.get():  # so it wouldn't crash, delete events
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     for item in self.buttons:
-                        if item.selected(KeyListener.mouseX, KeyListener.mouseY):
+                        if item.selected(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1]):
                             for i in events:
                                 if i[0] == item.text:
                                     i[1]()  # run the function that matches the text
-                                    break
             for item in self.buttons:
                 #  item.set_the_font(random.choice(pygame.font.get_fonts()), 70) crazyness
-                if item.selected(KeyListener.mouseX, KeyListener.mouseY):
+                if item.selected(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1]):
                     item.set_font_color((0, 0, 0))
                 else:
                     item.set_font_color((255, 255, 255))
