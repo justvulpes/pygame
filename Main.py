@@ -34,17 +34,17 @@ def render(display_obj):
 class Bong:
     def __init__(self):
         self.x = random.randint(0, World.World.map_width << 5)
-        self.y = random.randint(0, 99 << 5)
+        self.y = random.randint(0, World.World.map_height << 5)
         self.speedx = 1
         self.speedy = 1
 
     def move(self):
-        if self.x >> 5 >= (window_width >> 5) - 1:
+        if self.x >> 5 >= World.World.map_width - 1:
             self.speedx = -1
         elif self.x < 0:
             self.speedx = 1
 
-        if self.y >> 5 >= (window_height >> 5) - 1:
+        if self.y >> 5 >= World.World.map_height - 1:
             self.speedy = -1
         elif self.y < 0:
             self.speedy = 1
