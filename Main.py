@@ -2,6 +2,7 @@ import pygame
 
 import KeyListener
 import game_graphics.Display
+import Menu
 
 import World
 import objects.mobs.Player
@@ -51,6 +52,10 @@ def cameraPos():
 
 def run():
     game_window = game_graphics.Display.Display(window_width, window_height, fps_fix)
+    Menu.run(game_window.canvas)
+
+
+
     world.objects.append(player)
 
     while running:

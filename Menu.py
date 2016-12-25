@@ -5,7 +5,7 @@ import random
 import Main
 
 print(pygame.font.get_fonts())  # prints a string of all the available fonts
-
+inMenu = True
 
 class MenuButton:
     def __init__(self, text, font=random.choice(pygame.font.get_fonts()), font_size=60,
@@ -58,7 +58,7 @@ class Menu:
             self.buttons.append(mbutton)
 
     def running(self):
-        while True:
+        while inMenu:
             self.scrn.fill(self.bg_color)
             for event in pygame.event.get():  # so it wouldn't crash, delete events
                 if event.type == pygame.MOUSEBUTTONDOWN:
@@ -77,23 +77,31 @@ class Menu:
                 self.scrn.blit(item.label, item.position)
             pygame.display.flip()
 
-if __name__ == "__main__":
 
-    def pressed_play():
-        print("Play.")
-
-    def open_settings():
-        print("Open settings.")
-
-    def pressed_highscores():
-        print("Open highscores.")
-
-    def pressed_quit():
-        print("Quit.")
-
-    pygame.init()
-    screen = pygame.display.set_mode((Main.window_width, Main.window_height), 0, 32)
+def run(screen):
+    screen = screen
     menu_buttons = ("Play", "Settings", "Highscores", "Quit")
-    events = [("Play", pressed_play), ("Settings", open_settings), ("Highscores", pressed_highscores), ("Quit", pressed_quit)]
     pygame.display.set_caption('Game Menu')
+
     Menu(screen, menu_buttons, events).running()
+
+
+def pressed_play():
+    global inMenu
+    inMenu = False
+    print("Play.")
+
+
+def open_settings():
+    print("Open settings.")
+
+
+def pressed_highscores():
+    print("Open highscores.")
+
+
+def pressed_quit():
+    print("Quit.")
+
+
+events = [("Play", pressed_play), ("Settings", open_settings), ("Highscores", pressed_highscores), ("Quit", pressed_quit)]
