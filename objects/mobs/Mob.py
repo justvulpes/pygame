@@ -1,4 +1,6 @@
 import objects.Object
+
+
 class Mob(objects.Object.Object):
     def __init__(self, x, y):
         super().__init__(x, y)
@@ -8,5 +10,5 @@ class Mob(objects.Object.Object):
     def update(self):
         pass
 
-    def render(self):
+    def render(self, display):
         pass

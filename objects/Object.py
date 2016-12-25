@@ -6,5 +6,5 @@ class Object:
     def update(self):
         pass
 
-    def render(self):
+    def render(self, display):
         pass

@@ -18,6 +18,8 @@ class World:
             for x in range(World.map_width):
                 World.tiles_hash[y][x] = tiles.Tile.Tile(game_graphics.Sprite.grass_sprite)
 
+        World.tiles_hash[10][10] = tiles.Tile.Tile(game_graphics.Sprite.stone_sprite, solid=True)
+
     def update(self):
         for obj in self.objects:
             obj.update()
@@ -27,3 +29,9 @@ class World:
             for x in range((World.camera_x >> 5), (World.camera_x >> 5) + (display.width >> 5) + 2):
                 if y < 100 and y >= 0 and x < 100 and x >= 0:
                     display.canvas.blit(World.tiles_hash[y][x].sprite.pic, ((x << 5) - World.camera_x, (y << 5) - World.camera_y))
+
+
+        for obj in self.objects:
+            obj.render(display)
+
+
