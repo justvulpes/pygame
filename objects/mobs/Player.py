@@ -22,4 +22,4 @@ class Player(objects.mobs.Mob.Mob):
             self.y += self.speed
 
     def render(self, display):
-        display.canvas.blit(sprite_down.pic, (self.x - World.World.camera_x, self.y - World.World.camera_y))
+        display.canvas.blit(sprite_down.pic, (self.x - World.World.camera_x - sprite_down.width/2, self.y - World.World.camera_y - sprite_down.height/2))
