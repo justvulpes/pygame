@@ -1,4 +1,13 @@
 import pygame
 
 
+class Sprite:
+    def __init__(self, width, height, pic_path):
+        self.width = width
+        self.height = height
+        self.pic = pygame.image.load(pic_path)
+
+    
+
 grass_sprite = pygame.image.load('man.png')
+
