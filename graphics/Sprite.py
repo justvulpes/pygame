@@ -7,7 +7,8 @@ class Sprite:
         self.height = height
         self.pic = pygame.image.load(pic_path)
 
-    
 
-grass_sprite = pygame.image.load('man.png')
 
+grass_sprite = Sprite(32, 32, "res\\tiles\\grass.png")
+
+print(grass_sprite)
