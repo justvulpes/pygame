@@ -5,7 +5,7 @@ import random
 import KeyListener
 import Main
 
-print(pygame.font.get_fonts()) # prints a string of all the available fonts
+print(pygame.font.get_fonts())  # prints a string of all the available fonts
 
 
 class MenuButton:
@@ -27,23 +27,21 @@ class MenuButton:
         self.pos_x = x
         self.pos_y = y
 
-    def is_mouse_selection(self, pos_x, pos_y):
-        posx, posy = (pos_x, pos_y)
-        if self.pos_x <= posx <= self.pos_x + self.width and self.pos_y <= posy <= self.pos_y + self.height:
-            return True
-        return False
+    def selected(self, mouse_pos_x, mouse_pos_y):
+        m_posx, m_posy = (mouse_pos_x, mouse_pos_y)
+        return self.pos_x <= m_posx <= self.pos_x + self.width and self.pos_y <= m_posy <= self.pos_y + self.height
 
     def set_font_color(self, rgb):
-        self.font_color = rgb
-        self.label = self.font.render(self.text, 1, self.font_color)
+        self.label = self.font.render(self.text, 1, rgb)
 
-    def set_the_font(self, font):
-        self.font = pygame.font.SysFont(font, 60)
+    def set_the_font(self, font, size):
+        self.font = pygame.font.SysFont(font, size)
 
 
 class Menu:
-    def __init__(self, scrn, buttons, bg_color=(192, 192, 192), font=random.choice(pygame.font.get_fonts()), font_size=60):
+    def __init__(self, scrn, buttons, events1, bg_color=(192, 192, 192), font=random.choice(pygame.font.get_fonts()), font_size=60):
         self.scrn = scrn  # screen
+        self.events1 = events1
         self.scr_width = self.scrn.get_rect().width  # width of the screen
         self.scr_height = self.scrn.get_rect().height  # height of the screen
         self.bg_color = bg_color  # background color
@@ -64,10 +62,17 @@ class Menu:
         while True:
             KeyListener.update()
             self.scrn.fill(self.bg_color)
-            pygame.event.get()  # so it wouldn't crash, delete events
+            for event in pygame.event.get():  # so it wouldn't crash, delete events
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    for item in self.buttons:
+                        if item.selected(KeyListener.mouseX, KeyListener.mouseY):
+                            for i in events:
+                                if i[0] == item.text:
+                                    i[1]()  # run the function that matches the text
+                                    break
             for item in self.buttons:
-                item.set_the_font(random.choice(pygame.font.get_fonts()))
-                if item.is_mouse_selection(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1]):
+                #  item.set_the_font(random.choice(pygame.font.get_fonts()), 70) crazyness
+                if item.selected(KeyListener.mouseX, KeyListener.mouseY):
                     item.set_font_color((0, 0, 0))
                 else:
                     item.set_font_color((255, 255, 255))
@@ -76,8 +81,22 @@ class Menu:
             pygame.display.flip()
 
 if __name__ == "__main__":
+
+    def pressed_play():
+        print("Play.")
+
+    def open_settings():
+        print("Open settings.")
+
+    def pressed_highscores():
+        print("Open highscores.")
+
+    def pressed_quit():
+        print("Quit.")
+
     pygame.init()
     screen = pygame.display.set_mode((Main.window_width, Main.window_height), 0, 32)
     menu_buttons = ("Play", "Settings", "Highscores", "Quit")
+    events = [("Play", pressed_play), ("Settings", open_settings), ("Highscores", pressed_highscores), ("Quit", pressed_quit)]
     pygame.display.set_caption('Game Menu')
-    Menu(screen, menu_buttons).running()
+    Menu(screen, menu_buttons, events).running()
