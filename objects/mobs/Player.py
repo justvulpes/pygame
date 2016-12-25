@@ -13,13 +13,13 @@ class Player(objects.mobs.Mob.Mob):
     def update(self):
 
         if KeyListener.button_is_pressed(ord("d")):
-            self.x += self.speed
+            self.move(1,0)
         if KeyListener.button_is_pressed(ord("a")):
-            self.x -= self.speed
+            self.move(-1, 0)
         if KeyListener.button_is_pressed(ord("w")):
-            self.y -= self.speed
+            self.move(0, -1)
         if KeyListener.button_is_pressed(ord("s")):
-            self.y += self.speed
+            self.move(0, 1)
 
     def render(self, display):
         display.canvas.blit(sprite_down.pic, (self.x - World.World.camera_x - sprite_down.width/2, self.y - World.World.camera_y - sprite_down.height/2))

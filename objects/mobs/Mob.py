@@ -1,5 +1,5 @@
 import objects.Object
-
+import World
 
 class Mob(objects.Object.Object):
     def __init__(self, x, y, speed=1):
@@ -13,3 +13,16 @@ class Mob(objects.Object.Object):
 
     def render(self, display):
         pass
+
+    def move(self, x, y):
+        if x != 0 and y != 0:
+            self.move(x, 0)
+            self.move(0, y)
+
+        if x != 0:
+            if not World.World.tiles_hash[self.y >> 5][(self.x + x) >> 5].solid:
+                self.x += x
+
+        if y != 0:
+            if not World.World.tiles_hash[(self.y + y) >> 5][self.x >> 5].solid:
+                self.y += y
