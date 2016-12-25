@@ -8,3 +8,4 @@ print("Game begins.")
 
 
 #õnnestus
+#tõepoolest
