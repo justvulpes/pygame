@@ -82,6 +82,3 @@ if __name__ == "__main__":
 
 
         pygame.display.flip()
-
-
-
