@@ -8,7 +8,6 @@ class Sprite:
         self.pic = pygame.image.load(pic_path)
 
 
-
 grass_sprite = Sprite(32, 32, "game_graphics\\res\\tiles\\grass.png")
 
 print(grass_sprite)

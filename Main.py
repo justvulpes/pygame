@@ -17,13 +17,13 @@ world = World.World()
 def update():
     KeyListener.update()
     if KeyListener.button_is_pressed(ord("d")):
-        World.World.camera_x += 1
+        World.World.camera_x += 4
     if KeyListener.button_is_pressed(ord("a")):
-        World.World.camera_x -= 1
+        World.World.camera_x -= 4
     if KeyListener.button_is_pressed(ord("w")):
-        World.World.camera_y -= 1
+        World.World.camera_y -= 4
     if KeyListener.button_is_pressed(ord("s")):
-        World.World.camera_y += 1
+        World.World.camera_y += 4
     world.update()
 
 

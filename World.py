@@ -23,7 +23,7 @@ class World:
             obj.update()
 
     def render(self, display):
-        for y in range((World.camera_y >> 5) + 1, (World.camera_y >> 5) + (display.height >> 5)):
-            for x in range((World.camera_x >> 5) + 1, (World.camera_x >> 5) + (display.width >> 5)):
+        for y in range((World.camera_y >> 5), (World.camera_y >> 5) + (display.height >> 5) + 2):
+            for x in range((World.camera_x >> 5), (World.camera_x >> 5) + (display.width >> 5) + 2):
                 if y < 100 and y >= 0 and x < 100 and x >= 0:
                     display.canvas.blit(World.tiles_hash[y][x].sprite.pic, ((x << 5) - World.camera_x, (y << 5) - World.camera_y))
