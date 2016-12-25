@@ -19,7 +19,10 @@ class World:
                 World.tiles_hash[y][x] = tiles.Tile.Tile(game_graphics.Sprite.grass_sprite)
 
     def update(self):
-        pass
+        for obj in self.objects:
+            obj.update()
 
-    def render(self, pygame_surface):
-        pass
+    def render(self, display):
+        for y in range(display.height>> 5):
+            for x in range(display.width >> 5):
+                pass
