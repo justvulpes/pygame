@@ -9,6 +9,6 @@ class Sprite:
 
 
 
-grass_sprite = Sprite(32, 32, "res\\tiles\\grass.png")
+grass_sprite = Sprite(32, 32, "game_graphics\\res\\tiles\\grass.png")
 
 print(grass_sprite)

@@ -28,7 +28,7 @@ def update():
     global key_last
     global key_current
     global exit_game
-
+    print(mouseX)
     for i in range(200):  # Save latest update info.
         key_last[i] = key_current[i]
 

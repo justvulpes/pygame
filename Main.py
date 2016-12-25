@@ -2,28 +2,26 @@ import pygame
 from pygame.locals import *
 import KeyListener
 import random
+import game_graphics.Display
 from array import array
+import World
 
 window_title = "title_"  # Title on top of the frame.
 window_width = 900  # Width of the canvas.
 window_height = 700  # Height of the canvas.
 
+running = True
 
-class Display():
-    """Make a new window with canvas."""
-    def __init__(self):
-        pygame.init()
-        self.screen = pygame.display.set_mode((window_width, window_height), DOUBLEBUF | RESIZABLE)
-        self.clock = pygame.time.Clock()  # To set a limit for fps / time
-        self.fps = 10000
-
+world = World.World()
 
 def update():
     KeyListener.update()
+    world.update()
 
 
-def render():
-    pass
+def render(display_obj):
+    display_obj.canvas.fill(int(0x006600))
+    world.render(display_obj)
 
 class Bong:
     def __init__(self):
@@ -47,38 +45,30 @@ class Bong:
         self.y += self.speedy
 
 
-
-if __name__ == "__main__":
-    a = Display()
-
-    a.running = True
+def run():
+    game_window = game_graphics.Display.Display(window_width, window_height)
 
     man_pic = pygame.image.load('man.png')
-    print(man_pic)
-    print(man_pic)
-
 
     objects = []
 
     for i in range(10):
         objects.append(Bong())
 
+    while running:
+        game_window.clock.tick(game_window.fps)
+        pygame.display.set_caption(window_title + " | " + "FPS: %i" % game_window.clock.get_fps())
 
-    while a.running:
+        update()
+        render(game_window)
 
-
-        a.clock.tick(a.fps)
-        pygame.display.set_caption(window_title + " | " + "FPS: %i" % a.clock.get_fps())
-
-        a.screen.set_at((random.randint(0, window_width - 1), random.randint(0, window_height - 1)), random.randint(400000, 900000))
-
-
-        a.screen.fill(int(0x006600))
 
         for obj in objects:
             obj.move()
-            a.screen.blit(man_pic, (obj.x,obj.y))
-
-
+            game_window.canvas.blit(man_pic, (obj.x,obj.y))
 
         pygame.display.flip()
+
+
+if __name__ == "__main__":
+    run()
