@@ -4,7 +4,7 @@ import pygame
 import random
 import Main
 
-print(pygame.font.get_fonts())  # prints a string of all the available fonts
+#print(pygame.font.get_fonts())  # prints a string of all the available fonts
 inMenu = True
 
 class MenuButton:

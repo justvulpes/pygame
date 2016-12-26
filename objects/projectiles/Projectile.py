@@ -1,19 +1,21 @@
 import objects.Object
 import World
-import objects.projectiles.Stone
-import KeyListener
-
-class Mob(objects.Object.Object):
-    def __init__(self, x, y, speed=1, size=20):
-        super().__init__(x, y)
-        self.speed = speed
+import math
+class Projectile(objects.Object.Object):
+    def __init__(self, x, y, end_x, end_y, sprite, size=10, speed=1):
+        super().__init__(x,y)
+        self.angle = math.atan2(end_y - y, end_x - x)
+        self.sprite = sprite
         self.size = size
+        self.speed = speed
+        self.xSpeed = self.speed * math.cos(self.angle);
+        self.ySpeed = self.speed * math.sin(self.angle);
 
     def update(self):
-        pass
+        self.move(self.xSpeed, self.ySpeed)
 
     def render(self, display):
-        pass
+        display.canvas.blit(self.sprite.pic, (self.x - World.World.camera_x - self.sprite.width / 2, self.y - World.World.camera_y - self.sprite.height / 2 - 4))
 
     def move(self, x, y):
         if x != 0 and y != 0:
@@ -35,8 +37,3 @@ class Mob(objects.Object.Object):
                         and not World.World.tiles_hash[int(self.y + y + (self.size >> 1)) >> 5][int(self.x - (self.size >> 1)) >> 5].solid \
                         and not World.World.tiles_hash[int(self.y + y - (self.size >> 1)) >> 5][int(self.x - (self.size >> 1)) >> 5].solid:
                     self.y += y
-
-
-    def shoot(self, particle_type):
-        World.World.objects.append(objects.projectiles.Stone.Stone(self.x, self.y, World.World.camera_x + KeyListener.mouseX, World.World.camera_y + KeyListener.mouseY))
-

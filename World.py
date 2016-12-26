@@ -7,12 +7,12 @@ class World:
     map_width = 20
     map_height = 20
     tiles_hash = []
+    objects = []
 
     camera_x = 0
     camera_y = 0
 
     def __init__(self):
-        self.objects = []
         World.tiles_hash = [[x for x in range(World.map_width)] for y in range(World.map_height)]
         for y in range(World.map_height):
             for x in range(World.map_width):
@@ -21,7 +21,7 @@ class World:
         World.tiles_hash[10][10] = tiles.Tile.Tile(game_graphics.Sprite.stone_sprite, solid=True)
 
     def update(self):
-        for obj in self.objects:
+        for obj in World.objects:
             obj.update()
 
     def render(self, display):
@@ -31,7 +31,7 @@ class World:
                     display.canvas.blit(World.tiles_hash[y][x].sprite.pic, ((x << 5) - World.camera_x, (y << 5) - World.camera_y))
 
 
-        for obj in self.objects:
+        for obj in World.objects:
             obj.render(display)
 
 

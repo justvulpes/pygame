@@ -64,9 +64,6 @@ def run():
         update()
         render(game_window)
 
-
-
-
         pygame.display.flip()
 
 

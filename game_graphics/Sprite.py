@@ -7,12 +7,17 @@ class Sprite:
         self.height = height
         self.pic = pygame.image.load(pic_path)
 
-
+##Tiles
 grass_sprite = Sprite(32, 32, "game_graphics\\res\\tiles\\grass.png")
 stone_sprite = Sprite(32, 32, "game_graphics\\res\\tiles\\stone.png")
+###
+
+##Projectiles
+stone_projectile = Sprite(8, 8, "game_graphics\\res\\projectiles\\stone.png")
+###
 
 
-
+##Player
 player_down = Sprite(16, 27, "game_graphics\\res\\mobs\\player\\man_down.png")
 player_up = Sprite(16, 27, "game_graphics\\res\\mobs\\player\\man_up.png")
 player_right = Sprite(11, 27, "game_graphics\\res\\mobs\\player\\man_right.png")
@@ -27,3 +32,9 @@ player_down_step2 = Sprite(16, 27, "game_graphics\\res\\mobs\\player\\man_down_s
 player_up_step2 = Sprite(16, 27, "game_graphics\\res\\mobs\\player\\man_up_step2.png")
 player_right_step2 = Sprite(11, 27, "game_graphics\\res\\mobs\\player\\man_right_step2.png")
 player_left_step2 = Sprite(11, 27, "game_graphics\\res\\mobs\\player\\man_left_step2.png")
+###
+
+
+##Goblin
+
+###
