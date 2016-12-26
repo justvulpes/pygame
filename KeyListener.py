@@ -81,3 +81,18 @@ def button_was_released(key_number):
     """Return True if was released right now (if user just now released it)."""
     return key_last[key_number] and not key_current[key_number]
 
+
+def mouse_right_button_was_pressed():
+    return not mouse_right_button_last and mouse_right_button_current
+
+
+def mouse_right_button_was_released():
+    return mouse_right_button_last and not mouse_right_button_current
+
+
+def mouse_left_button_was_pressed():
+    return not mouse_left_button_last and mouse_left_button_current
+
+
+def mouse_left_button_was_released():
+    return mouse_left_button_last and not mouse_left_button_current

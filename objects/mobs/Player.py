@@ -29,7 +29,9 @@ class Player(objects.mobs.Mob.Mob):
 
     def update(self):
         self.moving = False
-        self.shoot(1)
+
+        if KeyListener.mouse_left_button_was_pressed():
+            self.shoot(1)
         if KeyListener.button_is_pressed(ord("a")):
             self.move(-self.speed, 0)
             self.moving = True

@@ -23,7 +23,6 @@ def update():
     KeyListener.update()
 
     cameraPos()  # update camera position.
-    player.update()
     world.update()
 
 
