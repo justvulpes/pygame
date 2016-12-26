@@ -55,7 +55,7 @@ def run():
     game_window = game_graphics.Display.Display(window_width, window_height, fps_fix)
     Menu.run(game_window.canvas)
 
-    world.objects.append(player)
+    world.mobs.append(player)
 
     while running:
         game_window.clock.tick(game_window.fps)

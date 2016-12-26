@@ -38,5 +38,16 @@ class Mob(objects.Object.Object):
 
 
     def shoot(self, particle_type):
-        World.World.objects.append(objects.projectiles.Stone.Stone(self.x, self.y, World.World.camera_x + KeyListener.mouseX, World.World.camera_y + KeyListener.mouseY))
+        World.World.projectiles.append(objects.projectiles.Stone.Stone(self.x, self.y, World.World.camera_x + KeyListener.mouseX, World.World.camera_y + KeyListener.mouseY))
 
+
+    def update_tile(self):
+        if not self.removed:
+            self.last_tile = self.current_tile
+
+            self.current_tile = World.World.tiles_hash[int(self.y) >> 5][int(self.x) >> 5]
+
+            if self.current_tile != self.last_tile:
+                if self.last_tile != None:
+                    self.last_tile.mobs.remove(self)
+                self.current_tile.mobs.append(self)
