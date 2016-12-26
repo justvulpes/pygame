@@ -1,21 +1,30 @@
+"""Mob."""
+
 import objects.Object
 import World
 import objects.projectiles.Stone
 import KeyListener
 
+
 class Mob(objects.Object.Object):
+    """Mob."""
+
     def __init__(self, x, y, speed=1, size=20):
+        """Constructor."""
         super().__init__(x, y)
         self.speed = speed
         self.size = size
 
     def update(self):
+        """Update."""
         pass
 
     def render(self, display):
+        """Render frame."""
         pass
 
     def move(self, x, y):
+        """Move."""
         if x != 0 and y != 0:
             self.move(x, 0)
             self.move(0, y)
@@ -36,10 +45,8 @@ class Mob(objects.Object.Object):
                         and not World.World.tiles_hash[int(self.y + y - (self.size >> 1)) >> 5][int(self.x - (self.size >> 1)) >> 5].solid:
                     self.y += y
 
-
     def shoot(self, particle_type):
         World.World.projectiles.append(objects.projectiles.Stone.Stone(self.x, self.y, World.World.camera_x + KeyListener.mouseX, World.World.camera_y + KeyListener.mouseY))
-
 
     def update_tile(self):
         if not self.removed:
@@ -48,6 +55,6 @@ class Mob(objects.Object.Object):
             self.current_tile = World.World.tiles_hash[int(self.y) >> 5][int(self.x) >> 5]
 
             if self.current_tile != self.last_tile:
-                if self.last_tile != None:
+                if self.last_tile is not None:
                     self.last_tile.mobs.remove(self)
                 self.current_tile.mobs.append(self)

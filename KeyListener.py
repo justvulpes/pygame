@@ -1,3 +1,5 @@
+"""Keylistener."""
+
 import pygame
 from pygame.locals import *
 
@@ -83,16 +85,20 @@ def button_was_released(key_number):
 
 
 def mouse_right_button_was_pressed():
+    """Mouse right button pressed."""
     return not mouse_right_button_last and mouse_right_button_current
 
 
 def mouse_right_button_was_released():
+    """Mouse right button released."""
     return mouse_right_button_last and not mouse_right_button_current
 
 
 def mouse_left_button_was_pressed():
+    """Mouse left button pressed."""
     return not mouse_left_button_last and mouse_left_button_current
 
 
 def mouse_left_button_was_released():
+    """Mouse left button released."""
     return mouse_left_button_last and not mouse_left_button_current

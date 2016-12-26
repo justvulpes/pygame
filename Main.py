@@ -1,9 +1,11 @@
-import pygame
+"""Main."""
 
+import pygame
 import KeyListener
+import Popup_menu
 import game_graphics.Display
 import Menu
-
+import Hud
 import World
 import objects.mobs.Player
 
@@ -15,7 +17,7 @@ fps_fix = 1160
 running = True  # while True game will run.
 
 world = World.World()
-player = objects.mobs.Player.Player(30 << 5,70 << 5)
+player = objects.mobs.Player.Player(30 << 5, 70 << 5)
 
 
 def update():
@@ -30,7 +32,8 @@ def render(display_obj):
     """Render all visible stuff."""
     display_obj.canvas.fill(int(0x000000))
     world.render(display_obj)
-
+    Hud.render(display_obj)
+    Popup_menu.render(display_obj)
 
 cameraPosDoubleX = 0
 cameraPosDoubleY = 0
@@ -51,6 +54,7 @@ def cameraPos():
 
 
 def run():
+    """Run the game."""
     game_window = game_graphics.Display.Display(window_width, window_height, fps_fix)
     Menu.run(game_window.canvas)
 

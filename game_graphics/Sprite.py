@@ -1,13 +1,18 @@
+"""Sprite."""
+
 import pygame
 
 
 class Sprite:
+    """Sprite."""
+
     def __init__(self, width, height, pic_path):
+        """Constructor."""
         self.width = width
         self.height = height
         self.pic = pygame.image.load(pic_path)
 
-##Tiles
+# Tiles
 grass = Sprite(32, 32, "game_graphics\\res\\tiles\\grass.png")
 stone = Sprite(32, 32, "game_graphics\\res\\tiles\\stone.png")
 dirt = Sprite(32, 32, "game_graphics\\res\\tiles\\dirt.png")
@@ -15,12 +20,12 @@ sand = Sprite(32, 32, "game_graphics\\res\\tiles\\sand.png")
 water = Sprite(32, 32, "game_graphics\\res\\tiles\\water.png")
 ###
 
-##Projectiles
+# Projectiles
 stone_projectile = Sprite(6, 6, "game_graphics\\res\\projectiles\\stone.png")
 ###
 
 
-##Player
+# Player
 player_down = Sprite(16, 27, "game_graphics\\res\\mobs\\player\\man_down.png")
 player_up = Sprite(16, 27, "game_graphics\\res\\mobs\\player\\man_up.png")
 player_right = Sprite(11, 27, "game_graphics\\res\\mobs\\player\\man_right.png")
@@ -38,15 +43,14 @@ player_left_step2 = Sprite(11, 27, "game_graphics\\res\\mobs\\player\\man_left_s
 ###
 
 
-##Goblin
+# Goblin
 
 ###
 
-##Objects
+# Objects
 stone_source = Sprite(32, 32, "game_graphics\\res\\objects\\stone_source.png")
 wooden_wall = Sprite(32, 32, "game_graphics\\res\\objects\\wooden_wall.png")
 ###
 
-##Map
+# Map
 map = Sprite(40, 20, "game_graphics\\res\\map\\map.png")
-###

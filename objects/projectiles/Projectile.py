@@ -1,11 +1,16 @@
+"""Projectile."""
+
 import objects.Object
 import World
 import math
 
 
 class Projectile(objects.Object.Object):
+    """Projectile."""
+
     def __init__(self, x, y, end_x, end_y, sprite, size=10, speed=1, lifetime=100):
-        super().__init__(x,y)
+        """Constructor."""
+        super().__init__(x, y)
         self.angle = math.atan2(end_y - y, end_x - x)
         self.sprite = sprite
         self.size = size
@@ -15,6 +20,7 @@ class Projectile(objects.Object.Object):
         self.ySpeed = self.speed * math.sin(self.angle)
 
     def update(self):
+        """Update."""
         self.lifetime -= 1
         if self.lifetime < 0:
             self.destroy()
@@ -22,9 +28,11 @@ class Projectile(objects.Object.Object):
         self.move(self.xSpeed, self.ySpeed)
 
     def render(self, display):
+        """Render frame."""
         display.canvas.blit(self.sprite.pic, (self.x - World.World.camera_x - self.sprite.width / 2, self.y - World.World.camera_y - self.sprite.height / 2))
 
     def move(self, x, y):
+        """Move."""
         if int(self.x + x - (self.size >> 1)) >> 5 < 0 or int(self.x + x + (self.size >> 1)) >> 5 >= World.World.map_width:
             self.destroy()
             return
@@ -45,17 +53,18 @@ class Projectile(objects.Object.Object):
             self.x += x
             self.y += y
 
-
     def destroy(self):
+        """Destroy object."""
         self.removed = True
 
     def update_tile(self):
+        """Update tile."""
         if not self.removed:
             self.last_tile = self.current_tile
 
             self.current_tile = World.World.tiles_hash[int(self.y) >> 5][int(self.x) >> 5]
 
             if self.current_tile != self.last_tile:
-                if self.last_tile != None:
+                if self.last_tile is not None:
                     self.last_tile.projectiles.remove(self)
                 self.current_tile.projectiles.append(self)

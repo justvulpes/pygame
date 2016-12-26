@@ -1,12 +1,14 @@
 """HUD."""
+
 import Menu
 import pygame
-import Main
-from builder_menu import Player_status
+from gamestate import Player_status
+
 p = Player_status.PlayerStats()
 
 
 def render(screen):
+    """Render HUD elements to the screen."""
 
     mhealth = Menu.MenuButton("Money: " + str(p.get_money()), font='curlz', font_size=30)
     mhealth.set_position(20, 20)
@@ -23,8 +25,5 @@ def render(screen):
     pygame.draw.rect(screen.canvas, (255, 255, 255), (900, 10, 280, 30), 2)  # healthbar border
     pygame.draw.rect(screen.canvas, (75, 75, 75), (901, 11, int(max(min(p.get_fortress_health() / float(p.get_fortress_max_health()) * 278, 278), 0)), 28))  # healthbar inner rectangle
 
-    p.damage_fortress(0.1)
-    p.buy_gunman()
-    #s = pygame.Surface((200, 400), pygame.SRCALPHA)  # per-pixel alpha
-    #s.fill((192, 192, 192, 170))  # last value is alpha value, aka transparency of the box
-    #display_obj.canvas.blit(s, (display_obj.width - display_obj.width / 4.5, display_obj.height - display_obj.height / 1.3))
+    p.damage_fortress(0.1)  # to test the healthbar
+    p.buy_gunman()  # for testing

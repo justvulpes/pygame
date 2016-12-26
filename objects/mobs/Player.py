@@ -1,3 +1,5 @@
+"""Player."""
+
 import objects.mobs.Mob
 import game_graphics.Sprite
 import KeyListener
@@ -19,8 +21,12 @@ sprite_right_step2 = game_graphics.Sprite.player_right_step2
 sprite_down_step2 = game_graphics.Sprite.player_down_step2
 sprite_left_step2 = game_graphics.Sprite.player_left_step2
 
+
 class Player(objects.mobs.Mob.Mob):
+    """Player."""
+
     def __init__(self, x, y, speed=1, size=18):
+        """Constructor."""
         super().__init__(x, y, speed, size)
         self.current_sprite = sprite_left
         self.direction = 3
@@ -28,6 +34,7 @@ class Player(objects.mobs.Mob.Mob):
         self.moving = False
 
     def update(self):
+        """Update."""
         self.moving = False
 
         if KeyListener.mouse_left_button_was_pressed():
@@ -61,10 +68,12 @@ class Player(objects.mobs.Mob.Mob):
                 self.animCount = 0
 
     def render(self, display):
+        """Render frame."""
         self.set_sprite()
         display.canvas.blit(self.current_sprite.pic, (self.x - World.World.camera_x - self.current_sprite.width/2, self.y - World.World.camera_y - self.current_sprite.height/2 - 4))
 
     def set_sprite(self):
+        """Set sprite."""
         if self.moving:
             if self.direction == 0:
                 if self.animCount >= 8:
