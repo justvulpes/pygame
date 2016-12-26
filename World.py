@@ -1,11 +1,12 @@
 import tiles.Tile
 import game_graphics.Sprite
+import pygame
 
 
 class World:
 
-    map_width = 20
-    map_height = 20
+    map_width = 60
+    map_height = 80
     tiles_hash = []
     mobs = []
     projectiles = []
@@ -14,12 +15,15 @@ class World:
     camera_y = 0
 
     def __init__(self):
+
+        map_pixels = pygame.surfarray.array2d(game_graphics.Sprite.map.pic)
         World.tiles_hash = [[x for x in range(World.map_width)] for y in range(World.map_height)]
+
         for y in range(World.map_height):
             for x in range(World.map_width):
-                World.tiles_hash[y][x] = tiles.Tile.Tile(game_graphics.Sprite.grass_sprite)
+                set_tile(map_pixels[x][y], x, y)
 
-        World.tiles_hash[10][10] = tiles.Tile.Tile(game_graphics.Sprite.stone_sprite, solid=True)
+        World.tiles_hash[10][10] = tiles.Tile.Tile(game_graphics.Sprite.grass, solid=True)
 
     def update(self):
 
@@ -71,3 +75,39 @@ class World:
                 if y < World.map_height and y >= 0 and x < World.map_width and x >= 0:
                     for projectile in World.tiles_hash[y][x].projectiles:
                         projectile.render(display)
+
+
+
+
+
+def set_tile(color, x, y):
+    print(color)
+    if color == 950016:
+        World.tiles_hash[y][x] = tiles.Tile.Tile(game_graphics.Sprite.grass)
+        return
+
+    if color == 8382975:
+        World.tiles_hash[y][x] = tiles.Tile.Tile(game_graphics.Sprite.sand)
+        return
+
+    if color == 16749568:
+        World.tiles_hash[y][x] = tiles.Tile.Tile(game_graphics.Sprite.water, solid=True)
+        return
+
+    if color == 4151679:
+        World.tiles_hash[y][x] = tiles.Tile.Tile(game_graphics.Sprite.dirt)
+        return
+
+    if color == 8421504:
+        World.tiles_hash[y][x] = tiles.Tile.Tile(game_graphics.Sprite.stone, solid=True, high=True)
+        return
+
+    if color == 10526880:
+        World.tiles_hash[y][x] = tiles.Tile.Tile(game_graphics.Sprite.stone_source, solid=True, high=True)
+        return
+
+    if color == 27391:
+        World.tiles_hash[y][x] = tiles.Tile.Tile(game_graphics.Sprite.wooden_wall, solid=True, high=True)
+        return
+
+    World.tiles_hash[y][x] = tiles.Tile.Tile(game_graphics.Sprite.grass)

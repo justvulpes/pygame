@@ -57,7 +57,7 @@ class Player(objects.mobs.Mob.Mob):
 
         else:
             self.animCount += 1
-            if self.animCount >= 30:
+            if self.animCount >= 16:
                 self.animCount = 0
 
     def render(self, display):
@@ -67,25 +67,25 @@ class Player(objects.mobs.Mob.Mob):
     def set_sprite(self):
         if self.moving:
             if self.direction == 0:
-                if self.animCount >= 15:
+                if self.animCount >= 8:
                     self.current_sprite = sprite_up_step1
                 else:
                     self.current_sprite = sprite_up_step2
 
             elif self.direction == 1:
-                if self.animCount >= 15:
+                if self.animCount >= 8:
                     self.current_sprite = sprite_right_step1
                 else:
                     self.current_sprite = sprite_right_step2
 
             elif self.direction == 2:
-                if self.animCount >= 15:
+                if self.animCount >= 8:
                     self.current_sprite = sprite_down_step1
                 else:
                     self.current_sprite = sprite_down_step2
 
             elif self.direction == 3:
-                if self.animCount >= 15:
+                if self.animCount >= 8:
                     self.current_sprite = sprite_left_step1
                 else:
                     self.current_sprite = sprite_left_step2

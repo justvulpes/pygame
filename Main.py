@@ -7,15 +7,15 @@ import Menu
 import World
 import objects.mobs.Player
 
-window_title = "title_"  # Title on top of the frame.
+window_title = "Driven Into the Last Corner"  # Title on top of the frame.
 window_width = 1200  # Width of the canvas.
 window_height = 700  # Height of the canvas.
-fps_fix = 60
+fps_fix = 1160
 
 running = True  # while True game will run.
 
 world = World.World()
-player = objects.mobs.Player.Player(10,10)
+player = objects.mobs.Player.Player(30 << 5,70 << 5)
 
 
 def update():

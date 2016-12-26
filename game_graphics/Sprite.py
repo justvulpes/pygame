@@ -8,12 +8,15 @@ class Sprite:
         self.pic = pygame.image.load(pic_path)
 
 ##Tiles
-grass_sprite = Sprite(32, 32, "game_graphics\\res\\tiles\\grass.png")
-stone_sprite = Sprite(32, 32, "game_graphics\\res\\tiles\\stone.png")
+grass = Sprite(32, 32, "game_graphics\\res\\tiles\\grass.png")
+stone = Sprite(32, 32, "game_graphics\\res\\tiles\\stone.png")
+dirt = Sprite(32, 32, "game_graphics\\res\\tiles\\dirt.png")
+sand = Sprite(32, 32, "game_graphics\\res\\tiles\\sand.png")
+water = Sprite(32, 32, "game_graphics\\res\\tiles\\water.png")
 ###
 
 ##Projectiles
-stone_projectile = Sprite(8, 8, "game_graphics\\res\\projectiles\\stone.png")
+stone_projectile = Sprite(6, 6, "game_graphics\\res\\projectiles\\stone.png")
 ###
 
 
@@ -37,4 +40,13 @@ player_left_step2 = Sprite(11, 27, "game_graphics\\res\\mobs\\player\\man_left_s
 
 ##Goblin
 
+###
+
+##Objects
+stone_source = Sprite(32, 32, "game_graphics\\res\\objects\\stone_source.png")
+wooden_wall = Sprite(32, 32, "game_graphics\\res\\objects\\wooden_wall.png")
+###
+
+##Map
+map = Sprite(40, 20, "game_graphics\\res\\map\\map.png")
 ###

@@ -29,23 +29,22 @@ class Projectile(objects.Object.Object):
             self.destroy()
             return
 
-        if int(self.y + y - (self.size >> 1)) >> 5 < 0 or int(self.y + y + (self.size >> 1)) >> 5 >= World.World.map_width:
+        if int(self.y + y - (self.size >> 1)) >> 5 < 0 or int(self.y + y + (self.size >> 1)) >> 5 >= World.World.map_height:
             self.destroy()
             return
 
-        if not World.World.tiles_hash[int(self.y + y + (self.size >> 1)) >> 5][
-                    int(self.x + x + (self.size >> 1)) >> 5].solid \
-                and not World.World.tiles_hash[int(self.y + y + (self.size >> 1)) >> 5][
-                            int(self.x + x - (self.size >> 1)) >> 5].solid \
-                and not World.World.tiles_hash[int(self.y + y - (self.size >> 1)) >> 5][
-                            int(self.x + x + (self.size >> 1)) >> 5].solid \
-                and not World.World.tiles_hash[int(self.y + y - (self.size >> 1)) >> 5][
-                            int(self.x + x - (self.size >> 1)) >> 5].solid:
-            self.x += x
-            self.y += y
-        else:
+        first_corner = World.World.tiles_hash[int(self.y + y + (self.size >> 1)) >> 5][int(self.x + x + (self.size >> 1)) >> 5]
+        second_corner = World.World.tiles_hash[int(self.y + y + (self.size >> 1)) >> 5][int(self.x + x - (self.size >> 1)) >> 5]
+        third_corner = World.World.tiles_hash[int(self.y + y - (self.size >> 1)) >> 5][int(self.x + x + (self.size >> 1)) >> 5]
+        fourth_corner = World.World.tiles_hash[int(self.y + y - (self.size >> 1)) >> 5][int(self.x + x - (self.size >> 1)) >> 5]
+
+        if first_corner.solid and first_corner.high or second_corner.solid and second_corner.high or third_corner.solid and third_corner.high or fourth_corner.solid and fourth_corner.high:
             self.destroy()
             return
+        else:
+            self.x += x
+            self.y += y
+
 
     def destroy(self):
         self.removed = True
