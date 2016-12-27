@@ -1,21 +1,16 @@
 """Main."""
-import PIL
 import pygame
 import sys
 
-import Hud
 import KeyListener
 import game_graphics.Display
 import game_graphics.UI.UI
 import Menu
 import World
 import objects.mobs.Player
+import objects.mobs.Worker_man
 import game_state.Game_State
 import game_graphics.UI
-from PIL import Image, ImageFilter
-
-
-
 
 pygame.init()
 
@@ -28,6 +23,7 @@ running = True  # while True game will run.
 
 world = World.World()
 gamestate = game_state.Game_State.Game_State()
+worker_man = objects.mobs.Worker_man.Worker(37 << 5, 70 << 5)
 player = objects.mobs.Player.Player(30 << 5, 70 << 5)
 
 user_interface = None
@@ -51,7 +47,6 @@ def render(display_obj):
     world.render(display_obj)
     if not Menu.inMenu:
         user_interface.render(display_obj)
-    #Hud.render(display_obj)
 
 
 cameraPosDoubleX = 0
@@ -64,8 +59,8 @@ def cameraPos():
     global cameraPosDoubleY
 
     if Menu.inMenu:
-        cameraPosDoubleX = (player.x - (window_width/2))
-        cameraPosDoubleY = (player.y - (window_height/2))
+        cameraPosDoubleX = (player.x - (window_width / 2))
+        cameraPosDoubleY = (player.y - (window_height / 2))
     else:
         cameraPosDoubleX += (player.x - (cameraPosDoubleX + window_width / 2)) / 20
         cameraPosDoubleY += (player.y - (cameraPosDoubleY + window_height / 2)) / 20
@@ -81,6 +76,7 @@ def run():
     mr = Menu.MenuRun(game_window.canvas)
     mr.run(game_window.canvas, surf=game_window)
     world.mobs.append(player)
+    world.mobs.append(worker_man)
     global user_interface
     user_interface = game_graphics.UI.UI.UI()
     while running:
@@ -88,7 +84,7 @@ def run():
         pygame.display.set_caption(window_title + " | " + "FPS: %i" % game_window.clock.get_fps())
         update()
         render(game_window)
-        #game_window.canvas.blit(pygame.image.frombuffer(PIL.Image.frombytes('RGB', (1200, 700), pygame.image.tostring(game_window.canvas, 'RGB')).filter(ImageFilter.GaussianBlur(radius=7)).tobytes(), (1200, 700), "RGB"), (0, 0))
+        # game_window.canvas.blit(pygame.image.frombuffer(PIL.Image.frombytes('RGB', (1200, 700), pygame.image.tostring(game_window.canvas, 'RGB')).filter(ImageFilter.GaussianBlur(radius=7)).tobytes(), (1200, 700), "RGB"), (0, 0))
         pygame.display.flip()
 
 if __name__ == "__main__":

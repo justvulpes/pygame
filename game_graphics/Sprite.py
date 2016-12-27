@@ -44,6 +44,23 @@ player_left_step2 = Sprite(11, 27, "game_graphics\\res\\mobs\\player\\man_left_s
 ###
 
 
+# Worker_man
+worker_man_down = Sprite(16, 27, "game_graphics\\res\\mobs\\worker_man\\worker_man_down.png")
+worker_man_up = Sprite(16, 27, "game_graphics\\res\\mobs\\worker_man\\worker_man_up.png")
+worker_man_right = Sprite(11, 27, "game_graphics\\res\\mobs\\worker_man\\worker_man_right.png")
+worker_man_left = Sprite(11, 27, "game_graphics\\res\\mobs\\worker_man\\worker_man_left.png")
+
+worker_man_down_step1 = Sprite(16, 27, "game_graphics\\res\\mobs\\worker_man\\worker_man_down_step1.png")
+worker_man_up_step1 = Sprite(16, 27, "game_graphics\\res\\mobs\\worker_man\\worker_man_up_step1.png")
+worker_man_right_step1 = Sprite(11, 27, "game_graphics\\res\\mobs\\worker_man\\worker_man_right_step1.png")
+worker_man_left_step1 = Sprite(11, 27, "game_graphics\\res\\mobs\\worker_man\\worker_man_left_step1.png")
+
+worker_man_down_step2 = Sprite(16, 27, "game_graphics\\res\\mobs\\worker_man\\worker_man_down_step2.png")
+worker_man_up_step2 = Sprite(16, 27, "game_graphics\\res\\mobs\\worker_man\\worker_man_up_step2.png")
+worker_man_right_step2 = Sprite(11, 27, "game_graphics\\res\\mobs\\worker_man\\worker_man_right_step2.png")
+worker_man_left_step2 = Sprite(11, 27, "game_graphics\\res\\mobs\\worker_man\\worker_man_left_step2.png")
+###
+
 # Goblin
 
 ###

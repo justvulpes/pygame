@@ -29,7 +29,7 @@ class Mob(objects.Object.Object):
 
     def move(self, x, y):
         """Move."""
-        if not Menu.inMenu:
+        if not Menu.inMenu and self.current_tile is not None:
             if self.current_tile.slow:
                 x, y = x * 2, y * 2
 
