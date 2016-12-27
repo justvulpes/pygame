@@ -1,10 +1,14 @@
 """Menu."""
-
+import PIL
 import pygame
 import random
 import sys
 
+from PIL import Image
+from PIL import ImageFilter
+
 import KeyListener
+import Main
 
 inMenu = True
 default_difficulty = "Noob"
@@ -67,10 +71,21 @@ class Menu:
             mbutton.set_position(posx, posy)
             self.buttons.append(mbutton)
 
-    def running(self):
+    def running(self, surf2=None):
         """Loop running menu."""
+        Main.world.mobs.append(Main.player)
+        global user_interface
+        user_interface = Main.game_graphics.UI.UI.UI()
         while inMenu:
-            self.scrn.fill(self.bg_color)
+            #  surf2.clock.tick(surf2.fps)
+            Main.update()
+            Main.render(surf2)
+            surf2.canvas.blit(pygame.image.frombuffer(Image.frombytes('RGB', (1200, 700), pygame.image.tostring(surf2.canvas, 'RGB')).filter(ImageFilter.GaussianBlur(radius=4)).tobytes(), (1200, 700), "RGB"), (0, 0))
+            #  pygame.display.flip()
+            # static blurred background
+            # bg = pygame.image.load("game_graphics\\res\\objects\\blurred.png")
+            #  self.scrn.blit(bg, (0, 0))
+            # self.scrn.fill(self.bg_color)
             for event in pygame.event.get():  # so it wouldn't crash, delete events
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     for item in self.buttons:
@@ -84,7 +99,6 @@ class Menu:
                     item.set_font_color((0, 0, 0))
                 else:
                     item.set_font_color((255, 255, 255))
-
                 self.scrn.blit(item.label, item.position)
             pygame.display.flip()
 
@@ -117,7 +131,7 @@ class Settings(Menu):
         """Back to menu."""
         print("Back")
         mr = MenuRun(self.scrn)
-        mr.run(self.scrn)
+        mr.run(self.scrn, surf=the_surf)
 
 
 class MenuRun:
@@ -134,12 +148,14 @@ class MenuRun:
                        ("Impossible", self.s.set_diff_imposs), ("Back", self.s.back_to_menu)]
         self.s = Settings(self.screen, menu_buttons, self.events)
 
-    def run(self, screen):
+    def run(self, screen, surf=None):
         """Start the menu."""
         self.screen = screen
+        global the_surf
+        the_surf = surf
         menu_buttons = ("Play", "Settings", "Highscores", "Quit")
         pygame.display.set_caption('Game Menu')
-        Menu(screen, menu_buttons, self.events).running()
+        Menu(screen, menu_buttons, self.events).running(surf2=surf)
 
     @staticmethod
     def pressed_play():
@@ -152,7 +168,7 @@ class MenuRun:
         """Function to run when settings are opened."""
         print("Open settings.")
         pygame.display.set_caption('Settings')
-        self.s.running()
+        self.s.running(surf2=the_surf)
 
     @staticmethod
     def pressed_highscores():

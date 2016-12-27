@@ -1,8 +1,9 @@
 """Main."""
-
+import PIL
 import pygame
 import sys
 
+import Hud
 import KeyListener
 import game_graphics.Display
 import game_graphics.UI.UI
@@ -11,6 +12,10 @@ import World
 import objects.mobs.Player
 import game_state.Game_State
 import game_graphics.UI
+from PIL import Image, ImageFilter
+
+
+
 
 pygame.init()
 
@@ -33,7 +38,8 @@ def update():
     KeyListener.update()
     cameraPos()  # update camera position.
     world.update()
-    user_interface.update()
+    if not Menu.inMenu:
+        user_interface.update()
 
     if KeyListener.exit_game is True:
         sys.exit()
@@ -43,7 +49,8 @@ def render(display_obj):
     """Render all visible stuff."""
     display_obj.canvas.fill(int(0x000000))
     world.render(display_obj)
-    user_interface.render(display_obj)
+    if not Menu.inMenu:
+        user_interface.render(display_obj)
     #Hud.render(display_obj)
 
 
@@ -56,8 +63,12 @@ def cameraPos():
     global cameraPosDoubleX
     global cameraPosDoubleY
 
-    cameraPosDoubleX += (player.x - (cameraPosDoubleX + window_width/2)) / 20
-    cameraPosDoubleY += (player.y - (cameraPosDoubleY + window_height/2)) / 20
+    if Menu.inMenu:
+        cameraPosDoubleX = (player.x - (window_width/2))
+        cameraPosDoubleY = (player.y - (window_height/2))
+    else:
+        cameraPosDoubleX += (player.x - (cameraPosDoubleX + window_width / 2)) / 20
+        cameraPosDoubleY += (player.y - (cameraPosDoubleY + window_height / 2)) / 20
 
     World.World.camera_x = int(cameraPosDoubleX)
     World.World.camera_y = int(cameraPosDoubleY)
@@ -65,23 +76,20 @@ def cameraPos():
 
 def run():
     """Run the game."""
+    global game_window
     game_window = game_graphics.Display.Display(window_width, window_height, fps_fix)
     mr = Menu.MenuRun(game_window.canvas)
-    mr.run(game_window.canvas)
+    mr.run(game_window.canvas, surf=game_window)
     world.mobs.append(player)
     global user_interface
     user_interface = game_graphics.UI.UI.UI()
-
     while running:
-
         game_window.clock.tick(game_window.fps)
         pygame.display.set_caption(window_title + " | " + "FPS: %i" % game_window.clock.get_fps())
-
         update()
         render(game_window)
-
+        #  game_window.canvas.blit(pygame.image.frombuffer(PIL.Image.frombytes('RGB', (1200, 700), pygame.image.tostring(game_window.canvas, 'RGB')).filter(ImageFilter.GaussianBlur(radius=4)).tobytes(), (1200, 700), "RGB"), (0, 0))
         pygame.display.flip()
-
 
 if __name__ == "__main__":
     run()

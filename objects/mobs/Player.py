@@ -1,5 +1,5 @@
 """Player."""
-
+import Menu
 import objects.mobs.Mob
 import game_graphics.Sprite
 import KeyListener
@@ -37,6 +37,11 @@ class Player(objects.mobs.Mob.Mob):
     def update(self):
         """Update."""
         self.moving = False
+
+        if Menu.inMenu:
+            self.move(0, -self.speed)
+            self.moving = True
+            self.direction = 0
 
         if KeyListener.mouse_left_button_was_pressed():
             self.shoot(1)

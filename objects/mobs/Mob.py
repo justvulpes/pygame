@@ -1,5 +1,5 @@
 """Mob."""
-
+import Menu
 import objects.Object
 import World
 import objects.projectiles.Stone
@@ -29,8 +29,9 @@ class Mob(objects.Object.Object):
 
     def move(self, x, y):
         """Move."""
-        if self.current_tile.slow:
-            x, y = x * 0.5, y * 0.5
+        if not Menu.inMenu:
+            if self.current_tile.slow:
+                x, y = x * 0.5, y * 0.5
 
         if x != 0:
             if int(self.x + x - (self.size >> 1)) >> 5 >= 0 and int(self.x + x + (self.size >> 1)) >> 5 < World.World.map_width:
