@@ -57,8 +57,8 @@ def cameraPos():
 def run():
     """Run the game."""
     game_window = game_graphics.Display.Display(window_width, window_height, fps_fix)
-    Menu.run(game_window.canvas)
-
+    mr = Menu.MenuRun(game_window.canvas)
+    mr.run(game_window.canvas)
     world.mobs.append(player)
 
     while running:

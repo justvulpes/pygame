@@ -5,6 +5,7 @@ import random
 import sys
 
 inMenu = True
+default_difficulty = "Noob"
 
 
 class MenuButton:
@@ -23,24 +24,29 @@ class MenuButton:
         self.position = pos_x, pos_y
 
     def set_position(self, x, y):
+        """Set position."""
         self.position = (x, y)
         self.pos_x = x
         self.pos_y = y
 
     def selected(self, mouse_pos_x, mouse_pos_y):
+        """Selected."""
         m_posx, m_posy = (mouse_pos_x, mouse_pos_y)
         return self.pos_x <= m_posx <= self.pos_x + self.width and self.pos_y <= m_posy <= self.pos_y + self.height
 
     def set_font_color(self, rgb):
+        """Set font color."""
         self.label = self.font.render(self.text, 1, rgb)
 
     def set_the_font(self, font, size):
+        """Set the font."""
         self.font = pygame.font.SysFont(font, size)
 
 
 class Menu:
     """Menu."""
     def __init__(self, scrn, buttons, events1, bg_color=(192, 192, 192), font=random.choice(pygame.font.get_fonts()), font_size=60):
+        """Constructor."""
         self.scrn = scrn  # screen
         self.events1 = events1
         self.scr_width = self.scrn.get_rect().width  # width of the screen
@@ -67,7 +73,7 @@ class Menu:
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     for item in self.buttons:
                         if item.selected(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1]):
-                            for i in events:
+                            for i in self.events1:
                                 if i[0] == item.text:
                                     i[1]()  # run the function that matches the text
             for item in self.buttons:
@@ -81,36 +87,79 @@ class Menu:
             pygame.display.flip()
 
 
-def run(screen):
-    """Start the menu."""
-    screen = screen
-    menu_buttons = ("Play", "Settings", "Highscores", "Quit")
-    pygame.display.set_caption('Game Menu')
+class Settings(Menu):
+    """Settings."""
 
-    Menu(screen, menu_buttons, events).running()
+    def __init__(self, scrn, buttons, events1):
+        """Constctor."""
+        super().__init__(scrn, buttons, events1)
+        self.events = [("Noob", self.set_diff_noob), ("Advanced", self.set_diff_advanced), ("Impossible", self.set_diff_imposs), ("Back", self.set_diff_imposs)]
+        self.difficulty = default_difficulty  # difficulty by default
+
+    def set_diff_noob(self):
+        """Set difficulty to noob."""
+        print("Difficulty set to NOOB.")
+        self.difficulty = "Noob"
+
+    def set_diff_advanced(self):
+        """Set difficulty to advanved."""
+        print("Difficulty set to ADVANCED.")
+        self.difficulty = "Advanced"
+
+    def set_diff_imposs(self):
+        """Set difficult to imposs."""
+        print("Difficulty set to IMPOSSIBLE.")
+        self.difficulty = "Impossible"
+
+    def back_to_menu(self):
+        """Back to menu."""
+        print("Back")
+        mr = MenuRun(self.scrn)
+        mr.run(self.scrn)
 
 
-def pressed_play():
-    """Start playing, after play is pressed."""
-    global inMenu
-    inMenu = False
-    print("Play.")
+class MenuRun:
+    """Menu run."""
+    def __init__(self, screen2):
+        """Constructor."""
+        self.screen = screen2
+        self.events = [("Play", self.pressed_play), ("Settings", self.open_settings), ("Highscores", self.pressed_highscores),
+                       ("Quit", self.pressed_quit)]
+        menu_buttons = ("Noob", "Advanced", "Impossible", "Back")
+        self.s = Settings(self.screen, menu_buttons, self.events)
+        self.events = [("Play", self.pressed_play), ("Settings", self.open_settings), ("Highscores", self.pressed_highscores),
+                       ("Quit", self.pressed_quit), ("Noob", self.s.set_diff_noob), ("Advanced", self.s.set_diff_advanced),
+                       ("Impossible", self.s.set_diff_imposs), ("Back", self.s.back_to_menu)]
+        self.s = Settings(self.screen, menu_buttons, self.events)
 
+    def run(self, screen):
+        """Start the menu."""
+        self.screen = screen
+        menu_buttons = ("Play", "Settings", "Highscores", "Quit")
+        pygame.display.set_caption('Game Menu')
+        Menu(screen, menu_buttons, self.events).running()
 
-def open_settings():
-    """Function to run when settings are opened."""
-    print("Open settings.")
+    @staticmethod
+    def pressed_play():
+        """Start playing, after play is pressed."""
+        global inMenu
+        inMenu = False
+        print("Play.")
 
+    def open_settings(self):
+        """Function to run when settings are opened."""
+        print("Open settings.")
+        pygame.display.set_caption('Settings')
+        self.s.running()
 
-def pressed_highscores():
-    """Function to run when highscores is opened."""
-    print("Open highscores.")
+    @staticmethod
+    def pressed_highscores():
+        """Function to run when highscores is opened."""
+        print("Open highscores.")
+        # implement
 
-
-def pressed_quit():
-    """Quit the game."""
-    print("Quit.")
-    sys.exit()
-
-
-events = [("Play", pressed_play), ("Settings", open_settings), ("Highscores", pressed_highscores), ("Quit", pressed_quit)]
+    @staticmethod
+    def pressed_quit():
+        """Quit the game."""
+        print("Quit.")
+        sys.exit()
