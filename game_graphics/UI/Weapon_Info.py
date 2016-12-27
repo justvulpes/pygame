@@ -45,7 +45,7 @@ class WeaponInfo:
             display.canvas.blit(self.type_range_text, (Main.window_width / 2 - 64, Main.window_height - 58))
             if Main.player.ammo != self.stone_ammo_count:
                 self.stone_ammo_count = Main.player.ammo
-                self.stone_ammo_text = self.font.render(str(self.stone_ammo_count), w, self.text_color)
+                self.stone_ammo_text = self.font.render(str(self.stone_ammo_count), 0, self.text_color)
             display.canvas.blit(self.ammo_text, (Main.window_width / 2 - 64, Main.window_height - 38))
             display.canvas.blit(self.stone_ammo_text, (Main.window_width / 2 - 15, Main.window_height - 38))
 
