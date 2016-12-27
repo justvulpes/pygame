@@ -12,7 +12,7 @@ class UI:
     def __init__(self):
         self.state = "Game_state"
         self.menu = None
-        self.resource_bar = game_graphics.UI.Resource_Bar.Reasource_Bar()
+        self.resource_bar = game_graphics.UI.Resource_Bar.ResourceBar()
         self.player_info_bar = game_graphics.UI.Player_Info_Bar.PlayerInfoBar()
         self.current_bar = None
 

@@ -4,11 +4,11 @@ import Main
 import game_graphics.UI.UI
 
 
-class Reasource_Bar:
+class ResourceBar:
     def __init__(self):
         self.font = pygame.font.SysFont(game_graphics.UI.UI.UI.user_interface_font, game_graphics.UI.UI.UI.user_interface_font_size)
         self.background = pygame.Surface((70, 20), pygame.SRCALPHA)
-        self.background.fill((10, 10, 10, 170))
+        self.background.fill((0, 0, 0, 170))
 
         self.text_color = (255, 255, 255)
 
@@ -44,8 +44,6 @@ class Reasource_Bar:
         display.canvas.blit(self.coins_text, (42, 24))
         display.canvas.blit(self.stone_text, (42, 54))
         display.canvas.blit(self.wood_text, (42, 84))
-
-
 
 
     def update(self):

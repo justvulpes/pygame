@@ -14,6 +14,10 @@ class Mob(objects.Object.Object):
         super().__init__(x, y)
         self.speed = speed
         self.size = size
+        self.hp = 10
+        self.max_hp = 10
+        self.xp = 0
+        self.lvl = 1
 
     def update(self):
         """Update."""

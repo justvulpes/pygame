@@ -32,6 +32,7 @@ class Player(objects.mobs.Mob.Mob):
         self.direction = 3
         self.animCount = 0
         self.moving = False
+        self.weapon = "Stone"
 
     def update(self):
         """Update."""
