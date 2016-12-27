@@ -7,16 +7,17 @@ import KeyListener
 import game_graphics.Display
 import game_graphics.UI.UI
 import Menu
-import Hud
 import World
 import objects.mobs.Player
 import game_state.Game_State
 import game_graphics.UI
 
+pygame.init()
+
 window_title = "Driven Into the Last Corner"  # Title on top of the frame.
 window_width = 1200  # Width of the canvas.
 window_height = 700  # Height of the canvas.
-fps_fix = 1660
+fps_fix = 199
 
 running = True  # while True game will run.
 
@@ -24,7 +25,7 @@ world = World.World()
 gamestate = game_state.Game_State.Game_State()
 player = objects.mobs.Player.Player(30 << 5, 70 << 5)
 
-user_interface = game_graphics.UI.UI.UI()
+user_interface = None
 
 def update():
     """Update all."""
@@ -42,7 +43,7 @@ def render(display_obj):
     display_obj.canvas.fill(int(0x000000))
     world.render(display_obj)
     user_interface.render(display_obj)
-    Hud.render(display_obj)
+    #Hud.render(display_obj)
 
 
 cameraPosDoubleX = 0
@@ -67,6 +68,8 @@ def run():
     mr = Menu.MenuRun(game_window.canvas)
     mr.run(game_window.canvas)
     world.mobs.append(player)
+    global user_interface
+    user_interface = game_graphics.UI.UI.UI()
 
     while running:
 

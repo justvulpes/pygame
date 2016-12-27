@@ -48,6 +48,13 @@ player_left_step2 = Sprite(11, 27, "game_graphics\\res\\mobs\\player\\man_left_s
 
 ###
 
+
+# Icons
+coin_icon = Sprite(16, 16, "game_graphics\\res\\icons\\coin_icon.png")
+stone_icon = Sprite(16, 16, "game_graphics\\res\\icons\\stone_icon.png")
+tree_icon = Sprite(16, 16, "game_graphics\\res\\icons\\tree_icon.png")
+###
+
 # Objects
 stone_source = Sprite(32, 32, "game_graphics\\res\\objects\\stone_source.png")
 wooden_wall = Sprite(32, 32, "game_graphics\\res\\objects\\wooden_wall.png")

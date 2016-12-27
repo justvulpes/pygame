@@ -13,8 +13,6 @@ class Mob(objects.Object.Object):
         """Constructor."""
         super().__init__(x, y)
         self.speed = speed
-        self.speed_original = speed
-        self.multiplier = 0.7
         self.size = size
 
     def update(self):
@@ -27,6 +25,8 @@ class Mob(objects.Object.Object):
 
     def move(self, x, y):
         """Move."""
+        if self.current_tile.slow:
+            x, y = x * 0.5, y * 0.5
 
         if x != 0:
             if int(self.x + x - (self.size >> 1)) >> 5 >= 0 and int(self.x + x + (self.size >> 1)) >> 5 < World.World.map_width:
@@ -53,11 +53,6 @@ class Mob(objects.Object.Object):
             self.last_tile = self.current_tile
 
             self.current_tile = World.World.tiles_hash[int(self.y) >> 5][int(self.x) >> 5]
-
-            if self.current_tile.slow:
-                self.speed = self.speed_original * self.multiplier
-            else:
-                self.speed = self.speed_original
 
             if self.current_tile != self.last_tile:
                 if self.last_tile is not None:
