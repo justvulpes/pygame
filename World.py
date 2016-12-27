@@ -118,7 +118,7 @@ def set_tile(color, x, y):
 
     if color == 27391:
         World.tiles_hash[y][x] = tiles.Tile.Tile(game_graphics.Sprite.dirt, solid=False, high=False)
-        World.tiles_hash[y][x].buildings.append(objects.building.Wall.Wall(x,y))
+        World.tiles_hash[y][x].building = objects.building.Wall.Wall(x,y)
         return
 
     if color == 255:

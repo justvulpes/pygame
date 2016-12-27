@@ -14,3 +14,6 @@ class Building:
 
     def level_up(self):
         pass
+
+    def render(self, display):
+        pass

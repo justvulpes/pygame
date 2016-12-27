@@ -1,8 +1,11 @@
 import objects.building.Building
 import World
 import game_graphics.Sprite
+import pygame
 
 upgrade_cost = {1:{"coins":5, "stone":0, "wood":10}, 2:{"coins":25, "stone":20, "wood":20}, 3:{"coins":50, "stone":40, "wood":0}}
+background = pygame.Surface((80, 50), pygame.SRCALPHA)
+background.fill((10, 10, 10, 170))
 
 
 class Wall(objects.building.Building.Building):
@@ -20,10 +23,10 @@ class Wall(objects.building.Building.Building):
             self.constructed = False
             self.lvl = 0
 
-            World.World.tiles_hash[self.y][self.x].sprite = World.World.tiles_hash[self.y][self.x].sprite
-            World.World.tiles_hash[self.y][self.x].mask = World.World.tiles_hash[self.y][self.x].mask
-            World.World.tiles_hash[self.y][self.x].solid = World.World.tiles_hash[self.y][self.x].solid
-            World.World.tiles_hash[self.y][self.x].high = World.World.tiles_hash[self.y][self.x].high
+            World.World.tiles_hash[self.y][self.x].sprite = self.old_tile_sprite
+            World.World.tiles_hash[self.y][self.x].mask = self.old_tile_mask
+            World.World.tiles_hash[self.y][self.x].solid = self.old_tile_solid
+            World.World.tiles_hash[self.y][self.x].high = self.old_tile_high
 
     def build(self):
         if not self.constructed:
@@ -42,4 +45,8 @@ class Wall(objects.building.Building.Building):
             self.lvl += 1
             self.max_hp += 5
             self.hp += 5
+
+    def render(self, display):
+        display.canvas.blit(background, ((self.x << 5) - World.World.camera_x, (self.y << 5) - World.World.camera_y))
+
 

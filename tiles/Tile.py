@@ -16,4 +16,4 @@ class Tile:
 
         self.mobs = []
         self.projectiles = []
-        self.buildings = []
+        self.building = None
