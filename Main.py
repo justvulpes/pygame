@@ -22,7 +22,7 @@ pygame.init()
 window_title = "Driven Into the Last Corner"  # Title on top of the frame.
 window_width = 1200  # Width of the canvas.
 window_height = 700  # Height of the canvas.
-fps_fix = 66
+fps_fix = 213
 
 running = True  # while True game will run.
 
@@ -88,7 +88,7 @@ def run():
         pygame.display.set_caption(window_title + " | " + "FPS: %i" % game_window.clock.get_fps())
         update()
         render(game_window)
-        #  game_window.canvas.blit(pygame.image.frombuffer(PIL.Image.frombytes('RGB', (1200, 700), pygame.image.tostring(game_window.canvas, 'RGB')).filter(ImageFilter.GaussianBlur(radius=4)).tobytes(), (1200, 700), "RGB"), (0, 0))
+        #game_window.canvas.blit(pygame.image.frombuffer(PIL.Image.frombytes('RGB', (1200, 700), pygame.image.tostring(game_window.canvas, 'RGB')).filter(ImageFilter.GaussianBlur(radius=7)).tobytes(), (1200, 700), "RGB"), (0, 0))
         pygame.display.flip()
 
 if __name__ == "__main__":

@@ -33,25 +33,41 @@ class Player(objects.mobs.Mob.Mob):
         self.animCount = 0
         self.moving = False
         self.weapon = "Stone"
+        self.ammo = 10
 
     def update(self):
         """Update."""
         self.moving = False
 
-        if Menu.inMenu:
-            self.move(0, -self.speed)
-            self.moving = True
-            self.direction = 0
+        self.update_weapon()
 
-        if KeyListener.mouse_left_button_was_pressed():
-            self.shoot(1)
+        self.update_shooting()
+
+        self.update_moving()
+
+    def update_weapon(self):
+        if KeyListener.mouse_scrolled_up or KeyListener.mouse_scrolled_down:
+            if self.weapon == "Stone":
+                self.weapon = "Hand"
+            else:
+                self.weapon = "Stone"
+
+    def update_shooting(self):
+        if self.weapon == "Stone":
+            if KeyListener.mouse_left_button_was_pressed():
+                self.shoot("Stone")
+        elif self.weapon == "Hand":
+            if KeyListener.mouse_left_button_was_pressed():
+                self.shoot("Hand")
+
+    def update_moving(self):
         if KeyListener.button_is_pressed(ord("a")):
             self.move(-self.speed, 0)
             self.moving = True
             self.direction = 3
 
         elif KeyListener.button_is_pressed(ord("d")):
-            self.move(self.speed,0)
+            self.move(self.speed, 0)
             self.moving = True
             self.direction = 1
 

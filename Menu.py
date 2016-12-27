@@ -73,7 +73,7 @@ class Menu:
 
     def running(self, surf2=None):
         """Loop running menu."""
-        Main.world.mobs.append(Main.player)
+        # Main.world.mobs.append(Main.player)
         global user_interface
         user_interface = Main.game_graphics.UI.UI.UI()
         while inMenu:

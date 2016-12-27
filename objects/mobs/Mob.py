@@ -31,7 +31,7 @@ class Mob(objects.Object.Object):
         """Move."""
         if not Menu.inMenu:
             if self.current_tile.slow:
-                x, y = x * 0.5, y * 0.5
+                x, y = x * 2, y * 2
 
         if x != 0:
             if int(self.x + x - (self.size >> 1)) >> 5 >= 0 and int(self.x + x + (self.size >> 1)) >> 5 < World.World.map_width:

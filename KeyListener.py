@@ -19,6 +19,10 @@ mouse_right_button_current = False  # True if mouse right button is currently in
 mouse_left_button_current = False  # True if mouse left button is currently in pressed state.
 
 
+mouse_scrolled_up = False
+mouse_scrolled_down = False
+
+
 def update():
     """Update all information about which buttons are pressed etc."""
     global mouse_right_button_last
@@ -30,12 +34,17 @@ def update():
     global key_last
     global key_current
     global exit_game
+    global mouse_scrolled_up
+    global mouse_scrolled_down
 
     for i in range(200):  # Save latest update info.
         key_last[i] = key_current[i]
 
     mouse_right_button_last = mouse_right_button_current  # Save latest update info.
     mouse_left_button_last = mouse_left_button_current  # Save latest update info.
+
+    mouse_scrolled_up = False
+    mouse_scrolled_down = False
 
     for event in pygame.event.get():  # Get and set new update info.
         print(event)
@@ -57,6 +66,10 @@ def update():
                 mouse_left_button_current = True
             elif event.button == 3:
                 mouse_right_button_current = True
+            elif event.button == 4:
+                mouse_scrolled_up = True
+            elif event.button == 5:
+                mouse_scrolled_down = True
 
         elif event.type == MOUSEBUTTONUP:
             if event.button == 1:
@@ -102,3 +115,4 @@ def mouse_left_button_was_pressed():
 def mouse_left_button_was_released():
     """Mouse left button released."""
     return mouse_left_button_last and not mouse_left_button_current
+

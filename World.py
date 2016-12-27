@@ -97,7 +97,7 @@ def set_tile(color, x, y):
         return
 
     if color == 8382975:
-        World.tiles_hash[y][x] = tiles.Tile.Tile(game_graphics.Sprite.sand, slow=True)
+        World.tiles_hash[y][x] = tiles.Tile.Tile(game_graphics.Sprite.sand)
         return
 
     if color == 16749568:
@@ -122,19 +122,19 @@ def set_tile(color, x, y):
         return
 
     if color == 255:
-        World.tiles_hash[y][x] = tiles.Tile.Tile(game_graphics.Sprite.grass, solid=True, high=False, mask=game_graphics.Sprite.christmas_tree_lower)
+        World.tiles_hash[y][x] = tiles.Tile.Tile(game_graphics.Sprite.grass, solid=True, high=True, mask=game_graphics.Sprite.christmas_tree_lower)
         return
 
     if color == 127:
-        World.tiles_hash[y][x] = tiles.Tile.Tile(game_graphics.Sprite.grass, solid=True, high=False, mask=game_graphics.Sprite.christmas_tree_upper)
+        World.tiles_hash[y][x] = tiles.Tile.Tile(game_graphics.Sprite.grass, solid=False, high=False, mask=game_graphics.Sprite.christmas_tree_upper)
         return
 
     if color == 15564799:
-        World.tiles_hash[y][x] = tiles.Tile.Tile(game_graphics.Sprite.snow, solid=True, high=False, mask=game_graphics.Sprite.christmas_tree_lower)
+        World.tiles_hash[y][x] = tiles.Tile.Tile(game_graphics.Sprite.snow, solid=True, high=True, mask=game_graphics.Sprite.christmas_tree_lower)
         return
 
     if color == 14418175:
-        World.tiles_hash[y][x] = tiles.Tile.Tile(game_graphics.Sprite.snow, solid=True, high=False, mask=game_graphics.Sprite.christmas_tree_upper)
+        World.tiles_hash[y][x] = tiles.Tile.Tile(game_graphics.Sprite.snow, solid=False, high=False, mask=game_graphics.Sprite.christmas_tree_upper)
         return
 
     if color == 16777215:

@@ -58,10 +58,14 @@ hp_icon = Sprite(16, 16, "game_graphics\\res\\icons\\hp_icon.png")
 xp_icon = Sprite(16, 16, "game_graphics\\res\\icons\\xp_icon.png")
 level_icon = Sprite(16, 16, "game_graphics\\res\\icons\\level_icon.png")
 
-player_icon = Sprite(16, 16, "game_graphics\\res\\icons\\player_icon.png")
-player_icon_injured_1 = Sprite(16, 16, "game_graphics\\res\\icons\\player_icon_injured_1.png")
-player_icon_injured_2 = Sprite(16, 16, "game_graphics\\res\\icons\\player_icon_injured_2.png")
-player_icon_death = Sprite(16, 16, "game_graphics\\res\\icons\\player_icon_death.png")
+player_icon = Sprite(64, 64, "game_graphics\\res\\icons\\player_icon.png")
+player_icon_injured_1 = Sprite(64, 64, "game_graphics\\res\\icons\\player_icon_injured_1.png")
+player_icon_injured_2 = Sprite(64, 64, "game_graphics\\res\\icons\\player_icon_injured_2.png")
+player_icon_death = Sprite(64, 64, "game_graphics\\res\\icons\\player_icon_death.png")
+
+
+hand_weapon_icon = Sprite(64, 64, "game_graphics\\res\\icons\\hand_weapon_icon.png")
+stone_weapon_icon = Sprite(64, 64, "game_graphics\\res\\icons\\stone_weapon_icon.png")
 ###
 
 # Objects
