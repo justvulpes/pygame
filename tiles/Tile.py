@@ -4,7 +4,7 @@
 class Tile:
     """Tile."""
 
-    def __init__(self, sprite, solid=False, high=False, mask=None):
+    def __init__(self, sprite, solid=False, high=False, mask=None, slow=False):
         """Constructor."""
 
         self.sprite = sprite
@@ -12,6 +12,7 @@ class Tile:
 
         self.solid = solid
         self.high = high
+        self.slow = slow
 
         self.mobs = []
         self.projectiles = []

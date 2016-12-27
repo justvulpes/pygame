@@ -82,6 +82,12 @@ class World:
                     for projectile in World.tiles_hash[y][x].projectiles:
                         projectile.render(display)
 
+        for y in range((World.camera_y >> 5), (World.camera_y >> 5) + (display.height >> 5) + 2):
+            for x in range((World.camera_x >> 5), (World.camera_x >> 5) + (display.width >> 5) + 2):
+                if World.map_height > y >= 0 and World.map_width > x >= 0:
+                    if World.tiles_hash[y][x].mask is not None:
+                        display.canvas.blit(World.tiles_hash[y][x].mask.pic, ((x << 5) - World.camera_x, (y << 5) - World.camera_y))
+
 
 def set_tile(color, x, y):
     """Set tile."""
@@ -91,7 +97,7 @@ def set_tile(color, x, y):
         return
 
     if color == 8382975:
-        World.tiles_hash[y][x] = tiles.Tile.Tile(game_graphics.Sprite.sand)
+        World.tiles_hash[y][x] = tiles.Tile.Tile(game_graphics.Sprite.sand, slow=True)
         return
 
     if color == 16749568:
@@ -113,6 +119,26 @@ def set_tile(color, x, y):
     if color == 27391:
         World.tiles_hash[y][x] = tiles.Tile.Tile(game_graphics.Sprite.dirt, solid=False, high=False)
         World.tiles_hash[y][x].buildings.append(objects.building.Wall.Wall(x,y))
+        return
+
+    if color == 255:
+        World.tiles_hash[y][x] = tiles.Tile.Tile(game_graphics.Sprite.grass, solid=True, high=False, mask=game_graphics.Sprite.christmas_tree_lower)
+        return
+
+    if color == 127:
+        World.tiles_hash[y][x] = tiles.Tile.Tile(game_graphics.Sprite.grass, solid=True, high=False, mask=game_graphics.Sprite.christmas_tree_upper)
+        return
+
+    if color == 15564799:
+        World.tiles_hash[y][x] = tiles.Tile.Tile(game_graphics.Sprite.snow, solid=True, high=False, mask=game_graphics.Sprite.christmas_tree_lower)
+        return
+
+    if color == 14418175:
+        World.tiles_hash[y][x] = tiles.Tile.Tile(game_graphics.Sprite.snow, solid=True, high=False, mask=game_graphics.Sprite.christmas_tree_upper)
+        return
+
+    if color == 16777215:
+        World.tiles_hash[y][x] = tiles.Tile.Tile(game_graphics.Sprite.snow, slow=True)
         return
 
     World.tiles_hash[y][x] = tiles.Tile.Tile(game_graphics.Sprite.grass)

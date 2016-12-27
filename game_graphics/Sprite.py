@@ -18,6 +18,7 @@ stone = Sprite(32, 32, "game_graphics\\res\\tiles\\stone.png")
 dirt = Sprite(32, 32, "game_graphics\\res\\tiles\\dirt.png")
 sand = Sprite(32, 32, "game_graphics\\res\\tiles\\sand.png")
 water = Sprite(32, 32, "game_graphics\\res\\tiles\\water.png")
+snow = Sprite(32, 32, "game_graphics\\res\\tiles\\snow.png")
 ###
 
 # Projectiles
@@ -50,8 +51,10 @@ player_left_step2 = Sprite(11, 27, "game_graphics\\res\\mobs\\player\\man_left_s
 # Objects
 stone_source = Sprite(32, 32, "game_graphics\\res\\objects\\stone_source.png")
 wooden_wall = Sprite(32, 32, "game_graphics\\res\\objects\\wooden_wall.png")
+christmas_tree_upper = Sprite(32, 32, "game_graphics\\res\\objects\\christmas_tree_upper.png")
+christmas_tree_lower = Sprite(32, 32, "game_graphics\\res\\objects\\christmas_tree_lower.png")
 
-#-Tower
+# Tower
 tower_1 = Sprite(32, 32, "game_graphics\\res\\objects\\tower\\tower_1.png")
 tower_2 = Sprite(32, 32, "game_graphics\\res\\objects\\tower\\tower_2.png")
 tower_3 = Sprite(32, 32, "game_graphics\\res\\objects\\tower\\tower_3.png")

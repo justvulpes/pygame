@@ -1,6 +1,8 @@
 """Main."""
 
 import pygame
+import sys
+
 import KeyListener
 import Popup_menu
 import game_graphics.Display
@@ -14,7 +16,7 @@ import game_state.Game_State
 window_title = "Driven Into the Last Corner"  # Title on top of the frame.
 window_width = 1200  # Width of the canvas.
 window_height = 700  # Height of the canvas.
-fps_fix = 1160
+fps_fix = 1660
 
 running = True  # while True game will run.
 
@@ -26,9 +28,11 @@ player = objects.mobs.Player.Player(30 << 5, 70 << 5)
 def update():
     """Update all."""
     KeyListener.update()
-
     cameraPos()  # update camera position.
     world.update()
+
+    if KeyListener.exit_game is True:
+        sys.exit()
 
 
 def render(display_obj):
@@ -62,6 +66,7 @@ def run():
     world.mobs.append(player)
 
     while running:
+
         game_window.clock.tick(game_window.fps)
         pygame.display.set_caption(window_title + " | " + "FPS: %i" % game_window.clock.get_fps())
 

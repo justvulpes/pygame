@@ -4,6 +4,8 @@ import pygame
 import random
 import sys
 
+import KeyListener
+
 inMenu = True
 default_difficulty = "Noob"
 
