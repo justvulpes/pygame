@@ -4,10 +4,12 @@ import pygame
 import KeyListener
 import Popup_menu
 import game_graphics.Display
+import game_graphics.UI.UI
 import Menu
 import Hud
 import World
 import objects.mobs.Player
+import game_state.Game_State
 
 window_title = "Driven Into the Last Corner"  # Title on top of the frame.
 window_width = 1200  # Width of the canvas.
@@ -17,6 +19,7 @@ fps_fix = 1160
 running = True  # while True game will run.
 
 world = World.World()
+gamestate = game_state.Game_State.Game_State()
 player = objects.mobs.Player.Player(30 << 5, 70 << 5)
 
 
@@ -43,8 +46,6 @@ def cameraPos():
     """Update camera position."""
     global cameraPosDoubleX
     global cameraPosDoubleY
-    global cameraPosIntX
-    global cameraPosIntY
 
     cameraPosDoubleX += (player.x - (cameraPosDoubleX + window_width/2)) / 20
     cameraPosDoubleY += (player.y - (cameraPosDoubleY + window_height/2)) / 20

@@ -3,6 +3,7 @@
 import tiles.Tile
 import game_graphics.Sprite
 import pygame
+import objects.building.Wall
 
 
 class World:
@@ -110,7 +111,8 @@ def set_tile(color, x, y):
         return
 
     if color == 27391:
-        World.tiles_hash[y][x] = tiles.Tile.Tile(game_graphics.Sprite.wooden_wall, solid=True, high=True)
+        World.tiles_hash[y][x] = tiles.Tile.Tile(game_graphics.Sprite.dirt, solid=False, high=False)
+        World.tiles_hash[y][x].buildings.append(objects.building.Wall.Wall(x,y))
         return
 
     World.tiles_hash[y][x] = tiles.Tile.Tile(game_graphics.Sprite.grass)

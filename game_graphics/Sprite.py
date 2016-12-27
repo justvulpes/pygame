@@ -50,6 +50,20 @@ player_left_step2 = Sprite(11, 27, "game_graphics\\res\\mobs\\player\\man_left_s
 # Objects
 stone_source = Sprite(32, 32, "game_graphics\\res\\objects\\stone_source.png")
 wooden_wall = Sprite(32, 32, "game_graphics\\res\\objects\\wooden_wall.png")
+
+#-Tower
+tower_1 = Sprite(32, 32, "game_graphics\\res\\objects\\tower\\tower_1.png")
+tower_2 = Sprite(32, 32, "game_graphics\\res\\objects\\tower\\tower_2.png")
+tower_3 = Sprite(32, 32, "game_graphics\\res\\objects\\tower\\tower_3.png")
+tower_4 = Sprite(32, 32, "game_graphics\\res\\objects\\tower\\tower_4.png")
+tower_5 = Sprite(32, 32, "game_graphics\\res\\objects\\tower\\tower_5.png")
+tower_6 = Sprite(32, 32, "game_graphics\\res\\objects\\tower\\tower_6.png")
+tower_7 = Sprite(32, 32, "game_graphics\\res\\objects\\tower\\tower_7.png")
+tower_8 = Sprite(32, 32, "game_graphics\\res\\objects\\tower\\tower_8.png")
+tower_9 = Sprite(32, 32, "game_graphics\\res\\objects\\tower\\tower_9.png")
+tower_10 = Sprite(32, 32, "game_graphics\\res\\objects\\tower\\tower_10.png")
+tower_11 = Sprite(32, 32, "game_graphics\\res\\objects\\tower\\tower_11.png")
+tower_12 = Sprite(32, 32, "game_graphics\\res\\objects\\tower\\tower_12.png")
 ###
 
 # Map

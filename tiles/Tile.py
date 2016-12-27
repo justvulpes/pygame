@@ -12,5 +12,7 @@ class Tile:
 
         self.solid = solid
         self.high = high
+
         self.mobs = []
         self.projectiles = []
+        self.buildings = []
