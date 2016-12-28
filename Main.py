@@ -22,7 +22,7 @@ fps_fix = 213
 running = True  # while True game will run.
 
 player = objects.mobs.Player.Player(30 << 5, 70 << 5)
-world = World.World(player)
+world = World.World()
 gamestate = game_state.Game_State.Game_State()
 worker_man = objects.mobs.Worker_man.Worker(37 << 5, 70 << 5)
 worker_man2 = objects.mobs.Worker_man.Worker(30 << 5, 70 << 5)

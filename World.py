@@ -20,7 +20,7 @@ class World:
 
     player = None
 
-    def __init__(self, player):
+    def __init__(self):
         """Constructor."""
 
         map_pixels = pygame.surfarray.array2d(game_graphics.Sprite.map.pic)
