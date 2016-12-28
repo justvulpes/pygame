@@ -17,3 +17,6 @@ class Building:
 
     def render(self, display):
         pass
+
+    def still_active(self):
+        pass

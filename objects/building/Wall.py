@@ -2,15 +2,18 @@ import objects.building.Building
 import World
 import game_graphics.Sprite
 import pygame
+import KeyListener
+import World
+import game_graphics.Sprite
 
 upgrade_cost = {1:{"coins":5, "stone":0, "wood":10}, 2:{"coins":25, "stone":20, "wood":20}, 3:{"coins":50, "stone":40, "wood":0}}
-background = pygame.Surface((80, 50), pygame.SRCALPHA)
-background.fill((10, 10, 10, 170))
+background = pygame.Surface((64, 96), pygame.SRCALPHA)
+background.fill((0, 0, 0, 170))
 
 
 class Wall(objects.building.Building.Building):
-    def __init__(self,x,y):
-        super().__init__(x,y, hp=10)
+    def __init__(self, x, y):
+        super().__init__(x, y, hp=10)
         self.lvl = 0
         self.max_hp = 10
         self.old_tile_mask = World.World.tiles_hash[y][x].mask
@@ -47,6 +50,17 @@ class Wall(objects.building.Building.Building):
             self.hp += 5
 
     def render(self, display):
-        display.canvas.blit(background, ((self.x << 5) - World.World.camera_x, (self.y << 5) - World.World.camera_y))
+        display.canvas.blit(background, ((self.x << 5) - World.World.camera_x - 16, (self.y << 5) - World.World.camera_y - 112))
 
+        display.canvas.blit(game_graphics.Sprite.coin_icon.pic, ((self.x << 5) - World.World.camera_x - 14, (self.y << 5) - World.World.camera_y - 110))
 
+        display.canvas.blit(game_graphics.Sprite.stone_icon.pic, ((self.x << 5) - World.World.camera_x - 14, (self.y << 5) - World.World.camera_y - 90))
+
+        display.canvas.blit(game_graphics.Sprite.tree_icon.pic, ((self.x << 5) - World.World.camera_x - 14, (self.y << 5) - World.World.camera_y - 70))
+
+        if self.constructed:
+            pass
+
+    def still_active(self):
+        if World.World.camera_x + KeyListener.mouseX < World.World.camera_x:
+            pass

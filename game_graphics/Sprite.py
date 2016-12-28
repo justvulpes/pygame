@@ -83,6 +83,11 @@ player_icon_death = Sprite(64, 64, "game_graphics\\res\\icons\\player_icon_death
 
 hand_weapon_icon = Sprite(64, 64, "game_graphics\\res\\icons\\hand_weapon_icon.png")
 stone_weapon_icon = Sprite(64, 64, "game_graphics\\res\\icons\\stone_weapon_icon.png")
+
+
+# Buttons
+build_button = Sprite(62, 30, "game_graphics\\res\\buttons\\build_button.png")
+upgrade_button = Sprite(62, 30, "game_graphics\\res\\buttons\\upgrade_button.png")
 ###
 
 # Objects
