@@ -36,7 +36,7 @@ class Player(objects.mobs.Mob.Mob):
 
     def update(self):
         """Update."""
-        self.hp -= 0.01
+
         self.moving = False
 
         self.update_weapon()

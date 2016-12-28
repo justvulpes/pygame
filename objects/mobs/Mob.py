@@ -17,7 +17,7 @@ class Mob(objects.Object.Object):
         self.size = size
         self.hp = 99
         self.max_hp = 99
-        self.xp = 0
+        self.xp = 11
         self.lvl = 1
 
     def update(self):
