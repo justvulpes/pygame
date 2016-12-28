@@ -75,7 +75,7 @@ class Menu:
         """Loop running menu."""
         # Main.world.mobs.append(Main.player)
         global user_interface
-        user_interface = Main.game_graphics.UI.UI.UI()
+        #user_interface = Main.game_graphics.UI.UI.UI()
         while inMenu:
             #  surf2.clock.tick(surf2.fps)
             Main.update()

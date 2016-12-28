@@ -1,5 +1,4 @@
 """Player."""
-import Menu
 import objects.mobs.Mob
 import game_graphics.Sprite
 import KeyListener
@@ -27,12 +26,13 @@ class Player(objects.mobs.Mob.Mob):
 
     def __init__(self, x, y, speed=1, size=18):
         """Constructor."""
+        print("Player created!!!!!!!!!!!!!!!!!!")
         super().__init__(x, y, speed, size)
         self.current_sprite = sprite_left
         self.direction = 3
         self.animCount = 0
         self.moving = False
-        self.weapon = "Stone"
+        self.weapon = 1
         self.ammo = 10
 
     def update(self):
@@ -46,11 +46,15 @@ class Player(objects.mobs.Mob.Mob):
         self.update_moving()
 
     def update_weapon(self):
-        if KeyListener.mouse_scrolled_up or KeyListener.mouse_scrolled_down:
-            if self.weapon == "Stone":
-                self.weapon = "Hand"
-            else:
-                self.weapon = "Stone"
+
+        print(self)
+        if KeyListener.mouse_right_button_was_pressed():
+            print("2222")
+            if self.weapon == 1:
+                self.weapon = 2
+            elif self.weapon == 2:
+                self.weapon = 1
+
 
     def update_shooting(self):
         if self.weapon == "Stone":

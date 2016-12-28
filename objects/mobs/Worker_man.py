@@ -51,7 +51,7 @@ class Worker(objects.mobs.Mob.Mob):
 
     def update(self):
         self.moving = False
-        print(self.x, self.y, self.destination)
+        #print(self.x, self.y, self.destination)
 
         if [self.x, self.y] == self.destination:
             self.update_destination()
