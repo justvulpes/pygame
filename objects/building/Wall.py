@@ -1,12 +1,11 @@
 import objects.building.Building
-import World
 import game_graphics.Sprite
 import pygame
 import KeyListener
 import World
 import game_graphics.Sprite
 
-upgrade_cost = {1:{"coins":5, "stone":0, "wood":10}, 2:{"coins":25, "stone":20, "wood":20}, 3:{"coins":50, "stone":40, "wood":0}}
+upgrade_cost = {1: {"coins": 5, "stone": 0, "wood": 10}, 2: {"coins":25, "stone": 20, "wood": 20}, 3: {"coins": 50, "stone": 40, "wood": 0}}
 background = pygame.Surface((64, 96), pygame.SRCALPHA)
 background.fill((0, 0, 0, 170))
 
@@ -59,7 +58,9 @@ class Wall(objects.building.Building.Building):
         display.canvas.blit(game_graphics.Sprite.tree_icon.pic, ((self.x << 5) - World.World.camera_x - 14, (self.y << 5) - World.World.camera_y - 70))
 
         if self.constructed:
-            pass
+            display.canvas.blit(game_graphics.Sprite.upgrade_button.pic, ((self.x << 5) - World.World.camera_x - 15, (self.y << 5) - World.World.camera_y - 47))
+        else:
+            display.canvas.blit(game_graphics.Sprite.build_button.pic, ((self.x << 5) - World.World.camera_x - 15, (self.y << 5) - World.World.camera_y - 47))
 
     def still_active(self):
         if World.World.camera_x + KeyListener.mouseX < World.World.camera_x:
