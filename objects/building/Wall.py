@@ -5,6 +5,7 @@ import KeyListener
 import World
 import game_graphics.Sprite
 import Main
+import sounds.Sound_control
 
 upgrade_cost = {0: {"coins": 2, "stone": 0, "wood": 5}, 1: {"coins": 5, "stone": 0, "wood": 10}, 2: {"coins":25, "stone": 20, "wood": 20}, 3: {"coins": 50, "stone": 40, "wood": 0}}
 background = pygame.Surface((64, 96), pygame.SRCALPHA)
@@ -67,22 +68,19 @@ class Wall(objects.building.Building.Building):
 
         display.canvas.blit(self.wall_text, ((self.x << 5) - World.World.camera_x + 1, (self.y << 5) - World.World.camera_y - 108))
 
+        ###
         display.canvas.blit(game_graphics.Sprite.coin_icon.pic, ((self.x << 5) - World.World.camera_x - 14, (self.y << 5) - World.World.camera_y - 90))
 
         display.canvas.blit(game_graphics.Sprite.stone_icon.pic, ((self.x << 5) - World.World.camera_x + 8, (self.y << 5) - World.World.camera_y - 90))
 
         display.canvas.blit(game_graphics.Sprite.tree_icon.pic, ((self.x << 5) - World.World.camera_x + 30, (self.y << 5) - World.World.camera_y - 90))
 
-
-
-
+        ###
         display.canvas.blit(self.coin_price_text, ((self.x << 5) - World.World.camera_x - self.coin_price_text.get_width() / 2 - 6, (self.y << 5) - World.World.camera_y - 70))
 
         display.canvas.blit(self.stone_price_text, ((self.x << 5) - World.World.camera_x - self.stone_price_text.get_width() / 2 + 16, (self.y << 5) - World.World.camera_y - 70))
 
         display.canvas.blit(self.wood_price_text, ((self.x << 5) - World.World.camera_x - self.wood_price_text.get_width() / 2 + 38, (self.y << 5) - World.World.camera_y - 70))
-
-
 
         if self.constructed:
             display.canvas.blit(game_graphics.Sprite.upgrade_button.pic, ((self.x << 5) - World.World.camera_x - 15, (self.y << 5) - World.World.camera_y - 47))
@@ -108,7 +106,8 @@ class Wall(objects.building.Building.Building):
         return first_rect or second_rect
 
     def update(self):
-        if World.World.camera_y + KeyListener.mouseY > ((self.y - 1) << 5) - 16 and World.World.camera_y + KeyListener.mouseY < ((self.y) << 5) - 16:
-            if World.World.camera_x + KeyListener.mouseX > (self.x << 5) - 16 and World.World.camera_x + KeyListener.mouseX < ((self.x + 1) << 5) + 16:
+        if ((self.y - 1) << 5) - 16 < World.World.camera_y + KeyListener.mouseY < ((self.y) << 5) - 16:
+            if (self.x << 5) - 16 < World.World.camera_x + KeyListener.mouseX < ((self.x + 1) << 5) + 16:
                 if KeyListener.mouse_left_button_was_released():
                     self.build()
+                    sounds.Sound_control.SoundControl.upgrade(Main.sc)

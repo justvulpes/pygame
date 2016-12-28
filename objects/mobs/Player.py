@@ -63,6 +63,7 @@ class Player(objects.mobs.Mob.Mob):
                 self.shoot(1)
         elif self.weapon == 2:
             if KeyListener.mouse_left_button_was_pressed():
+                sounds.Sound_control.SoundControl.player_punch(Main.sc)
                 self.shoot(2)
 
     def update_moving(self):
