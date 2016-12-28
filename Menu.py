@@ -184,6 +184,7 @@ class MenuRun:
         print("Open highscores.")
         # implement
 
+
     @staticmethod
     def pressed_quit():
         """Quit the game."""
