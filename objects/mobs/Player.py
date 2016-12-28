@@ -32,16 +32,16 @@ class Player(objects.mobs.Mob.Mob):
         self.animCount = 0
         self.moving = False
         self.weapon = 1
-        self.ammo = 10
+        self.ammo = 99
 
     def update(self):
         """Update."""
+        self.hp -= 0.01
         self.moving = False
 
         self.update_weapon()
 
         self.update_shooting()
-
 
         self.update_moving()
 
@@ -55,13 +55,15 @@ class Player(objects.mobs.Mob.Mob):
 
     def update_shooting(self):
         if self.weapon == 1:
-            if KeyListener.mouse_left_button_was_pressed():
+            if KeyListener.mouse_left_button_was_pressed() and self.ammo > 0:
                 self.shoot(1)
+                self.ammo -= 1
         elif self.weapon == 2:
             if KeyListener.mouse_left_button_was_pressed():
                 self.shoot(2)
 
     def update_moving(self):
+
         if KeyListener.button_is_pressed(ord("a")):
             self.move(-self.speed, 0)
             self.moving = True

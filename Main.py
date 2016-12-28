@@ -17,7 +17,7 @@ pygame.init()
 window_title = "Driven Into the Last Corner"  # Title on top of the frame.
 window_width = 1200  # Width of the canvas.
 window_height = 700  # Height of the canvas.
-fps_fix = 213
+fps_fix = 66
 
 running = True  # while True game will run.
 

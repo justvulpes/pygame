@@ -3,6 +3,7 @@ import Menu
 import objects.Object
 import World
 import objects.projectiles.Stone
+import objects.projectiles.Hand
 import KeyListener
 
 
@@ -14,8 +15,8 @@ class Mob(objects.Object.Object):
         super().__init__(x, y)
         self.speed = speed
         self.size = size
-        self.hp = 10
-        self.max_hp = 10
+        self.hp = 99
+        self.max_hp = 99
         self.xp = 0
         self.lvl = 1
 
@@ -50,7 +51,10 @@ class Mob(objects.Object.Object):
                     self.y += y
 
     def shoot(self, particle_type):
-        World.World.projectiles.append(objects.projectiles.Stone.Stone(self.x, self.y, World.World.camera_x + KeyListener.mouseX, World.World.camera_y + KeyListener.mouseY))
+        if particle_type == 1:
+            World.World.projectiles.append(objects.projectiles.Stone.Stone(self.x, self.y, World.World.camera_x + KeyListener.mouseX, World.World.camera_y + KeyListener.mouseY))
+        elif particle_type == 2:
+            World.World.projectiles.append(objects.projectiles.Hand.Hand(self.x, self.y, World.World.camera_x + KeyListener.mouseX, World.World.camera_y + KeyListener.mouseY))
 
     def update_tile(self):
 
@@ -63,3 +67,10 @@ class Mob(objects.Object.Object):
                 if self.last_tile is not None:
                     self.last_tile.mobs.remove(self)
                 self.current_tile.mobs.append(self)
+
+    def check_level_up(self):
+        if self.xp >= (self.lvl * self.lvl + 10) * self.lvl:
+            self.xp -= (self.lvl * self.lvl + 10) * self.lvl
+            self.lvl += 1
+            self.max_hp += 5
+            self.hp += 5

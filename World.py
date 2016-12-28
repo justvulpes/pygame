@@ -4,6 +4,7 @@ import tiles.Tile
 import game_graphics.Sprite
 import pygame
 import objects.building.Wall
+import objects.mobs.Player
 
 
 class World:
