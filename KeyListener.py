@@ -47,7 +47,7 @@ def update():
     mouse_scrolled_down = False
 
     for event in pygame.event.get():  # Get and set new update info.
-        print(event)
+        #print(event)
 
         if event.type == QUIT:
             exit_game = True

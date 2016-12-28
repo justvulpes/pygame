@@ -18,7 +18,9 @@ class World:
     camera_x = 0
     camera_y = 0
 
-    def __init__(self):
+    player = None
+
+    def __init__(self, player):
         """Constructor."""
 
         map_pixels = pygame.surfarray.array2d(game_graphics.Sprite.map.pic)
@@ -29,6 +31,8 @@ class World:
                 set_tile(map_pixels[x][y], x, y)
 
         World.tiles_hash[10][10] = tiles.Tile.Tile(game_graphics.Sprite.grass, solid=True)
+
+
 
     @staticmethod
     def update():

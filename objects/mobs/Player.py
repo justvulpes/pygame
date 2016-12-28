@@ -26,7 +26,6 @@ class Player(objects.mobs.Mob.Mob):
 
     def __init__(self, x, y, speed=1, size=18):
         """Constructor."""
-        print("Player created!!!!!!!!!!!!!!!!!!")
         super().__init__(x, y, speed, size)
         self.current_sprite = sprite_left
         self.direction = 3
@@ -43,26 +42,24 @@ class Player(objects.mobs.Mob.Mob):
 
         self.update_shooting()
 
+
         self.update_moving()
 
     def update_weapon(self):
 
-        print(self)
-        if KeyListener.mouse_right_button_was_pressed():
-            print("2222")
+        if KeyListener.mouse_right_button_was_pressed() or KeyListener.mouse_scrolled_up or KeyListener.mouse_scrolled_down:
             if self.weapon == 1:
                 self.weapon = 2
             elif self.weapon == 2:
                 self.weapon = 1
 
-
     def update_shooting(self):
-        if self.weapon == "Stone":
+        if self.weapon == 1:
             if KeyListener.mouse_left_button_was_pressed():
-                self.shoot("Stone")
-        elif self.weapon == "Hand":
+                self.shoot(1)
+        elif self.weapon == 2:
             if KeyListener.mouse_left_button_was_pressed():
-                self.shoot("Hand")
+                self.shoot(2)
 
     def update_moving(self):
         if KeyListener.button_is_pressed(ord("a")):

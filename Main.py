@@ -21,10 +21,11 @@ fps_fix = 213
 
 running = True  # while True game will run.
 
-world = World.World()
+player = objects.mobs.Player.Player(30 << 5, 70 << 5)
+world = World.World(player)
 gamestate = game_state.Game_State.Game_State()
 worker_man = objects.mobs.Worker_man.Worker(37 << 5, 70 << 5)
-player = objects.mobs.Player.Player(30 << 5, 70 << 5)
+worker_man2 = objects.mobs.Worker_man.Worker(30 << 5, 70 << 5)
 
 user_interface = None
 
@@ -75,8 +76,11 @@ def run():
     game_window = game_graphics.Display.Display(window_width, window_height, fps_fix)
     mr = Menu.MenuRun(game_window.canvas)
     mr.run(game_window.canvas, surf=game_window)
-    world.mobs.append(player)
+
     world.mobs.append(worker_man)
+    world.mobs.append(worker_man2)
+    world.mobs.append(player)
+    World.player = player
     global user_interface
     user_interface = game_graphics.UI.UI.UI()
     while running:
