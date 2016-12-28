@@ -48,14 +48,38 @@ class Wall(objects.building.Building.Building):
 
     def build(self):
         if not self.constructed:
-            if len(World.World.tiles_hash[self.y][self.x].mobs) == 0:
+            if self.no_mobs:
                 self.constructed = True
-                self.hp = 15
+
+                Main.gamestate.coins -= upgrade_cost[self.lvl]["coins"]
+                Main.gamestate.stone -= upgrade_cost[self.lvl]["stone"]
+                Main.gamestate.wood -= upgrade_cost[self.lvl]["wood"]
+
+                self.hp = 10
                 self.lvl = 1
+
                 World.World.tiles_hash[self.y][self.x].sprite = game_graphics.Sprite.wooden_wall_level_1
                 World.World.tiles_hash[self.y][self.x].mask = None
                 World.World.tiles_hash[self.y][self.x].solid = True
                 World.World.tiles_hash[self.y][self.x].high = True
+
+        else:
+            if self.lvl in upgrade_cost.keys():
+                Main.gamestate.coins -= upgrade_cost[self.lvl]["coins"]
+                Main.gamestate.stone -= upgrade_cost[self.lvl]["stone"]
+                Main.gamestate.wood -= upgrade_cost[self.lvl]["wood"]
+
+                self.hp += 5
+                self.lvl = 1
+
+                World.World.tiles_hash[self.y][self.x].sprite = game_graphics.Sprite.wooden_wall_level_2
+
+
+    def no_mobs(self):
+        if len(World.World.tiles_hash[self.y][self.x].mobs) == 0:
+            return True
+        else:
+            return False
 
     def level_up(self):
         if self.constructed:

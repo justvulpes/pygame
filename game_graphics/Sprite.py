@@ -19,6 +19,8 @@ dirt = Sprite(32, 32, "game_graphics\\res\\tiles\\dirt.png")
 sand = Sprite(32, 32, "game_graphics\\res\\tiles\\sand.png")
 water = Sprite(32, 32, "game_graphics\\res\\tiles\\water.png")
 snow = Sprite(32, 32, "game_graphics\\res\\tiles\\snow.png")
+
+dirt_for_building = Sprite(32, 32, "game_graphics\\res\\tiles\\dirt_for_building.png")
 ###
 
 # Projectiles
@@ -94,6 +96,9 @@ upgrade_button = Sprite(62, 30, "game_graphics\\res\\buttons\\upgrade_button.png
 stone_source = Sprite(32, 32, "game_graphics\\res\\objects\\stone_source.png")
 
 wooden_wall_level_1 = Sprite(32, 32, "game_graphics\\res\\objects\\walls\\wall_lvl_1.png")
+wooden_wall_level_2 = Sprite(32, 32, "game_graphics\\res\\objects\\walls\\wall_lvl_2.png")
+wooden_wall_level_3 = Sprite(32, 32, "game_graphics\\res\\objects\\walls\\wall_lvl_3.png")
+
 
 christmas_tree_upper = Sprite(32, 32, "game_graphics\\res\\objects\\christmas_tree_upper.png")
 christmas_tree_lower = Sprite(32, 32, "game_graphics\\res\\objects\\christmas_tree_lower.png")
