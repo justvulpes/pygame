@@ -50,10 +50,7 @@ class Wall(objects.building.Building.Building):
             if len(World.World.tiles_hash[self.y][self.x].mobs) == 0:
                 self.constructed = True
                 self.hp = 15
-                self.lvl = 0
-
-
-
+                self.lvl = 1
                 World.World.tiles_hash[self.y][self.x].sprite = game_graphics.Sprite.wooden_wall_level_1
                 World.World.tiles_hash[self.y][self.x].mask = None
                 World.World.tiles_hash[self.y][self.x].solid = True
