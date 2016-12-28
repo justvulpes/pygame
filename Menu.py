@@ -6,7 +6,7 @@ import sys
 
 from PIL import Image
 from PIL import ImageFilter
-
+import sounds.Sound_control
 import KeyListener
 import Main
 
@@ -73,6 +73,8 @@ class Menu:
 
     def running(self, surf2=None):
         """Loop running menu."""
+        set_once = False
+        current_seleceted = 0
         # Main.world.mobs.append(Main.player)
         global user_interface
         #user_interface = Main.game_graphics.UI.UI.UI()
@@ -86,18 +88,24 @@ class Menu:
             # bg = pygame.image.load("game_graphics\\res\\objects\\blurred.png")
             #  self.scrn.blit(bg, (0, 0))
             # self.scrn.fill(self.bg_color)
-            for event in pygame.event.get():  # so it wouldn't crash, delete events
+            for event in pygame.event.get():
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     for item in self.buttons:
                         if item.selected(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1]):
                             for i in self.events1:
                                 if i[0] == item.text:
                                     i[1]()  # run the function that matches the text
-            for item in self.buttons:
+            for i, item in enumerate(self.buttons):
                 #  item.set_the_font(random.choice(pygame.font.get_fonts()), 70) crazyness
                 if item.selected(pygame.mouse.get_pos()[0], pygame.mouse.get_pos()[1]):
                     item.set_font_color((0, 0, 0))
+                    current_seleceted = i
+                    if not set_once:
+                        set_once = True
+                        sounds.Sound_control.SoundControl.menu_selected(Main.sc)
                 else:
+                    if current_seleceted == i:
+                        set_once = False
                     item.set_font_color((255, 255, 255))
                 self.scrn.blit(item.label, item.position)
             pygame.display.flip()

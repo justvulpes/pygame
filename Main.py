@@ -1,4 +1,6 @@
 """Main."""
+import random
+
 import pygame
 import sys
 
@@ -11,8 +13,11 @@ import objects.mobs.Player
 import objects.mobs.Worker_man
 import game_state.Game_State
 import game_graphics.UI
+import sounds.Sound_control
+
 
 pygame.init()
+pygame.mixer.pre_init(44100, 16, 2, 4096)
 
 window_title = "Driven Into the Last Corner"  # Title on top of the frame.
 window_width = 1200  # Width of the canvas.
@@ -21,6 +26,7 @@ fps_fix = 66
 
 running = True  # while True game will run.
 
+sc = sounds.Sound_control.SoundControl()
 player = objects.mobs.Player.Player(30 << 5, 70 << 5)
 world = World.World()
 gamestate = game_state.Game_State.Game_State()
@@ -72,6 +78,8 @@ def cameraPos():
 
 def run():
     """Run the game."""
+    sounds.Sound_control.SoundControl.play_menu_music(sc)
+
     global game_window
     game_window = game_graphics.Display.Display(window_width, window_height, fps_fix)
     mr = Menu.MenuRun(game_window.canvas)
@@ -83,6 +91,8 @@ def run():
     World.player = player
     global user_interface
     user_interface = game_graphics.UI.UI.UI()
+    sounds.Sound_control.SoundControl.fadeout_menu_music_to_game_music(sc, 3000)  # fadeout time is in ms
+
     while running:
         game_window.clock.tick(game_window.fps)
         pygame.display.set_caption(window_title + " | " + "FPS: %i" % game_window.clock.get_fps())

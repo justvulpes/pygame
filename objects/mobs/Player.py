@@ -1,8 +1,10 @@
 """Player."""
+import Main
 import objects.mobs.Mob
 import game_graphics.Sprite
 import KeyListener
 import World
+import sounds.Sound_control
 
 
 sprite_up = game_graphics.Sprite.player_up
@@ -32,22 +34,23 @@ class Player(objects.mobs.Mob.Mob):
         self.animCount = 0
         self.moving = False
         self.weapon = 1
-        self.ammo = 99
+        self.ammo = 10
 
     def update(self):
         """Update."""
-
         self.moving = False
 
         self.update_weapon()
 
         self.update_shooting()
 
+
         self.update_moving()
 
     def update_weapon(self):
 
         if KeyListener.mouse_right_button_was_pressed() or KeyListener.mouse_scrolled_up or KeyListener.mouse_scrolled_down:
+            sounds.Sound_control.SoundControl.play_click(Main.sc)
             if self.weapon == 1:
                 self.weapon = 2
             elif self.weapon == 2:
@@ -55,15 +58,14 @@ class Player(objects.mobs.Mob.Mob):
 
     def update_shooting(self):
         if self.weapon == 1:
-            if KeyListener.mouse_left_button_was_pressed() and self.ammo > 0:
+            if KeyListener.mouse_left_button_was_pressed():
+                sounds.Sound_control.SoundControl.player_shoot(Main.sc)
                 self.shoot(1)
-                self.ammo -= 1
         elif self.weapon == 2:
             if KeyListener.mouse_left_button_was_pressed():
                 self.shoot(2)
 
     def update_moving(self):
-
         if KeyListener.button_is_pressed(ord("a")):
             self.move(-self.speed, 0)
             self.moving = True

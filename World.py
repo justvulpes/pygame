@@ -24,6 +24,7 @@ class World:
     def __init__(self):
         """Constructor."""
 
+
         map_pixels = pygame.surfarray.array2d(game_graphics.Sprite.map.pic)
         World.tiles_hash = [[x for x in range(World.map_width)] for y in range(World.map_height)]
 
