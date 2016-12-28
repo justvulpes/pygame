@@ -75,9 +75,7 @@ class Menu:
         """Loop running menu."""
         set_once = False
         current_seleceted = 0
-        # Main.world.mobs.append(Main.player)
         global user_interface
-        #user_interface = Main.game_graphics.UI.UI.UI()
         while inMenu:
             #  surf2.clock.tick(surf2.fps)
             Main.update()
@@ -85,9 +83,8 @@ class Menu:
             surf2.canvas.blit(pygame.image.frombuffer(Image.frombytes('RGB', (1200, 700), pygame.image.tostring(surf2.canvas, 'RGB')).filter(ImageFilter.GaussianBlur(radius=4)).tobytes(), (1200, 700), "RGB"), (0, 0))
             #  pygame.display.flip()
             # static blurred background
-            # bg = pygame.image.load("game_graphics\\res\\objects\\blurred.png")
+            #  bg = pygame.image.load("game_graphics\\res\\objects\\blurred.png")
             #  self.scrn.blit(bg, (0, 0))
-            # self.scrn.fill(self.bg_color)
             for event in pygame.event.get():
                 if event.type == pygame.MOUSEBUTTONDOWN:
                     for item in self.buttons:
@@ -102,7 +99,7 @@ class Menu:
                     current_seleceted = i
                     if not set_once:
                         set_once = True
-                        sounds.Sound_control.SoundControl.menu_selected(Main.sc)
+                        #  sounds.Sound_control.SoundControl.menu_selected(Main.sc)  # menu sound (bugged atm)
                 else:
                     if current_seleceted == i:
                         set_once = False
@@ -117,9 +114,10 @@ class Settings(Menu):
     def __init__(self, scrn, buttons, events1):
         """Constctor."""
         super().__init__(scrn, buttons, events1)
-        self.events = [("Noob", self.set_diff_noob), ("Advanced", self.set_diff_advanced), ("Impossible", self.set_diff_imposs), ("Back", self.set_diff_imposs)]
         self.difficulty = default_difficulty  # difficulty by default
 
+    '''
+      # once difficulty is implemented
     def set_diff_noob(self):
         """Set difficulty to noob."""
         print("Difficulty set to NOOB.")
@@ -134,6 +132,17 @@ class Settings(Menu):
         """Set difficult to imposs."""
         print("Difficulty set to IMPOSSIBLE.")
         self.difficulty = "Impossible"
+    '''
+
+    @ staticmethod
+    def pause_music():
+        """Pause music."""
+        sounds.Sound_control.SoundControl.pause_sound(Main.sc)
+
+    @ staticmethod
+    def unpause_music():
+        """Pause music."""
+        sounds.Sound_control.SoundControl.unpause_sound(Main.sc)
 
     def back_to_menu(self):
         """Back to menu."""
@@ -149,11 +158,11 @@ class MenuRun:
         self.screen = screen2
         self.events = [("Play", self.pressed_play), ("Settings", self.open_settings), ("Highscores", self.pressed_highscores),
                        ("Quit", self.pressed_quit)]
-        menu_buttons = ("Noob", "Advanced", "Impossible", "Back")
+        menu_buttons = ("Mute", "Unmute", "Back")
         self.s = Settings(self.screen, menu_buttons, self.events)
         self.events = [("Play", self.pressed_play), ("Settings", self.open_settings), ("Highscores", self.pressed_highscores),
-                       ("Quit", self.pressed_quit), ("Noob", self.s.set_diff_noob), ("Advanced", self.s.set_diff_advanced),
-                       ("Impossible", self.s.set_diff_imposs), ("Back", self.s.back_to_menu)]
+                       ("Quit", self.pressed_quit), ("Mute", self.s.pause_music), ("Unmute", self.s.unpause_music),
+                       ("Back", self.s.back_to_menu)]
         self.s = Settings(self.screen, menu_buttons, self.events)
 
     def run(self, screen, surf=None):
@@ -165,7 +174,7 @@ class MenuRun:
         pygame.display.set_caption('Game Menu')
         Menu(screen, menu_buttons, self.events).running(surf2=surf)
 
-    @staticmethod
+    @ staticmethod
     def pressed_play():
         """Start playing, after play is pressed."""
         global inMenu
@@ -178,15 +187,14 @@ class MenuRun:
         pygame.display.set_caption('Settings')
         self.s.running(surf2=the_surf)
 
-    @staticmethod
+    @ staticmethod
     def pressed_highscores():
         """Function to run when highscores is opened."""
         print("Open highscores.")
-        # implement
 
-
-    @staticmethod
+    @ staticmethod
     def pressed_quit():
         """Quit the game."""
         print("Quit.")
+        sounds.Sound_control.SoundControl.unpause_sound()
         sys.exit()
