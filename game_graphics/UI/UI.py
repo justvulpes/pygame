@@ -30,7 +30,8 @@ class UI:
         self.weapon_info.render(display)
 
         if self.current_bar is not None:
-             self.current_bar.render(display)
+            self.current_bar.update()
+            self.current_bar.render(display)
 
     def get_state(self):
         pass

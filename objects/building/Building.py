@@ -20,3 +20,6 @@ class Building:
 
     def still_active(self):
         pass
+
+    def update(self):
+        pass

@@ -92,7 +92,9 @@ upgrade_button = Sprite(62, 30, "game_graphics\\res\\buttons\\upgrade_button.png
 
 # Objects
 stone_source = Sprite(32, 32, "game_graphics\\res\\objects\\stone_source.png")
-wooden_wall = Sprite(32, 32, "game_graphics\\res\\objects\\wooden_wall.png")
+
+wooden_wall_level_1 = Sprite(32, 32, "game_graphics\\res\\objects\\walls\\wall_lvl_1.png")
+
 christmas_tree_upper = Sprite(32, 32, "game_graphics\\res\\objects\\christmas_tree_upper.png")
 christmas_tree_lower = Sprite(32, 32, "game_graphics\\res\\objects\\christmas_tree_lower.png")
 
