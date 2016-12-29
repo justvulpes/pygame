@@ -1,3 +1,5 @@
+"""UI."""
+
 import game_graphics.UI.Resource_Bar
 import game_graphics.UI.Player_Info_Bar
 import game_graphics.UI.Weapon_Info
@@ -6,8 +8,10 @@ import KeyListener
 
 
 class UI:
+    """UI."""
 
     def __init__(self):
+        """Constructor."""
         self.state = "Game_state"
         self.menu = None
         self.resource_bar = game_graphics.UI.Resource_Bar.ResourceBar()
@@ -16,6 +20,7 @@ class UI:
         self.current_building = None
 
     def update(self):
+        """Update."""
         if self.state == "Game_state":
             if 0 <= int(World.World.camera_y + KeyListener.mouseY) >> 5 < World.World.map_height and 0 <= int(World.World.camera_x + KeyListener.mouseX) >> 5 < World.World.map_width:
                 if World.World.tiles_hash[(World.World.camera_y + KeyListener.mouseY) >> 5][(World.World.camera_x + KeyListener.mouseX) >> 5].building is not None:
@@ -33,6 +38,7 @@ class UI:
                 return
 
     def render(self, display):
+        """Render."""
         self.resource_bar.render(display)
         self.player_info_bar.render(display)
         self.weapon_info.render(display)
@@ -41,4 +47,5 @@ class UI:
             self.current_building.render(display)
 
     def get_state(self):
+        """Get state."""
         pass

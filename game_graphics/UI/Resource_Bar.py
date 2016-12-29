@@ -1,10 +1,15 @@
+"""Resource bar."""
+
 import pygame
 import game_graphics.Sprite
 import Main
 
 
 class ResourceBar:
+    """Resource bar."""
+
     def __init__(self):
+        """Constructor."""
         self.font = pygame.font.Font("game_graphics\\font.ttf", 22)
         self.background = pygame.Surface((70, 20), pygame.SRCALPHA)
         self.background.fill((0, 0, 0, 170))
@@ -20,6 +25,7 @@ class ResourceBar:
         self.wood_text = self.font.render(str(self.wood_count), 1, self.text_color)
 
     def render(self, display):
+        """Render."""
         display.canvas.blit(self.background, (20, 20))
         display.canvas.blit(self.background, (20, 50))
         display.canvas.blit(self.background, (20, 80))
@@ -44,6 +50,6 @@ class ResourceBar:
         display.canvas.blit(self.stone_text, (42, 54))
         display.canvas.blit(self.wood_text, (42, 84))
 
-
     def update(self):
+        """Update."""
         pass

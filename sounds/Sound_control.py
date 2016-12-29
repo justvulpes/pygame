@@ -65,10 +65,12 @@ class SoundControl:
             self.upgrade_sound.play()
 
     def add_wood(self):
+        """Add wood."""
         if not self.muted:
             self.add_wood_sound.play()
 
     def add_stone(self):
+        """Add stone."""
         if not self.muted:
             self.add_stone_sound.play()
 

@@ -1,3 +1,4 @@
+"""Wall."""
 import objects.building.Building
 import game_graphics.Sprite
 import pygame
@@ -13,7 +14,10 @@ background.fill((0, 0, 0, 170))
 
 
 class Wall(objects.building.Building.Building):
+    """Wall."""
+
     def __init__(self, x, y):
+        """Constructor."""
         super().__init__(x, y, max_hp=10)
 
         self.font = pygame.font.SysFont("IrisUPC", 22)
@@ -42,6 +46,7 @@ class Wall(objects.building.Building.Building):
         self.wood_price_text = self.font.render(str(self.wood_price_count), 1, self.font_color if self.wood_enough else self.font_not_enough_color)
 
     def destroy(self):
+        """Destroy."""
         if self.constructed:
             self.constructed = False
             self.lvl = 0
@@ -52,6 +57,7 @@ class Wall(objects.building.Building.Building):
             World.World.tiles_hash[self.y][self.x].high = self.old_tile_high
 
     def build(self):
+        """Build."""
         if Main.gamestate.coins >= upgrade_cost[self.lvl]["coins"] and Main.gamestate.stone >= upgrade_cost[self.lvl]["stone"] and Main.gamestate.wood >= upgrade_cost[self.lvl]["wood"]:
             if not self.constructed:
                 if self.no_mobs():
@@ -102,12 +108,14 @@ class Wall(objects.building.Building.Building):
             print("See peaks mangus viskama teksti \"Not enough resources\"")
 
     def no_mobs(self):
+        """No mobs."""
         if len(World.World.tiles_hash[self.y][self.x].mobs) == 0:
             return True
         else:
             return False
 
     def render(self, display):
+        """Render."""
         display.canvas.blit(background, ((self.x << 5) - World.World.camera_x - 16, (self.y << 5) - World.World.camera_y - 112))
 
         display.canvas.blit(self.wall_text, ((self.x << 5) - World.World.camera_x + 1, (self.y << 5) - World.World.camera_y - 108))
@@ -156,6 +164,7 @@ class Wall(objects.building.Building.Building):
             display.canvas.blit(game_graphics.Sprite.build_button.pic, ((self.x << 5) - World.World.camera_x - 15, (self.y << 5) - World.World.camera_y - 47))
 
     def still_active(self):
+        """Still active."""
         first_rect = True
         second_rect = True
 
@@ -174,6 +183,7 @@ class Wall(objects.building.Building.Building):
         return first_rect or second_rect
 
     def update(self):
+        """Update."""
         if ((self.y - 1) << 5) - 16 < World.World.camera_y + KeyListener.mouseY < ((self.y) << 5) - 16:
             if (self.x << 5) - 16 < World.World.camera_x + KeyListener.mouseX < ((self.x + 1) << 5) + 16:
                 if KeyListener.mouse_left_button_was_released():

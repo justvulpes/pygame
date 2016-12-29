@@ -1,10 +1,15 @@
+"""Weapon info."""
+
 import Main
 import pygame
 import game_graphics.Sprite
 
 
 class WeaponInfo:
+    """Weapon info."""
+
     def __init__(self):
+        """Constructor."""
         self.font = pygame.font.Font("game_graphics\\font.ttf", 22)
 
         self.background = pygame.Surface((200, 64), pygame.SRCALPHA)
@@ -28,10 +33,11 @@ class WeaponInfo:
         self.hand_ammo_text = self.font.render("-", 1, self.text_color)
 
     def update(self):
+        """Update."""
         pass
 
     def render(self, display):
-
+        """Render."""
         if Main.World.player.weapon == 1:
             display.canvas.blit(game_graphics.Sprite.stone_weapon_icon.pic, (Main.window_width/2 - 132, Main.window_height - 84))
 

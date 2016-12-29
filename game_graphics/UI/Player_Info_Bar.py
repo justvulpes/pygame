@@ -1,10 +1,15 @@
+"""Player info bar."""
+
 import pygame
 import Main
 import game_graphics.Sprite
 
 
 class PlayerInfoBar:
+    """Player info bar."""
+
     def __init__(self):
+        """Constructor."""
         self.font = pygame.font.Font("game_graphics\\font.ttf", 22)
 
         self.background = pygame.Surface((100, 64), pygame.SRCALPHA)
@@ -22,6 +27,7 @@ class PlayerInfoBar:
         self.player_level_text = self.font.render(str(self.player_level_count), 1, self.text_color)
 
     def render(self, display):
+        """Render."""
         if Main.World.player.hp / Main.World.player.max_hp > 0.6:
             display.canvas.blit(game_graphics.Sprite.player_icon.pic, (Main.window_width - 184, 20))
         elif Main.World.player.hp / Main.World.player.max_hp > 0.3:
@@ -59,4 +65,5 @@ class PlayerInfoBar:
         display.canvas.blit(self.player_level_text, (Main.window_width - 97, 67))
 
     def update(self):
+        """Update."""
         pass

@@ -22,7 +22,7 @@ pygame.mixer.pre_init(44100, 16, 2, 4096)
 window_title = "Driven Into the Last Corner"  # Title on top of the frame.
 window_width = 1200  # Width of the canvas.
 window_height = 700  # Height of the canvas.
-fps_fix = 600
+fps_fix = 60
 
 running = True  # while True game will run.
 
@@ -63,7 +63,7 @@ def render(display_obj):
         display_obj.canvas.fill(int(0x609CB0))
         world.render(display_obj)
         user_interface.render(display_obj)
-        print(KeyListener.mouseX + World.World.camera_x, World.World.camera_y + KeyListener.mouseY)
+        #  print(KeyListener.mouseX + World.World.camera_x, World.World.camera_y + KeyListener.mouseY)
 
 
 cameraPosDoubleX = (menu_ghost.x - (window_width / 2))

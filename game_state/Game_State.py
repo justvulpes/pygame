@@ -1,5 +1,11 @@
+"""Game state."""
+
+
 class Game_State:
+    """Game state."""
+
     def __init__(self):
+        """Constructor."""
         self.coins = 500
         self.wood = 500
         self.stone = 500
@@ -8,5 +14,5 @@ class Game_State:
         self.survival_time = 0
 
     def save_game(self):
+        """Save game."""
         pass
-

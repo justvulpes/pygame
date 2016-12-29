@@ -96,7 +96,7 @@ class World:
 
 def set_tile(color, x, y):
     """Set tile."""
-    print(color)
+    #  print(color)
     if color == 950016:
         World.tiles_hash[y][x] = tiles.Tile.Tile(game_graphics.Sprite.grass)
         return
