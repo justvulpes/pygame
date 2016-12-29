@@ -7,8 +7,7 @@ from pygame.locals import *
 exit_game = False  # True if user click escape or close the game. Game should be saved and closed if this is True.
 
 key_last = [False for x in range(200)]  # Track which keyboard buttons were in pressed state in previous update. Value index represent button key number "ord()".
-key_current = [False for y in range(200)] # Track which keyboard buttons are in pressed state. Value index represent button key number "ord()".
-
+key_current = [False for y in range(200)]  # Track which keyboard buttons are in pressed state. Value index represent button key number "ord()".
 mouseX = -1  # Mouse X coordinate.
 mouseY = -1  # Mouse Y coordinate.
 
