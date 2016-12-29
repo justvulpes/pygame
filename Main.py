@@ -76,10 +76,11 @@ def cameraPos():
         Menu_world.MenuWorld.camera_x = int(cameraPosDoubleX)
         Menu_world.MenuWorld.camera_y = int(cameraPosDoubleY)
     else:
-        cameraPosDoubleX += (player.x - (cameraPosDoubleX + window_width / 2)) / 20
-        cameraPosDoubleY += (player.y - (cameraPosDoubleY + window_height / 2)) / 20
+        cameraPosDoubleX += ((player.x + player.camera_shift_x) - (cameraPosDoubleX + window_width / 2)) / 20
+        cameraPosDoubleY += ((player.y + player.camera_shift_y) - (cameraPosDoubleY + window_height / 2)) / 20
         World.World.camera_x = int(cameraPosDoubleX)
         World.World.camera_y = int(cameraPosDoubleY)
+
 
 
 def run():

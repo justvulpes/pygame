@@ -36,6 +36,9 @@ class Player(objects.mobs.Mob.Mob):
         self.weapon = 1
         self.ammo = 10
 
+        self.camera_shift_x = 0
+        self.camera_shift_y = 0
+
     def update(self):
         """Update."""
         self.moving = False
@@ -44,8 +47,17 @@ class Player(objects.mobs.Mob.Mob):
 
         self.update_shooting()
 
-
+        self.update_camera_tweak()
         self.update_moving()
+
+    def update_camera_tweak(self):
+        if self.current_tile is not None and self.current_tile.sprite == game_graphics.Sprite.tower_5:
+            self.camera_shift_x = (World.World.camera_x + KeyListener.mouseX - self.x) / 2
+            self.camera_shift_y = (World.World.camera_y + KeyListener.mouseY - self.y) / 2
+
+        else:
+            self.camera_shift_x = 0
+            self.camera_shift_y = 0
 
     def update_weapon(self):
 
@@ -140,3 +152,4 @@ class Player(objects.mobs.Mob.Mob):
 
             elif self.direction == 3:
                 self.current_sprite = sprite_left
+

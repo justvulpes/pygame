@@ -51,8 +51,12 @@ class Mob(objects.Object.Object):
                     self.y += y
 
     def shoot(self, particle_type):
+        high = False
+        if self.current_tile != None:
+            high = self.current_tile.high
+
         if particle_type == 1:
-            World.World.projectiles.append(objects.projectiles.Stone.Stone(self.x, self.y, World.World.camera_x + KeyListener.mouseX, World.World.camera_y + KeyListener.mouseY))
+            World.World.projectiles.append(objects.projectiles.Stone.Stone(self.x, self.y, World.World.camera_x + KeyListener.mouseX, World.World.camera_y + KeyListener.mouseY, high=high))
         elif particle_type == 2:
             World.World.projectiles.append(objects.projectiles.Hand.Hand(self.x, self.y, World.World.camera_x + KeyListener.mouseX, World.World.camera_y + KeyListener.mouseY))
 

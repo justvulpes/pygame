@@ -8,7 +8,7 @@ import math
 class Projectile(objects.Object.Object):
     """Projectile."""
 
-    def __init__(self, x, y, end_x, end_y, sprite, size=10, speed=1, lifetime=100):
+    def __init__(self, x, y, end_x, end_y, sprite, size=10, speed=1, lifetime=100, high=False):
         """Constructor."""
         super().__init__(x, y)
         self.angle = math.atan2(end_y - y, end_x - x)
@@ -18,6 +18,7 @@ class Projectile(objects.Object.Object):
         self.lifetime = lifetime
         self.xSpeed = self.speed * math.cos(self.angle)
         self.ySpeed = self.speed * math.sin(self.angle)
+        self.high = high
 
     def update(self):
         """Update."""
@@ -33,12 +34,18 @@ class Projectile(objects.Object.Object):
 
     def move(self, x, y):
         """Move."""
+
         if int(self.x + x - (self.size >> 1)) >> 5 < 0 or int(self.x + x + (self.size >> 1)) >> 5 >= World.World.map_width:
             self.destroy()
             return
 
         if int(self.y + y - (self.size >> 1)) >> 5 < 0 or int(self.y + y + (self.size >> 1)) >> 5 >= World.World.map_height:
             self.destroy()
+            return
+
+        if self.high:
+            self.x += x
+            self.y += y
             return
 
         first_corner = World.World.tiles_hash[int(self.y + y + (self.size >> 1)) >> 5][int(self.x + x + (self.size >> 1)) >> 5]
