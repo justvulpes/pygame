@@ -46,7 +46,7 @@ class Worker(objects.mobs.Mob.Mob):
         self.worker_number = worker_number
         self.stone_path = [[496, 2192], [464, 2226], [432, 2224], [495, 2227], [496, 2192]]
         self.wood_path = [[1584, 2162], [1584, 2096], [1616, 2096], [1616, 2129], [1648, 2129], [1652, 2193], [1679, 2193], [1652, 2193],
-                     [1648, 2226], [1580, 2227], [1580, 2162], [1580, 2161], [1520, 2223], [1520, 2160], [1580, 2158], [1580, 2290]]
+                       [1648, 2226], [1580, 2227], [1580, 2162], [1580, 2161], [1520, 2223], [1520, 2160], [1580, 2158], [1580, 2290]]
 
     def update_destination(self):
         if self.worker_number == 0:
@@ -61,7 +61,7 @@ class Worker(objects.mobs.Mob.Mob):
         elif self.worker_number == 1:
             self.destination = self.stone_path[self.counter]
             if self.counter == 0 and not self.first_pass:
-                Main.gamestate.stone += 50
+                Main.gamestate.stone += 20
                 sounds.Sound_control.SoundControl.add_stone(Main.sc)
             if self.counter == 2:
                 self.wait = True
