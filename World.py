@@ -105,7 +105,7 @@ class World:
 
 def set_tile(color, x, y):
     """Set tile."""
-    #  print(color)
+    print(color)
     if color == 950016:
         World.tiles_hash[y][x] = tiles.Tile.Tile(game_graphics.Sprite.grass)
         return
@@ -168,6 +168,10 @@ def set_tile(color, x, y):
     if color == 3158064:
         World.tiles_hash[y][x] = tiles.Tile.Tile(game_graphics.Sprite.snow, slow=True)
         # replace
+        return
+
+    if color == 12020480:
+        World.tiles_hash[y][x] = tiles.Tile.Tile(game_graphics.Sprite.water, solid=True, high=True)
         return
 
     World.tiles_hash[y][x] = tiles.Tile.Tile(game_graphics.Sprite.snow)
