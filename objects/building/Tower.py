@@ -39,7 +39,22 @@ class Tower(objects.building.Building.Building):
         self.constructed = False
 
     def build(self):
-        self.constructed = True
+        if Main.gamestate.coins >= upgrade_cost[self.lvl]["coins"] and Main.gamestate.stone >= upgrade_cost[self.lvl]["stone"] and Main.gamestate.wood >= upgrade_cost[self.lvl]["wood"]:
+            if self.no_mobs():
+                self.constructed = True
+                self.lvl = 1
+                self.hp = 100
+                self.max_hp = 100
+
+
+    def no_mobs(self):
+
+        for y in range(4):
+            for x in range(3):
+                if len(World.World.tiles_hash[self.y - y - 1][self.x - x - 1].mobs) != 0:
+                    print("Something in the way!")
+                    return False
+        return True
 
     def render(self, display):
         display.canvas.blit(background, ((self.x << 5) - World.World.camera_x - 16, (self.y << 5) - World.World.camera_y - 112))
@@ -90,7 +105,25 @@ class Tower(objects.building.Building.Building):
             display.canvas.blit(game_graphics.Sprite.build_button.pic, ((self.x << 5) - World.World.camera_x - 15, (self.y << 5) - World.World.camera_y - 47))
 
     def still_active(self):
-        pass
+        first_rect = True
+        second_rect = True
+
+        if World.World.camera_x + KeyListener.mouseX < self.x << 5 or World.World.camera_x + KeyListener.mouseX > ((self.x + 1) << 5):
+            first_rect = False
+
+        if World.World.camera_y + KeyListener.mouseY < self.y << 5 or World.World.camera_y + KeyListener.mouseY > ((self.y + 1) << 5):
+            first_rect = False
+
+        if World.World.camera_x + KeyListener.mouseX < (self.x << 5) - 16 or World.World.camera_x + KeyListener.mouseX > ((self.x + 1) << 5) + 16:
+            second_rect = False
+
+        if World.World.camera_y + KeyListener.mouseY < ((self.y - 3) << 5) - 16 or World.World.camera_y + KeyListener.mouseY > (self.y << 5):
+            second_rect = False
+
+        return first_rect or second_rect
 
     def update(self):
-        pass
+        if ((self.y - 1) << 5) - 16 < World.World.camera_y + KeyListener.mouseY < ((self.y) << 5) - 16:
+            if (self.x << 5) - 16 < World.World.camera_x + KeyListener.mouseX < ((self.x + 1) << 5) + 16:
+                if KeyListener.mouse_left_button_was_released():
+                    self.build()

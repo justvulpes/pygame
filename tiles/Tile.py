@@ -13,6 +13,7 @@ class Tile:
         self.solid = solid
         self.high = high
         self.slow = slow
+        self.type = type
 
         self.mobs = []
         self.projectiles = []

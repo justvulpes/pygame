@@ -4,6 +4,7 @@ import tiles.Tile
 import game_graphics.Sprite
 import pygame
 import objects.building.Wall
+import objects.building.Tower
 import objects.mobs.Player
 
 
@@ -97,7 +98,7 @@ class World:
 
 def set_tile(color, x, y):
     """Set tile."""
-    #print(color)
+    print(color)
     if color == 950016:
         World.tiles_hash[y][x] = tiles.Tile.Tile(game_graphics.Sprite.grass)
         return
@@ -147,7 +148,9 @@ def set_tile(color, x, y):
         World.tiles_hash[y][x] = tiles.Tile.Tile(game_graphics.Sprite.snow, slow=True)
         return
 
-    if color == 0:
-        World.tiles_hash[y][x] = tiles.Tile.Tile(game_graphics.Sprite.marking_table, slow=True)
+    if color == 7209087:
+        World.tiles_hash[y][x] = tiles.Tile.Tile(game_graphics.Sprite.marking_table, solid=True, high=True)
+        World.tiles_hash[y][x].building = objects.building.Tower.Tower(x, y)
+        return
 
-    World.tiles_hash[y][x] = tiles.Tile.Tile(game_graphics.Sprite.grass)
+    World.tiles_hash[y][x] = tiles.Tile.Tile(game_graphics.Sprite.snow)
