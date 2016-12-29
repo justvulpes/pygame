@@ -13,9 +13,6 @@ class Building:
     def build(self):
         self.constructed = True
 
-    def level_up(self):
-        pass
-
     def render(self, display):
         pass
 

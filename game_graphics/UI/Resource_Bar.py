@@ -1,12 +1,11 @@
 import pygame
 import game_graphics.Sprite
 import Main
-import game_graphics.UI.UI
 
 
 class ResourceBar:
     def __init__(self):
-        self.font = pygame.font.SysFont(game_graphics.UI.UI.UI.user_interface_font, game_graphics.UI.UI.UI.user_interface_font_size)
+        self.font = pygame.font.Font("game_graphics\\font.ttf", 22)
         self.background = pygame.Surface((70, 20), pygame.SRCALPHA)
         self.background.fill((0, 0, 0, 170))
 

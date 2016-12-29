@@ -21,6 +21,8 @@ water = Sprite(32, 32, "game_graphics\\res\\tiles\\water.png")
 snow = Sprite(32, 32, "game_graphics\\res\\tiles\\snow.png")
 
 dirt_for_building = Sprite(32, 32, "game_graphics\\res\\tiles\\dirt_for_building.png")
+
+marking_table = Sprite(32, 32, "game_graphics\\res\\tiles\\mark_table.png")
 ###
 
 # Projectiles

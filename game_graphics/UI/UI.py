@@ -7,9 +7,6 @@ import KeyListener
 
 class UI:
 
-    user_interface_font = "IrisUPC"
-    user_interface_font_size = 22
-
     def __init__(self):
         self.state = "Game_state"
         self.menu = None

@@ -147,4 +147,7 @@ def set_tile(color, x, y):
         World.tiles_hash[y][x] = tiles.Tile.Tile(game_graphics.Sprite.snow, slow=True)
         return
 
+    if color == 0:
+        World.tiles_hash[y][x] = tiles.Tile.Tile(game_graphics.Sprite.marking_table, slow=True)
+
     World.tiles_hash[y][x] = tiles.Tile.Tile(game_graphics.Sprite.grass)

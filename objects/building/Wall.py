@@ -107,12 +107,6 @@ class Wall(objects.building.Building.Building):
         else:
             return False
 
-    def level_up(self):
-        if self.constructed:
-            self.lvl += 1
-            self.max_hp += 5
-            self.hp += 5
-
     def render(self, display):
         display.canvas.blit(background, ((self.x << 5) - World.World.camera_x - 16, (self.y << 5) - World.World.camera_y - 112))
 
@@ -134,7 +128,6 @@ class Wall(objects.building.Building.Building):
             self.wood_enough = Main.gamestate.wood >= upgrade_cost[self.lvl]["wood"]
             self.wood_price_text = self.font.render(str(self.wood_price_count), 1, self.font_color if self.wood_enough else self.font_not_enough_color)
 
-
         display.canvas.blit(game_graphics.Sprite.coin_icon.pic, ((self.x << 5) - World.World.camera_x - 14, (self.y << 5) - World.World.camera_y - 90))
 
         display.canvas.blit(game_graphics.Sprite.stone_icon.pic, ((self.x << 5) - World.World.camera_x + 8, (self.y << 5) - World.World.camera_y - 90))
@@ -148,7 +141,7 @@ class Wall(objects.building.Building.Building):
 
         display.canvas.blit(self.wood_price_text, ((self.x << 5) - World.World.camera_x - self.wood_price_text.get_width() / 2 + 38, (self.y << 5) - World.World.camera_y - 70))
 
-        if ((self.y - 1) << 5) - 16 < World.World.camera_y + KeyListener.mouseY < ((self.y) << 5) - 16:
+        if ((self.y - 1) << 5) - 16 < World.World.camera_y + KeyListener.mouseY < (self.y << 5) - 16:
             if (self.x << 5) - 16 < World.World.camera_x + KeyListener.mouseX < ((self.x + 1) << 5) + 16:
                 if KeyListener.mouse_left_button_current:
                     if self.constructed:
