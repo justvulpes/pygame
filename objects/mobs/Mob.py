@@ -4,6 +4,7 @@ import objects.Object
 import World
 import objects.projectiles.Stone
 import objects.projectiles.Hand
+import objects.particles.Blood_particle
 
 
 class Mob(objects.Object.Object):
@@ -89,4 +90,6 @@ class Mob(objects.Object.Object):
                 self.destroy()
                 projectile.owner.xp += self.xp_reward
                 projectile.owner.check_level_up()
+            for i in range(int(20 * projectile.damage)):
+                World.World.particles.append(objects.particles.Blood_particle.BloodParticle(self.x, self.y))
 

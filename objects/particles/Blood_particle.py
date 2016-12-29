@@ -3,14 +3,14 @@ import World
 import random
 
 
-class StoneParticle(objects.particles.Particle.Particle):
+class BloodParticle(objects.particles.Particle.Particle):
     def __init__(self, x, y):
         super().__init__(x, y)
-        self.color = (100 + random.randint(0, 60), 160, 160)
+        self.color = (140 + random.randint(0, 100), 30, 30)
         self.width = 2
         self.height = 2
-        self.speed_x = random.randint(-10, 10)
-        self.speed_y = random.randint(-10, 10)
+        self.speed_x = random.randint(-5, 5)
+        self.speed_y = random.randint(-5, 5)
         self.life_time = random.randint(10, 70)
 
     def render(self, display):
