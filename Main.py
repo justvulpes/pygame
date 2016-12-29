@@ -14,7 +14,7 @@ import objects.mobs.Worker_man
 import game_state.Game_State
 import game_graphics.UI
 import sounds.Sound_control
-
+import Menu_world
 
 pygame.init()
 pygame.mixer.pre_init(44100, 16, 2, 4096)
@@ -22,13 +22,15 @@ pygame.mixer.pre_init(44100, 16, 2, 4096)
 window_title = "Driven Into the Last Corner"  # Title on top of the frame.
 window_width = 1200  # Width of the canvas.
 window_height = 700  # Height of the canvas.
-fps_fix = 60
+fps_fix = 600
 
 running = True  # while True game will run.
 
 sc = sounds.Sound_control.SoundControl()
 player = objects.mobs.Player.Player(30 << 5, 70 << 5)
+menu_ghost = objects.mobs.Player.Player(30 << 5, 70 << 5)
 world = World.World()
+menu_world = Menu_world.MenuWorld()
 gamestate = game_state.Game_State.Game_State()
 worker_man = objects.mobs.Worker_man.Worker(37 << 5, 70 << 5)
 worker_man2 = objects.mobs.Worker_man.Worker(30 << 5, 70 << 5)
@@ -38,11 +40,13 @@ user_interface = None
 
 def update():
     """Update all."""
-    KeyListener.update()
-    cameraPos()  # update camera position.
-    world.update()
-    if not Menu.inMenu:
+    if Menu.inMenu:
+        menu_world.update()
+    else:
+        KeyListener.update()
+        world.update()
         user_interface.update()
+    cameraPos()  # update camera position.
 
     if KeyListener.exit_game is True:
         sys.exit()
@@ -50,14 +54,16 @@ def update():
 
 def render(display_obj):
     """Render all visible stuff."""
-    display_obj.canvas.fill(int(0x000000))
-    world.render(display_obj)
-    if not Menu.inMenu:
+    if Menu.inMenu:
+        menu_world.render(display_obj)
+    else:
+        display_obj.canvas.fill(int(0x609CB0))
+        world.render(display_obj)
         user_interface.render(display_obj)
 
 
-cameraPosDoubleX = 0
-cameraPosDoubleY = 0
+cameraPosDoubleX = (menu_ghost.x - (window_width / 2))
+cameraPosDoubleY = (menu_ghost.y - (window_height / 2))
 
 
 def cameraPos():
@@ -66,14 +72,14 @@ def cameraPos():
     global cameraPosDoubleY
 
     if Menu.inMenu:
-        cameraPosDoubleX = (player.x - (window_width / 2))
-        cameraPosDoubleY = (player.y - (window_height / 2))
+        cameraPosDoubleY -= 1  # speed of menu camera up movement
+        Menu_world.MenuWorld.camera_x = int(cameraPosDoubleX)
+        Menu_world.MenuWorld.camera_y = int(cameraPosDoubleY)
     else:
         cameraPosDoubleX += (player.x - (cameraPosDoubleX + window_width / 2)) / 20
         cameraPosDoubleY += (player.y - (cameraPosDoubleY + window_height / 2)) / 20
-
-    World.World.camera_x = int(cameraPosDoubleX)
-    World.World.camera_y = int(cameraPosDoubleY)
+        World.World.camera_x = int(cameraPosDoubleX)
+        World.World.camera_y = int(cameraPosDoubleY)
 
 
 def run():
@@ -88,6 +94,8 @@ def run():
     world.mobs.append(worker_man)
     world.mobs.append(worker_man2)
     world.mobs.append(player)
+    menu_world.mobs.append(menu_ghost)
+    menu_world.player = menu_ghost
     World.player = player
     global user_interface
     user_interface = game_graphics.UI.UI.UI()
