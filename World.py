@@ -5,6 +5,7 @@ import game_graphics.Sprite
 import pygame
 import objects.building.Wall
 import objects.building.Tower
+import objects.building.Hut
 import objects.mobs.Player
 
 
@@ -16,6 +17,7 @@ class World:
     tiles_hash = []
     mobs = []
     projectiles = []
+    particles = []
 
     camera_x = 0
     camera_y = 0
@@ -25,15 +27,12 @@ class World:
     def __init__(self):
         """Constructor."""
 
-
         map_pixels = pygame.surfarray.array2d(game_graphics.Sprite.map.pic)
         World.tiles_hash = [[x for x in range(World.map_width)] for y in range(World.map_height)]
 
         for y in range(World.map_height):
             for x in range(World.map_width):
                 set_tile(map_pixels[x][y], x, y)
-
-        World.tiles_hash[10][10] = tiles.Tile.Tile(game_graphics.Sprite.grass, solid=True)
 
 
 
@@ -52,6 +51,11 @@ class World:
 
         for projectile in World.projectiles:
             projectile.update_tile()
+
+        for particle in World.particles:
+            particle.update()
+            if particle.removed:
+                World.particles.remove(particle)
 
         for mob in World.mobs:
             if mob.removed:
@@ -89,6 +93,9 @@ class World:
                     for projectile in World.tiles_hash[y][x].projectiles:
                         projectile.render(display)
 
+        for particle in World.particles:
+            particle.render(display)
+
         for y in range((World.camera_y >> 5), (World.camera_y >> 5) + (display.height >> 5) + 2):
             for x in range((World.camera_x >> 5), (World.camera_x >> 5) + (display.width >> 5) + 2):
                 if World.map_height > y >= 0 and World.map_width > x >= 0:
@@ -98,7 +105,7 @@ class World:
 
 def set_tile(color, x, y):
     """Set tile."""
-    print(color)
+    #  print(color)
     if color == 950016:
         World.tiles_hash[y][x] = tiles.Tile.Tile(game_graphics.Sprite.grass)
         return
@@ -151,6 +158,16 @@ def set_tile(color, x, y):
     if color == 7209087:
         World.tiles_hash[y][x] = tiles.Tile.Tile(game_graphics.Sprite.marking_table, solid=True, high=True)
         World.tiles_hash[y][x].building = objects.building.Tower.Tower(x, y)
+        return
+
+    if color == 13183:
+        World.tiles_hash[y][x] = tiles.Tile.Tile(game_graphics.Sprite.grass, solid=True, high=True, mask=game_graphics.Sprite.hut)
+        World.tiles_hash[y][x].building = objects.building.Hut.Hut(x, y)
+        return
+
+    if color == 3158064:
+        World.tiles_hash[y][x] = tiles.Tile.Tile(game_graphics.Sprite.snow, slow=True)
+        # replace
         return
 
     World.tiles_hash[y][x] = tiles.Tile.Tile(game_graphics.Sprite.snow)

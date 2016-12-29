@@ -11,6 +11,7 @@ import Menu
 import World
 import objects.mobs.Player
 import objects.mobs.Worker_man
+import objects.mobs.Goblin
 import game_state.Game_State
 import game_graphics.UI
 import sounds.Sound_control
@@ -97,6 +98,7 @@ def run():
     world.mobs.append(worker_man)
     world.mobs.append(worker_man3)
     world.mobs.append(player)
+    world.mobs.append(objects.mobs.Goblin.Goblin(30 << 5, 40 << 5))
     menu_world.mobs.append(menu_ghost)
     menu_world.player = menu_ghost
     World.player = player

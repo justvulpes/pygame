@@ -4,7 +4,6 @@ import objects.Object
 import World
 import objects.projectiles.Stone
 import objects.projectiles.Hand
-import KeyListener
 
 
 class Mob(objects.Object.Object):
