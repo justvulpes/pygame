@@ -14,6 +14,8 @@ class SoundControl:
         self.punch = pygame.mixer.Sound("sounds\\punch1.wav")
         self.menu_selected_sound = pygame.mixer.Sound("sounds\\menu_selected.wav")
         self.upgrade_sound = pygame.mixer.Sound("sounds\\buywithcoins.wav")
+        self.add_wood_sound = pygame.mixer.Sound("sounds\\wood_add.wav")
+        self.add_stone_sound = pygame.mixer.Sound("sounds\\rock_debris_sound.wav")
         self.muted = False
 
         self.menumusic.set_volume(0.1)
@@ -23,6 +25,8 @@ class SoundControl:
         self.shoot.set_volume(0.4)
         self.menu_selected_sound.set_volume(0.4)
         self.upgrade_sound.set_volume(0.5)
+        self.add_wood_sound.set_volume(0.5)
+        self.add_wood_sound.set_volume(0.5)
 
     def play_menu_music(self):
         """Play the menu music."""
@@ -59,6 +63,14 @@ class SoundControl:
         """Upgrade."""
         if not self.muted:
             self.upgrade_sound.play()
+
+    def add_wood(self):
+        if not self.muted:
+            self.add_wood_sound.play()
+
+    def add_stone(self):
+        if not self.muted:
+            self.add_stone_sound.play()
 
     def pause_sound(self):
         """Pause all sound."""

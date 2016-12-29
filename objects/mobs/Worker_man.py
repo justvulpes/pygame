@@ -1,9 +1,13 @@
 """Player."""
+import pygame
+
+import Main
 import Menu
 import objects.mobs.Mob
 import game_graphics.Sprite
 import KeyListener
 import World
+import sounds.Sound_control
 
 
 sprite_up = game_graphics.Sprite.worker_man_up
@@ -25,7 +29,7 @@ sprite_left_step2 = game_graphics.Sprite.worker_man_left_step2
 class Worker(objects.mobs.Mob.Mob):
     """Worker."""
 
-    def __init__(self, x, y, speed=1, size=18):
+    def __init__(self, x, y, worker_number, spawn, speed=1, size=18):
         """Constructor."""
         super().__init__(x, y, speed, size)
         self.current_sprite = sprite_left
@@ -34,20 +38,42 @@ class Worker(objects.mobs.Mob.Mob):
         self.moving = False
         self.x = x
         self.y = y
-        self.destination = [1184, 2240]
+        self.destination = spawn
         self.counter = 0
+        self.first_pass = True
+        self.wait = False
+        self.wait_timer = 0
+        self.worker_number = worker_number
+        self.stone_path = [[496, 2192], [464, 2226], [432, 2224], [495, 2227], [496, 2192]]
+        self.wood_path = [[1584, 2162], [1584, 2096], [1616, 2096], [1616, 2129], [1648, 2129], [1652, 2193], [1679, 2193], [1652, 2193],
+                     [1648, 2226], [1580, 2227], [1580, 2162], [1580, 2161], [1520, 2223], [1520, 2160], [1580, 2158], [1580, 2290]]
 
     def update_destination(self):
-        if self.counter == 0:
-            self.destination = [1184, 2240]
-        elif self.counter == 1:
-            self.destination = [1184, 2176]
-        elif self.counter == 2:
-            self.destination = [1152, 2176]
-        elif self.counter == 3:
-            self.destination = [1152, 2240]
-            self.counter = -1
-        self.counter += 1
+        if self.worker_number == 0:
+            self.destination = self.wood_path[self.counter]
+            if self.counter == 0 and not self.first_pass:
+                Main.gamestate.wood += 50
+                sounds.Sound_control.SoundControl.add_wood(Main.sc)
+            if self.counter == len(self.wood_path) - 1:
+                self.first_pass = False
+                self.counter = -1
+            self.counter += 1
+        elif self.worker_number == 1:
+            self.destination = self.stone_path[self.counter]
+            if self.counter == 0 and not self.first_pass:
+                Main.gamestate.stone += 50
+                sounds.Sound_control.SoundControl.add_stone(Main.sc)
+            if self.counter == 2:
+                self.wait = True
+                self.wait_timer += 1
+                if self.wait_timer == 1000:
+                    self.wait = False
+                    self.wait_timer = 0
+            if self.counter == len(self.stone_path) - 1:
+                self.first_pass = False
+                self.counter = -1
+            if not self.wait:
+                self.counter += 1
 
     def update(self):
         self.moving = False
@@ -76,11 +102,21 @@ class Worker(objects.mobs.Mob.Mob):
             self.moving = True
             self.direction = 2
 
+        if not self.moving:
+            self.animCount = 0
+
+        else:
+            self.animCount += 1
+            if self.animCount >= 16:
+                self.animCount = 0
 
     def render(self, display):
         """Render frame."""
         self.set_sprite()
         display.canvas.blit(self.current_sprite.pic, (self.x - World.World.camera_x - self.current_sprite.width/2, self.y - World.World.camera_y - self.current_sprite.height/2 - 4))
+        if self.counter == 0 and not self.first_pass and self.worker_number == 0 or self.counter == 0 and self.worker_number == 1 and not self.first_pass:
+            display.canvas.blit(pygame.font.Font("game_graphics\\font.ttf", 22).render("50", 0, (0, 200, 0)), (self.x - World.World.camera_x - self.current_sprite.width / 2, self.y - World.World.camera_y - self.current_sprite.height - 5))
+
 
     def set_sprite(self):
         """Set sprite."""

@@ -26,14 +26,17 @@ fps_fix = 600
 
 running = True  # while True game will run.
 
+
 sc = sounds.Sound_control.SoundControl()
 player = objects.mobs.Player.Player(30 << 5, 70 << 5)
 menu_ghost = objects.mobs.Player.Player(30 << 5, 70 << 5)
 world = World.World()
 menu_world = Menu_world.MenuWorld()
 gamestate = game_state.Game_State.Game_State()
-worker_man = objects.mobs.Worker_man.Worker(37 << 5, 70 << 5)
-worker_man2 = objects.mobs.Worker_man.Worker(30 << 5, 70 << 5)
+
+worker_man = objects.mobs.Worker_man.Worker(37 << 5, 70 << 5, 0, [1456, 2162])   # first wood
+worker_man2 = objects.mobs.Worker_man.Worker(37 << 5, 70 << 5, 0, [1456, 2162])   # second wood
+worker_man3 = objects.mobs.Worker_man.Worker(27 << 5, 70 << 5, 1, [496, 2194])   # first stone
 
 user_interface = None
 
@@ -60,6 +63,7 @@ def render(display_obj):
         display_obj.canvas.fill(int(0x609CB0))
         world.render(display_obj)
         user_interface.render(display_obj)
+        print(KeyListener.mouseX + World.World.camera_x, World.World.camera_y + KeyListener.mouseY)
 
 
 cameraPosDoubleX = (menu_ghost.x - (window_width / 2))
@@ -82,7 +86,6 @@ def cameraPos():
         World.World.camera_y = int(cameraPosDoubleY)
 
 
-
 def run():
     """Run the game."""
     sounds.Sound_control.SoundControl.play_menu_music(sc)
@@ -93,7 +96,7 @@ def run():
     mr.run(game_window.canvas, surf=game_window)
 
     world.mobs.append(worker_man)
-    world.mobs.append(worker_man2)
+    world.mobs.append(worker_man3)
     world.mobs.append(player)
     menu_world.mobs.append(menu_ghost)
     menu_world.player = menu_ghost

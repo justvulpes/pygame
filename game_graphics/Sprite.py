@@ -65,39 +65,39 @@ worker_man_left_step2 = Sprite(11, 27, "game_graphics\\res\\mobs\\worker_man\\wo
 ###
 
 
-# Christmas goblin
-goblin_down = Sprite(16, 27, "game_graphics\\res\\mobs\\goblin\\goblin_down.png")
-goblin_up = Sprite(16, 27, "game_graphics\\res\\mobs\\goblin\\goblin_up.png")
-goblin_right = Sprite(11, 27, "game_graphics\\res\\mobs\\goblin\\goblin_right.png")
-goblin_left = Sprite(11, 27, "game_graphics\\res\\mobs\\goblin\\goblin_left.png")
+# Goblin
+goblin_down = Sprite(20, 21, "game_graphics\\res\\mobs\\goblin\\goblin_down.png")
+goblin_up = Sprite(20, 21, "game_graphics\\res\\mobs\\goblin\\goblin_up.png")
+goblin_right = Sprite(12, 21, "game_graphics\\res\\mobs\\goblin\\goblin_right.png")
+goblin_left = Sprite(12, 21, "game_graphics\\res\\mobs\\goblin\\goblin_left.png")
 
-goblin_down_step1 = Sprite(16, 27, "game_graphics\\res\\mobs\\goblin\\goblin_down_step1.png")
-goblin_up_step1 = Sprite(16, 27, "game_graphics\\res\\mobs\\goblin\\goblin_up_step1.png")
-goblin_right_step1 = Sprite(11, 27, "game_graphics\\res\\mobs\\goblin\\goblin_right_step1.png")
-goblin_left_step1 = Sprite(11, 27, "game_graphics\\res\\mobs\\goblin\\goblin_left_step1.png")
+goblin_down_step1 = Sprite(20, 21, "game_graphics\\res\\mobs\\goblin\\goblin_down_step1.png")
+goblin_up_step1 = Sprite(20, 21, "game_graphics\\res\\mobs\\goblin\\goblin_up_step1.png")
+goblin_right_step1 = Sprite(12, 21, "game_graphics\\res\\mobs\\goblin\\goblin_right_step1.png")
+goblin_left_step1 = Sprite(12, 21, "game_graphics\\res\\mobs\\goblin\\goblin_left_step1.png")
 
-goblin_down_step2 = Sprite(16, 27, "game_graphics\\res\\mobs\\goblin\\goblin_down_step2.png")
-goblin_up_step2 = Sprite(16, 27, "game_graphics\\res\\mobs\\goblin\\goblin_up_step2.png")
-goblin_right_step2 = Sprite(11, 27, "game_graphics\\res\\mobs\\goblin\\goblin_right_step2.png")
-goblin_left_step2 = Sprite(11, 27, "game_graphics\\res\\mobs\\goblin\\goblin_left_step2.png")
+goblin_down_step2 = Sprite(20, 21, "game_graphics\\res\\mobs\\goblin\\goblin_down_step2.png")
+goblin_up_step2 = Sprite(20, 21, "game_graphics\\res\\mobs\\goblin\\goblin_up_step2.png")
+goblin_right_step2 = Sprite(12, 21, "game_graphics\\res\\mobs\\goblin\\goblin_right_step2.png")
+goblin_left_step2 = Sprite(12, 21, "game_graphics\\res\\mobs\\goblin\\goblin_left_step2.png")
 ###
 
 
-# Goblin
-christmas_goblin_down = Sprite(16, 27, "game_graphics\\res\\mobs\\christmas_goblin\\christmas_goblin_down.png")
-christmas_goblin_up = Sprite(16, 27, "game_graphics\\res\\mobs\\christmas_goblin\\christmas_goblin_up.png")
-christmas_goblin_right = Sprite(11, 27, "game_graphics\\res\\mobs\\christmas_goblin\\christmas_goblin_right.png")
-christmas_goblin_left = Sprite(11, 27, "game_graphics\\res\\mobs\\christmas_goblin\\christmas_goblin_left.png")
+# Christmas goblin
+christmas_goblin_down = Sprite(20, 21, "game_graphics\\res\\mobs\\christmas_goblin\\christmas_goblin_down.png")
+christmas_goblin_up = Sprite(20, 27, "game_graphics\\res\\mobs\\christmas_goblin\\christmas_goblin_up.png")
+christmas_goblin_right = Sprite(12, 26, "game_graphics\\res\\mobs\\christmas_goblin\\christmas_goblin_right.png")
+christmas_goblin_left = Sprite(12, 26, "game_graphics\\res\\mobs\\christmas_goblin\\christmas_goblin_left.png")
 
-christmas_goblin_down_step1 = Sprite(16, 27, "game_graphics\\res\\mobs\\christmas_goblin\\christmas_goblin_down_step1.png")
-christmas_goblin_up_step1 = Sprite(16, 27, "game_graphics\\res\\mobs\\christmas_goblin\\christmas_goblin_up_step1.png")
-christmas_goblin_right_step1 = Sprite(11, 27, "game_graphics\\res\\mobs\\christmas_goblin\\christmas_goblin_right_step1.png")
-christmas_goblin_left_step1 = Sprite(11, 27, "game_graphics\\res\\mobs\\christmas_goblin\\christmas_goblin_left_step1.png")
+christmas_goblin_down_step1 = Sprite(20, 21, "game_graphics\\res\\mobs\\christmas_goblin\\christmas_goblin_down_step1.png")
+christmas_goblin_up_step1 = Sprite(20, 27, "game_graphics\\res\\mobs\\christmas_goblin\\christmas_goblin_up_step1.png")
+christmas_goblin_right_step1 = Sprite(12, 26, "game_graphics\\res\\mobs\\christmas_goblin\\christmas_goblin_right_step1.png")
+christmas_goblin_left_step1 = Sprite(12, 26, "game_graphics\\res\\mobs\\christmas_goblin\\christmas_goblin_left_step1.png")
 
-christmas_goblin_down_step2 = Sprite(16, 27, "game_graphics\\res\\mobs\\christmas_goblin\\christmas_goblin_down_step2.png")
-christmas_goblin_up_step2 = Sprite(16, 27, "game_graphics\\res\\mobs\\christmas_goblin\\christmas_goblin_up_step2.png")
-christmas_goblin_right_step2 = Sprite(11, 27, "game_graphics\\res\\mobs\\christmas_goblin\\christmas_goblin_right_step2.png")
-christmas_goblin_left_step2 = Sprite(11, 27, "game_graphics\\res\\mobs\\christmas_goblin\\christmas_goblin_left_step2.png")
+christmas_goblin_down_step2 = Sprite(20, 21, "game_graphics\\res\\mobs\\christmas_goblin\\christmas_goblin_down_step2.png")
+christmas_goblin_up_step2 = Sprite(20, 27, "game_graphics\\res\\mobs\\christmas_goblin\\christmas_goblin_up_step2.png")
+christmas_goblin_right_step2 = Sprite(12, 26, "game_graphics\\res\\mobs\\christmas_goblin\\christmas_goblin_right_step2.png")
+christmas_goblin_left_step2 = Sprite(12, 26, "game_graphics\\res\\mobs\\christmas_goblin\\christmas_goblin_left_step2.png")
 ###
 
 
@@ -139,6 +139,8 @@ wooden_wall_level_3 = Sprite(32, 32, "game_graphics\\res\\objects\\walls\\wall_l
 
 christmas_tree_upper = Sprite(32, 32, "game_graphics\\res\\objects\\christmas_tree_upper.png")
 christmas_tree_lower = Sprite(32, 32, "game_graphics\\res\\objects\\christmas_tree_lower.png")
+
+hut = Sprite(32, 32, "game_graphics\\res\\objects\\hut.png")
 
 # Tower
 tower_1 = Sprite(32, 32, "game_graphics\\res\\objects\\tower\\tower_1.png")

@@ -5,6 +5,7 @@ import game_graphics.Sprite
 import pygame
 import objects.building.Wall
 import objects.building.Tower
+import objects.building.Hut
 import objects.mobs.Player
 
 
@@ -25,15 +26,12 @@ class World:
     def __init__(self):
         """Constructor."""
 
-
         map_pixels = pygame.surfarray.array2d(game_graphics.Sprite.map.pic)
         World.tiles_hash = [[x for x in range(World.map_width)] for y in range(World.map_height)]
 
         for y in range(World.map_height):
             for x in range(World.map_width):
                 set_tile(map_pixels[x][y], x, y)
-
-        World.tiles_hash[10][10] = tiles.Tile.Tile(game_graphics.Sprite.grass, solid=True)
 
 
 
@@ -151,6 +149,16 @@ def set_tile(color, x, y):
     if color == 7209087:
         World.tiles_hash[y][x] = tiles.Tile.Tile(game_graphics.Sprite.marking_table, solid=True, high=True)
         World.tiles_hash[y][x].building = objects.building.Tower.Tower(x, y)
+        return
+
+    if color == 13183:
+        World.tiles_hash[y][x] = tiles.Tile.Tile(game_graphics.Sprite.grass, solid=True, high=True, mask=game_graphics.Sprite.hut)
+        World.tiles_hash[y][x].building = objects.building.Hut.Hut(x, y)
+        return
+
+    if color == 3158064:
+        World.tiles_hash[y][x] = tiles.Tile.Tile(game_graphics.Sprite.snow, slow=True)
+        # replace
         return
 
     World.tiles_hash[y][x] = tiles.Tile.Tile(game_graphics.Sprite.snow)
