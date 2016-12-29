@@ -53,7 +53,8 @@ class Worker(objects.mobs.Mob.Mob):
             self.destination = self.wood_path[self.counter]
             if self.counter == 0 and not self.first_pass:
                 Main.gamestate.wood += 50
-                sounds.Sound_control.SoundControl.add_wood(Main.sc)
+                if abs(self.x - (World.World.camera_x + Main.window_width / 2)) < 600 and abs(self.x - (World.World.camera_y + Main.window_height / 2) < 600):
+                    sounds.Sound_control.SoundControl.add_wood(Main.sc)
             if self.counter == len(self.wood_path) - 1:
                 self.first_pass = False
                 self.counter = -1
@@ -62,7 +63,8 @@ class Worker(objects.mobs.Mob.Mob):
             self.destination = self.stone_path[self.counter]
             if self.counter == 0 and not self.first_pass:
                 Main.gamestate.stone += 20
-                sounds.Sound_control.SoundControl.add_stone(Main.sc)
+                if abs(self.x - (World.World.camera_x + Main.window_width / 2)) < 600 and abs(self.x - (World.World.camera_y + Main.window_height / 2) < 600):
+                    sounds.Sound_control.SoundControl.add_stone(Main.sc)
             if self.counter == 2:
                 self.wait = True
                 self.wait_timer += 1
@@ -114,9 +116,10 @@ class Worker(objects.mobs.Mob.Mob):
         """Render frame."""
         self.set_sprite()
         display.canvas.blit(self.current_sprite.pic, (self.x - World.World.camera_x - self.current_sprite.width/2, self.y - World.World.camera_y - self.current_sprite.height/2 - 4))
-        if self.counter == 0 and not self.first_pass and self.worker_number == 0 or self.counter == 0 and self.worker_number == 1 and not self.first_pass:
-            display.canvas.blit(pygame.font.Font("game_graphics\\font.ttf", 22).render("50", 0, (0, 200, 0)), (self.x - World.World.camera_x - self.current_sprite.width / 2, self.y - World.World.camera_y - self.current_sprite.height - 5))
-
+        if self.counter == 0 and not self.first_pass and self.worker_number == 0:
+            display.canvas.blit(pygame.font.Font("game_graphics\\font.ttf", 22).render("+50", 0, (0, 200, 0)), (self.x - World.World.camera_x - self.current_sprite.width / 2, self.y - World.World.camera_y - self.current_sprite.height - 5))
+        if self.counter == 0 and self.worker_number == 1 and not self.first_pass:
+            display.canvas.blit(pygame.font.Font("game_graphics\\font.ttf", 22).render("+20", 0, (0, 200, 0)), (self.x - World.World.camera_x - self.current_sprite.width / 2, self.y - World.World.camera_y - self.current_sprite.height - 5))
 
     def set_sprite(self):
         """Set sprite."""
