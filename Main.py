@@ -12,7 +12,7 @@ import World
 import objects.mobs.Player
 import objects.mobs.Worker_man
 import objects.mobs.Goblin
-import game_state.Game_State
+import game_state.GameState
 import game_graphics.UI
 import sounds.Sound_control
 import Menu_world
@@ -23,7 +23,7 @@ pygame.mixer.pre_init(44100, 16, 2, 4096)  # preset the mixer init arguments
 window_title = "Driven Into the Last Corner"  # Title on top of the frame.
 window_width = 1200  # Width of the canvas.
 window_height = 700  # Height of the canvas.
-fps_fix = 60
+fps_fix = 160
 
 running = True  # while True game will run.
 
@@ -33,7 +33,7 @@ player = objects.mobs.Player.Player(30 << 5, 70 << 5)
 menu_ghost = objects.mobs.Player.Player(30 << 5, 70 << 5)
 world = World.World()
 menu_world = Menu_world.MenuWorld()
-gamestate = game_state.Game_State.Game_State()
+gamestate = game_state.GameState.GameState()
 
 worker_man = objects.mobs.Worker_man.Worker(37 << 5, 70 << 5, 0, [1456, 2162])   # first wood
 worker_man2 = objects.mobs.Worker_man.Worker(37 << 5, 70 << 5, 0, [1456, 2162])   # second wood
@@ -49,6 +49,7 @@ def update():
     else:
         KeyListener.update()
         world.update()
+        gamestate.update()
         user_interface.update()
     cameraPos()  # update camera position.
 

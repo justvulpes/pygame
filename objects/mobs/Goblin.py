@@ -27,7 +27,7 @@ class Goblin(objects.mobs.Mob.Mob):
 
     def __init__(self, x, y, speed=1, size=10):
         """Constructor."""
-        super().__init__(x, y, speed, size, race="Goblin", xp_reward=210.5)
+        super().__init__(x, y, speed, size, race="Goblin", xp_reward=0.5, hp=0.5, gold_reward=2)
         self.current_sprite = sprite_left
         self.direction = 3
         self.animation_counter = 0
@@ -131,18 +131,18 @@ class Goblin(objects.mobs.Mob.Mob):
                 self.shoot(self.enemy.x, self.enemy.y, 2)
                 self.shooting_cool_down = 30
             elif self.enemy_building is not None:
-                print("shoot")
                 self.shoot(self.enemy_building_x, self.enemy_building_y, 2)
                 self.shooting_cool_down = 30
 
     def check_if_enemy(self):
         enemy_list =[]
-        for y in range(5):
-            for x in range(5):
-                if len(World.World.tiles_hash[(self.y >> 5) + y - 2][(self.x >> 5) + x - 2].mobs) != 0:
-                    for mob in World.World.tiles_hash[(self.y >> 5) + y - 2][(self.x >> 5) + x - 2].mobs:
-                        if mob.race == "Human" and mob.hp > 0:
-                            enemy_list.append(mob)
+        for y in range(7):
+            for x in range(7):
+                if (self.y >> 5) + y - 3 < World.World.map_height:
+                    if len(World.World.tiles_hash[(self.y >> 5) + y - 3][(self.x >> 5) + x - 3].mobs) != 0:
+                        for mob in World.World.tiles_hash[(self.y >> 5) + y - 3][(self.x >> 5) + x - 3].mobs:
+                            if mob.race == "Human" and mob.hp > 0:
+                                enemy_list.append(mob)
 
         if len(enemy_list) != 0:
             self.enemy = enemy_list[random.randint(0, len(enemy_list) - 1)]

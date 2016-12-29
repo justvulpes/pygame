@@ -15,7 +15,6 @@ class BloodParticle(objects.particles.Particle.Particle):
 
     def render(self, display):
         display.canvas.fill(self.color, (self.x - World.World.camera_x, self.y - World.World.camera_y, self.width, self.height))
-        print("sss")
 
     def update(self):
         if not self.removed:

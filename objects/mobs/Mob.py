@@ -5,22 +5,24 @@ import World
 import objects.projectiles.Stone
 import objects.projectiles.Hand
 import objects.particles.Blood_particle
+import Main
 
 
 class Mob(objects.Object.Object):
     """Mob."""
 
-    def __init__(self, x, y, speed=1, size=20, race="Human", xp_reward=0.5):
+    def __init__(self, x, y, speed=1, size=20, race="Human", xp_reward=0.5, hp=10, gold_reward=0):
         """Constructor."""
         super().__init__(x, y)
         self.speed = speed
         self.size = size
-        self.hp = 10.0
-        self.max_hp = 10.0
+        self.hp = hp
+        self.max_hp = hp
         self.xp = 0.0
         self.lvl = 1
         self.race = race
         self.xp_reward = xp_reward
+        self.gold_reward = gold_reward
 
     def update(self):
         """Update."""
@@ -90,6 +92,7 @@ class Mob(objects.Object.Object):
                 self.destroy()
                 projectile.owner.xp += self.xp_reward
                 projectile.owner.check_level_up()
+                Main.gamestate.coins += self.gold_reward
             for i in range(int(20 * projectile.damage)):
                 World.World.particles.append(objects.particles.Blood_particle.BloodParticle(self.x, self.y))
 
