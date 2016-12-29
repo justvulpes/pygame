@@ -90,6 +90,10 @@ stone_weapon_icon = Sprite(64, 64, "game_graphics\\res\\icons\\stone_weapon_icon
 # Buttons
 build_button = Sprite(62, 30, "game_graphics\\res\\buttons\\build_button.png")
 upgrade_button = Sprite(62, 30, "game_graphics\\res\\buttons\\upgrade_button.png")
+
+
+build_button_pressed = Sprite(62, 30, "game_graphics\\res\\buttons\\build_button_pressed.png")
+upgrade_button_pressed = Sprite(62, 30, "game_graphics\\res\\buttons\\upgrade_button_pressed.png")
 ###
 
 # Objects

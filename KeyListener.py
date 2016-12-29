@@ -22,6 +22,8 @@ mouse_left_button_current = False  # True if mouse left button is currently in p
 mouse_scrolled_up = False
 mouse_scrolled_down = False
 
+interface_mode = False
+
 
 def update():
     """Update all information about which buttons are pressed etc."""

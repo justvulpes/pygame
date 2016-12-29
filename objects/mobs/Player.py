@@ -57,14 +57,15 @@ class Player(objects.mobs.Mob.Mob):
                 self.weapon = 1
 
     def update_shooting(self):
-        if self.weapon == 1:
-            if KeyListener.mouse_left_button_was_pressed():
-                sounds.Sound_control.SoundControl.player_shoot(Main.sc)
-                self.shoot(1)
-        elif self.weapon == 2:
-            if KeyListener.mouse_left_button_was_pressed():
-                sounds.Sound_control.SoundControl.player_punch(Main.sc)
-                self.shoot(2)
+        if not KeyListener.interface_mode:
+            if self.weapon == 1:
+                if KeyListener.mouse_left_button_was_pressed():
+                    sounds.Sound_control.SoundControl.player_shoot(Main.sc)
+                    self.shoot(1)
+            elif self.weapon == 2:
+                if KeyListener.mouse_left_button_was_pressed():
+                    sounds.Sound_control.SoundControl.player_punch(Main.sc)
+                    self.shoot(2)
 
     def update_moving(self):
         if KeyListener.button_is_pressed(ord("a")):
