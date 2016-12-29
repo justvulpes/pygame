@@ -1,8 +1,8 @@
 class Game_State:
     def __init__(self):
-        self.coins = 50
-        self.wood = 10
-        self.stone = 10
+        self.coins = 500
+        self.wood = 500
+        self.stone = 500
         self.wave = 0
         self.difficulty = 0
         self.survival_time = 0

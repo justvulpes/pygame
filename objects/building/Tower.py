@@ -4,6 +4,7 @@ import World
 import Main
 import game_graphics.Sprite
 import KeyListener
+import sounds.Sound_control
 
 upgrade_cost = {0: {"coins": 95, "stone": 95, "wood": 95}, 1: {"coins": 90, "stone": 90, "wood": 90}, 2: {"coins": 60, "stone": 60, "wood": 60}, 3: {"coins": 50, "stone": 40, "wood": 80}}
 background = pygame.Surface((64, 96), pygame.SRCALPHA)
@@ -41,11 +42,56 @@ class Tower(objects.building.Building.Building):
     def build(self):
         if Main.gamestate.coins >= upgrade_cost[self.lvl]["coins"] and Main.gamestate.stone >= upgrade_cost[self.lvl]["stone"] and Main.gamestate.wood >= upgrade_cost[self.lvl]["wood"]:
             if self.no_mobs():
-                self.constructed = True
-                self.lvl = 1
-                self.hp = 100
-                self.max_hp = 100
+                if not self.constructed:
+                    self.constructed = True
+                    self.lvl = 1
+                    self.hp = 100
+                    self.max_hp = 100
 
+                    Main.gamestate.coins -= upgrade_cost[self.lvl]["coins"]
+                    Main.gamestate.stone -= upgrade_cost[self.lvl]["stone"]
+                    Main.gamestate.wood -= upgrade_cost[self.lvl]["wood"]
+
+                    World.World.tiles_hash[self.y - 4][self.x - 3].sprite = game_graphics.Sprite.tower_1
+                    World.World.tiles_hash[self.y - 4][self.x - 2].sprite = game_graphics.Sprite.tower_2
+                    World.World.tiles_hash[self.y - 4][self.x - 1].sprite = game_graphics.Sprite.tower_3
+                    World.World.tiles_hash[self.y - 3][self.x - 3].sprite = game_graphics.Sprite.tower_4
+                    World.World.tiles_hash[self.y - 3][self.x - 2].sprite = game_graphics.Sprite.tower_5
+                    World.World.tiles_hash[self.y - 3][self.x - 1].sprite = game_graphics.Sprite.tower_6
+                    World.World.tiles_hash[self.y - 2][self.x - 3].sprite = game_graphics.Sprite.tower_7
+                    World.World.tiles_hash[self.y - 2][self.x - 2].sprite = game_graphics.Sprite.tower_8
+                    World.World.tiles_hash[self.y - 2][self.x - 1].sprite = game_graphics.Sprite.tower_9
+                    World.World.tiles_hash[self.y - 1][self.x - 3].sprite = game_graphics.Sprite.tower_10
+                    World.World.tiles_hash[self.y - 1][self.x - 2].sprite = game_graphics.Sprite.tower_11
+                    World.World.tiles_hash[self.y - 1][self.x - 1].sprite = game_graphics.Sprite.tower_12
+
+                    World.World.tiles_hash[self.y - 4][self.x - 3].solid = True
+                    World.World.tiles_hash[self.y - 4][self.x - 2].solid = True
+                    World.World.tiles_hash[self.y - 4][self.x - 1].solid = True
+                    World.World.tiles_hash[self.y - 3][self.x - 3].solid = True
+                    World.World.tiles_hash[self.y - 3][self.x - 2].solid = False
+                    World.World.tiles_hash[self.y - 3][self.x - 1].solid = True
+                    World.World.tiles_hash[self.y - 2][self.x - 3].solid = True
+                    World.World.tiles_hash[self.y - 2][self.x - 2].solid = False
+                    World.World.tiles_hash[self.y - 2][self.x - 1].solid = True
+                    World.World.tiles_hash[self.y - 1][self.x - 3].solid = True
+                    World.World.tiles_hash[self.y - 1][self.x - 2].solid = False
+                    World.World.tiles_hash[self.y - 1][self.x - 1].solid = True
+
+                    World.World.tiles_hash[self.y - 4][self.x - 3].high = True
+                    World.World.tiles_hash[self.y - 4][self.x - 2].high = True
+                    World.World.tiles_hash[self.y - 4][self.x - 1].high = True
+                    World.World.tiles_hash[self.y - 3][self.x - 3].high = True
+                    World.World.tiles_hash[self.y - 3][self.x - 2].high = True
+                    World.World.tiles_hash[self.y - 3][self.x - 1].high = True
+                    World.World.tiles_hash[self.y - 2][self.x - 3].high = True
+                    World.World.tiles_hash[self.y - 2][self.x - 2].high = True
+                    World.World.tiles_hash[self.y - 2][self.x - 1].high = True
+                    World.World.tiles_hash[self.y - 1][self.x - 3].high = True
+                    World.World.tiles_hash[self.y - 1][self.x - 2].high = True
+                    World.World.tiles_hash[self.y - 1][self.x - 1].high = True
+
+                    sounds.Sound_control.SoundControl.upgrade(Main.sc)
 
     def no_mobs(self):
 
@@ -59,7 +105,7 @@ class Tower(objects.building.Building.Building):
     def render(self, display):
         display.canvas.blit(background, ((self.x << 5) - World.World.camera_x - 16, (self.y << 5) - World.World.camera_y - 112))
 
-        display.canvas.blit(self.tower_text, ((self.x << 5) - World.World.camera_x + 1, (self.y << 5) - World.World.camera_y - 108))
+        display.canvas.blit(self.tower_text, ((self.x << 5) - World.World.camera_x - 3, (self.y << 5) - World.World.camera_y - 108))
 
         ###
         if self.coin_price_count != upgrade_cost[self.lvl]["coins"] or (self.wood_enough != (Main.gamestate.wood >= upgrade_cost[self.lvl]["wood"])):
