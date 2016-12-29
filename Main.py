@@ -17,7 +17,7 @@ import sounds.Sound_control
 import Menu_world
 
 pygame.init()
-pygame.mixer.pre_init(44100, 16, 2, 4096)
+pygame.mixer.pre_init(44100, 16, 2, 4096)  # preset the mixer init arguments
 
 window_title = "Driven Into the Last Corner"  # Title on top of the frame.
 window_width = 1200  # Width of the canvas.
@@ -90,8 +90,7 @@ def run():
     """Run the game."""
     sounds.Sound_control.SoundControl.play_menu_music(sc)
 
-    global game_window
-    game_window = game_graphics.Display.Display(window_width, window_height, fps_fix)
+    game_window = game_graphics.Display.Display(window_width, window_height, fps_fix)  # surface
     mr = Menu.MenuRun(game_window.canvas)
     mr.run(game_window.canvas, surf=game_window)
 
@@ -110,7 +109,6 @@ def run():
         pygame.display.set_caption(window_title + " | " + "FPS: %i" % game_window.clock.get_fps())
         update()
         render(game_window)
-        # game_window.canvas.blit(pygame.image.frombuffer(PIL.Image.frombytes('RGB', (1200, 700), pygame.image.tostring(game_window.canvas, 'RGB')).filter(ImageFilter.GaussianBlur(radius=7)).tobytes(), (1200, 700), "RGB"), (0, 0))
         pygame.display.flip()
 
 if __name__ == "__main__":
