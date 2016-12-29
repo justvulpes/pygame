@@ -14,6 +14,7 @@ class Tile:
         self.high = high
         self.slow = slow
         self.type = type
+        self.is_building = None
 
         self.mobs = []
         self.projectiles = []

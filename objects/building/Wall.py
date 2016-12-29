@@ -55,6 +55,7 @@ class Wall(objects.building.Building.Building):
             World.World.tiles_hash[self.y][self.x].mask = self.old_tile_mask
             World.World.tiles_hash[self.y][self.x].solid = self.old_tile_solid
             World.World.tiles_hash[self.y][self.x].high = self.old_tile_high
+            World.World.tiles_hash[self.y][self.x].is_building = False
 
     def build(self):
         """Build."""
@@ -75,6 +76,7 @@ class Wall(objects.building.Building.Building):
                     World.World.tiles_hash[self.y][self.x].mask = None
                     World.World.tiles_hash[self.y][self.x].solid = True
                     World.World.tiles_hash[self.y][self.x].high = True
+                    World.World.tiles_hash[self.y][self.x].is_building = self
 
                     sounds.Sound_control.SoundControl.upgrade(Main.sc)
 
@@ -121,7 +123,7 @@ class Wall(objects.building.Building.Building):
         display.canvas.blit(self.wall_text, ((self.x << 5) - World.World.camera_x + 1, (self.y << 5) - World.World.camera_y - 108))
 
         ###
-        if self.coin_price_count != upgrade_cost[self.lvl]["coins"] or (self.wood_enough != (Main.gamestate.wood >= upgrade_cost[self.lvl]["wood"])):
+        if self.coin_price_count != upgrade_cost[self.lvl]["coins"] or (self.coin_enough != (Main.gamestate.coins >= upgrade_cost[self.lvl]["coins"])):
             self.coin_price_count = upgrade_cost[self.lvl]["coins"]
             self.coin_enough = Main.gamestate.coins >= upgrade_cost[self.lvl]["coins"]
             self.coin_price_text = self.font.render(str(self.coin_price_count), 1, self.font_color if self.coin_enough else self.font_not_enough_color)

@@ -1,4 +1,3 @@
-"""Tower."""
 import objects.building.Building
 import pygame
 import World
@@ -13,10 +12,7 @@ background.fill((0, 0, 0, 170))
 
 
 class Tower(objects.building.Building.Building):
-    """Tower."""
-
     def __init__(self, x, y):
-        """Constructor."""
         super().__init__(x, y, max_hp=100)
         self.font = pygame.font.Font("game_graphics\\font.ttf", 22)
 
@@ -41,11 +37,9 @@ class Tower(objects.building.Building.Building):
         self.wood_price_text = self.font.render(str(self.wood_price_count), 1, self.font_color if self.wood_enough else self.font_not_enough_color)
 
     def destroy(self):
-        """Destroy."""
         self.constructed = False
 
     def build(self):
-        """Build."""
         if Main.gamestate.coins >= upgrade_cost[self.lvl]["coins"] and Main.gamestate.stone >= upgrade_cost[self.lvl]["stone"] and Main.gamestate.wood >= upgrade_cost[self.lvl]["wood"]:
             if self.no_mobs():
                 if not self.constructed:
@@ -84,6 +78,19 @@ class Tower(objects.building.Building.Building):
                     World.World.tiles_hash[self.y - 1][self.x - 2].solid = False
                     World.World.tiles_hash[self.y - 1][self.x - 1].solid = True
 
+                    World.World.tiles_hash[self.y - 4][self.x - 3].is_building = self
+                    World.World.tiles_hash[self.y - 4][self.x - 2].is_building = self
+                    World.World.tiles_hash[self.y - 4][self.x - 1].is_building = self
+                    World.World.tiles_hash[self.y - 3][self.x - 3].is_building = self
+                    World.World.tiles_hash[self.y - 3][self.x - 2].is_building = self
+                    World.World.tiles_hash[self.y - 3][self.x - 1].is_building = self
+                    World.World.tiles_hash[self.y - 2][self.x - 3].is_building = self
+                    World.World.tiles_hash[self.y - 2][self.x - 2].is_building = self
+                    World.World.tiles_hash[self.y - 2][self.x - 1].is_building = self
+                    World.World.tiles_hash[self.y - 1][self.x - 3].is_building = self
+                    World.World.tiles_hash[self.y - 1][self.x - 2].is_building = self
+                    World.World.tiles_hash[self.y - 1][self.x - 1].is_building = self
+
                     World.World.tiles_hash[self.y - 4][self.x - 3].high = True
                     World.World.tiles_hash[self.y - 4][self.x - 2].high = True
                     World.World.tiles_hash[self.y - 4][self.x - 1].high = True
@@ -97,10 +104,12 @@ class Tower(objects.building.Building.Building):
                     World.World.tiles_hash[self.y - 1][self.x - 2].high = True
                     World.World.tiles_hash[self.y - 1][self.x - 1].high = True
 
+                    World.World.tiles_hash[self.y - 1][self.x - 2].slow = True
+
                     sounds.Sound_control.SoundControl.upgrade(Main.sc)
 
     def no_mobs(self):
-        """No mobs."""
+
         for y in range(4):
             for x in range(3):
                 if len(World.World.tiles_hash[self.y - y - 1][self.x - x - 1].mobs) != 0:
@@ -109,7 +118,6 @@ class Tower(objects.building.Building.Building):
         return True
 
     def render(self, display):
-        """Render."""
         display.canvas.blit(background, ((self.x << 5) - World.World.camera_x - 16, (self.y << 5) - World.World.camera_y - 112))
 
         display.canvas.blit(self.tower_text, ((self.x << 5) - World.World.camera_x - 3, (self.y << 5) - World.World.camera_y - 108))
@@ -158,7 +166,6 @@ class Tower(objects.building.Building.Building):
             display.canvas.blit(game_graphics.Sprite.build_button.pic, ((self.x << 5) - World.World.camera_x - 15, (self.y << 5) - World.World.camera_y - 47))
 
     def still_active(self):
-        """Still active."""
         first_rect = True
         second_rect = True
 
@@ -177,8 +184,7 @@ class Tower(objects.building.Building.Building):
         return first_rect or second_rect
 
     def update(self):
-        """Update."""
-        if ((self.y - 1) << 5) - 16 < World.World.camera_y + KeyListener.mouseY < ((self.y) << 5) - 16:
+        if ((self.y - 1) << 5) - 16 < World.World.camera_y + KeyListener.mouseY < (self.y << 5) - 16:
             if (self.x << 5) - 16 < World.World.camera_x + KeyListener.mouseX < ((self.x + 1) << 5) + 16:
                 if KeyListener.mouse_left_button_was_released():
                     self.build()

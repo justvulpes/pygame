@@ -10,15 +10,17 @@ import KeyListener
 class Mob(objects.Object.Object):
     """Mob."""
 
-    def __init__(self, x, y, speed=1, size=20):
+    def __init__(self, x, y, speed=1, size=20, race="Human", xp_reward=0.5):
         """Constructor."""
         super().__init__(x, y)
         self.speed = speed
         self.size = size
-        self.hp = 99
-        self.max_hp = 99
-        self.xp = 11
+        self.hp = 10.0
+        self.max_hp = 10.0
+        self.xp = 0.0
         self.lvl = 1
+        self.race = race
+        self.xp_reward = xp_reward
 
     def update(self):
         """Update."""
@@ -50,15 +52,15 @@ class Mob(objects.Object.Object):
                         and not World.World.tiles_hash[int(self.y + y - (self.size >> 1)) >> 5][int(self.x - (self.size >> 1)) >> 5].solid:
                     self.y += y
 
-    def shoot(self, particle_type):
+    def shoot(self, x, y, particle_type):
         high = False
-        if self.current_tile != None:
+        if self.current_tile is not None:
             high = self.current_tile.high
 
         if particle_type == 1:
-            World.World.projectiles.append(objects.projectiles.Stone.Stone(self.x, self.y, World.World.camera_x + KeyListener.mouseX, World.World.camera_y + KeyListener.mouseY, high=high))
+            World.World.projectiles.append(objects.projectiles.Stone.Stone(self.x, self.y, x, y, self, high=high))
         elif particle_type == 2:
-            World.World.projectiles.append(objects.projectiles.Hand.Hand(self.x, self.y, World.World.camera_x + KeyListener.mouseX, World.World.camera_y + KeyListener.mouseY))
+            World.World.projectiles.append(objects.projectiles.Hand.Hand(self.x, self.y, x, y, self))
 
     def update_tile(self):
 
@@ -78,3 +80,14 @@ class Mob(objects.Object.Object):
             self.lvl += 1
             self.max_hp += 5
             self.hp += 5
+            self.check_level_up()
+
+    def do_damage(self, projectile):
+        if not self.removed:
+            self.hp -= projectile.damage
+            if self.hp < 0:
+                self.hp = 0
+                self.destroy()
+                projectile.owner.xp += self.xp_reward
+                projectile.owner.check_level_up()
+
