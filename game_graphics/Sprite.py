@@ -124,3 +124,4 @@ tower_12 = Sprite(32, 32, "game_graphics\\res\\objects\\tower\\tower_12.png")
 
 # Map
 map = Sprite(40, 20, "game_graphics\\res\\map\\map.png")
+menu_map = Sprite(40, 20, "game_graphics\\res\\map\\menu_map.png")

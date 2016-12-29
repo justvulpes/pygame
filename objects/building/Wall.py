@@ -113,7 +113,6 @@ class Wall(objects.building.Building.Building):
             self.max_hp += 5
             self.hp += 5
 
-
     def render(self, display):
         display.canvas.blit(background, ((self.x << 5) - World.World.camera_x - 16, (self.y << 5) - World.World.camera_y - 112))
 
@@ -162,7 +161,6 @@ class Wall(objects.building.Building.Building):
             display.canvas.blit(game_graphics.Sprite.upgrade_button.pic, ((self.x << 5) - World.World.camera_x - 15, (self.y << 5) - World.World.camera_y - 47))
         else:
             display.canvas.blit(game_graphics.Sprite.build_button.pic, ((self.x << 5) - World.World.camera_x - 15, (self.y << 5) - World.World.camera_y - 47))
-
 
     def still_active(self):
         first_rect = True

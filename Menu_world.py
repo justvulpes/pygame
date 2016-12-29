@@ -22,7 +22,7 @@ class MenuWorld:
         """Constructor."""
 
 
-        map_pixels = pygame.surfarray.array2d(game_graphics.Sprite.map.pic)
+        map_pixels = pygame.surfarray.array2d(game_graphics.Sprite.menu_map.pic)
         MenuWorld.tiles_hash = [[x for x in range(MenuWorld.map_width)] for y in range(MenuWorld.map_height)]
 
         for y in range(MenuWorld.map_height):
