@@ -204,3 +204,4 @@ class Goblin(objects.mobs.Mob.Mob):
 
             elif self.direction == 3:
                 self.current_sprite = sprite_left
+
