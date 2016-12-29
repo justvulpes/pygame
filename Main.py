@@ -99,6 +99,32 @@ def run():
     world.mobs.append(worker_man3)
     world.mobs.append(player)
     world.mobs.append(objects.mobs.Goblin.Goblin(30 << 5, 40 << 5))
+    """
+    world.mobs.append(objects.mobs.Goblin.Goblin(31 << 5, 40 << 5))
+    world.mobs.append(objects.mobs.Goblin.Goblin(32 << 5, 40 << 5))
+    world.mobs.append(objects.mobs.Goblin.Goblin(33 << 5, 40 << 5))
+    world.mobs.append(objects.mobs.Goblin.Goblin(34 << 5, 40 << 5))
+    world.mobs.append(objects.mobs.Goblin.Goblin(35 << 5, 40 << 5))
+    world.mobs.append(objects.mobs.Goblin.Goblin(36 << 5, 40 << 5))
+    world.mobs.append(objects.mobs.Goblin.Goblin(29 << 5, 40 << 5))
+    world.mobs.append(objects.mobs.Goblin.Goblin(28 << 5, 40 << 5))
+    world.mobs.append(objects.mobs.Goblin.Goblin(27 << 5, 40 << 5))
+    world.mobs.append(objects.mobs.Goblin.Goblin(26 << 5, 40 << 5))
+    world.mobs.append(objects.mobs.Goblin.Goblin(30 << 5, 40 << 5))
+    world.mobs.append(objects.mobs.Goblin.Goblin(31 << 5, 41 << 5))
+    world.mobs.append(objects.mobs.Goblin.Goblin(32 << 5, 42 << 5))
+    world.mobs.append(objects.mobs.Goblin.Goblin(33 << 5, 43 << 5))
+    world.mobs.append(objects.mobs.Goblin.Goblin(34 << 5, 44 << 5))
+    world.mobs.append(objects.mobs.Goblin.Goblin(35 << 5, 45 << 5))
+    world.mobs.append(objects.mobs.Goblin.Goblin(36 << 5, 39 << 5))
+    world.mobs.append(objects.mobs.Goblin.Goblin(29 << 5, 38 << 5))
+    world.mobs.append(objects.mobs.Goblin.Goblin(28 << 5, 37 << 5))
+    world.mobs.append(objects.mobs.Goblin.Goblin(27 << 5, 36 << 5))
+    world.mobs.append(objects.mobs.Goblin.Goblin(26 << 5, 35 << 5))
+    """
+
+
+
     menu_world.mobs.append(menu_ghost)
     menu_world.player = menu_ghost
     World.player = player

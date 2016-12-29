@@ -153,6 +153,7 @@ class Settings(Menu):
 
 class MenuRun:
     """Menu run."""
+
     def __init__(self, screen2):
         """Constructor."""
         self.screen = screen2

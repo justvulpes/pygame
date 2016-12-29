@@ -2,10 +2,8 @@
 import pygame
 
 import Main
-import Menu
 import objects.mobs.Mob
 import game_graphics.Sprite
-import KeyListener
 import World
 import sounds.Sound_control
 
@@ -46,7 +44,7 @@ class Worker(objects.mobs.Mob.Mob):
         self.worker_number = worker_number
         self.stone_path = [[496, 2192], [464, 2226], [432, 2224], [495, 2227], [496, 2192]]
         self.wood_path = [[1584, 2162], [1584, 2096], [1616, 2096], [1616, 2129], [1648, 2129], [1652, 2193], [1679, 2193], [1652, 2193],
-                       [1648, 2226], [1580, 2227], [1580, 2162], [1580, 2161], [1520, 2223], [1520, 2160], [1580, 2158], [1580, 2290]]
+                          [1648, 2226], [1580, 2227], [1580, 2162], [1580, 2161], [1520, 2223], [1520, 2160], [1580, 2158], [1580, 2290]]
 
     def update_destination(self):
         if self.worker_number == 0:
@@ -79,7 +77,7 @@ class Worker(objects.mobs.Mob.Mob):
 
     def update(self):
         self.moving = False
-        #print(self.x, self.y, self.destination)
+        # print(self.x, self.y, self.destination)
 
         if [self.x, self.y] == self.destination:
             self.update_destination()
@@ -115,7 +113,7 @@ class Worker(objects.mobs.Mob.Mob):
     def render(self, display):
         """Render frame."""
         self.set_sprite()
-        display.canvas.blit(self.current_sprite.pic, (self.x - World.World.camera_x - self.current_sprite.width/2, self.y - World.World.camera_y - self.current_sprite.height/2 - 4))
+        display.canvas.blit(self.current_sprite.pic, (self.x - World.World.camera_x - self.current_sprite.width/2, self.y - World.World.camera_y - self.current_sprite.height / 2 - 4))
         if self.counter == 0 and not self.first_pass and self.worker_number == 0:
             display.canvas.blit(pygame.font.Font("game_graphics\\font.ttf", 22).render("+50", 0, (0, 200, 0)), (self.x - World.World.camera_x - self.current_sprite.width / 2, self.y - World.World.camera_y - self.current_sprite.height - 5))
         if self.counter == 0 and self.worker_number == 1 and not self.first_pass:

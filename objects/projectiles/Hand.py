@@ -13,4 +13,5 @@ class Hand(objects.projectiles.Projectile.Projectile):
         super().__init__(x, y, end_x, end_y, None, owner, size=6, speed=15, lifetime=2, damage=1.5)
 
     def render(self, display):
+        """Render."""
         pass

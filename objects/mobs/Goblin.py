@@ -149,9 +149,9 @@ class Goblin(objects.mobs.Mob.Mob):
 
     def check_if_building(self):
         enemy_list = []
-        for y in range(3):
-            for x in range(3):
-                if World.World.tiles_hash[(self.y >> 5) + y - 1][(self.x >> 5) + x - 1].is_building is not None and World.World.tiles_hash[(self.y >> 5) + y - 1][(self.x >> 5) + x - 1].is_building.hp > 0:
+        for y in range(7):
+            for x in range(7):
+                if World.World.tiles_hash[(self.y >> 5) + y - 3][(self.x >> 5) + x - 3].is_building is not None and World.World.tiles_hash[(self.y >> 5) + y - 3][(self.x >> 5) + x - 3].is_building.hp > 0:
                     enemy_list.append((y, x))
 
         if len(enemy_list) != 0:
@@ -204,4 +204,3 @@ class Goblin(objects.mobs.Mob.Mob):
 
             elif self.direction == 3:
                 self.current_sprite = sprite_left
-

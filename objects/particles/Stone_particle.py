@@ -1,11 +1,15 @@
+"""Stone particle."""
+
 import objects.particles.Particle
 import World
 import random
-import Main
 
 
 class StoneParticle(objects.particles.Particle.Particle):
+    """StoneParticle."""
+
     def __init__(self, x, y):
+        """Constructor."""
         super().__init__(x, y)
         self.color = (100 + random.randint(0, 60), 160, 160)
         self.width = 2
@@ -15,10 +19,11 @@ class StoneParticle(objects.particles.Particle.Particle):
         self.life_time = random.randint(10, 70)
 
     def render(self, display):
+        """Render."""
         display.canvas.fill(self.color, (self.x - World.World.camera_x, self.y - World.World.camera_y, self.width, self.height))
-        print("sss")
 
     def update(self):
+        """Update."""
         if not self.removed:
             self.speed_x /= 1.1
             self.speed_y /= 1.1

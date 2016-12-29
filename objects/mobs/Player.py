@@ -52,6 +52,7 @@ class Player(objects.mobs.Mob.Mob):
         self.update_moving()
 
     def update_camera_tweak(self):
+        """Update camera tweak."""
         if self.current_tile is not None and self.current_tile.sprite == game_graphics.Sprite.tower_5:
             self.camera_shift_x = (World.World.camera_x + KeyListener.mouseX - self.x) / 2
             self.camera_shift_y = (World.World.camera_y + KeyListener.mouseY - self.y) / 2
@@ -61,7 +62,7 @@ class Player(objects.mobs.Mob.Mob):
             self.camera_shift_y = 0
 
     def update_weapon(self):
-
+        """Update weapon."""
         if KeyListener.mouse_right_button_was_pressed() or KeyListener.mouse_scrolled_up or KeyListener.mouse_scrolled_down:
             sounds.Sound_control.SoundControl.play_click(Main.sc)
             if self.weapon == 1:
@@ -70,6 +71,7 @@ class Player(objects.mobs.Mob.Mob):
                 self.weapon = 1
 
     def update_shooting(self):
+        """Update shooting."""
         if not KeyListener.interface_mode:
             if self.weapon == 1:
                 if KeyListener.mouse_left_button_was_pressed():
@@ -81,6 +83,7 @@ class Player(objects.mobs.Mob.Mob):
                     self.shoot(0, 0, 2)
 
     def update_moving(self):
+        """Update moving."""
         if KeyListener.button_is_pressed(ord("a")):
             self.move(-self.speed, 0)
             self.moving = True
@@ -155,6 +158,7 @@ class Player(objects.mobs.Mob.Mob):
                 self.current_sprite = sprite_left
 
     def shoot(self, x, y, particle_type):
+        """Shoot."""
         high = False
         if self.current_tile is not None:
             high = self.current_tile.high
